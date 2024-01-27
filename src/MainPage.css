@@ -1,0 +1,102 @@
+
+/* Add this to your CSS file */
+/* .urlInputContainer {
+    display: flex;
+  }
+  
+  .urlInputButton {
+    flex-grow: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .actionButtons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  
+  .buttonContainer {
+    flex-grow: 1;
+    text-align: center;
+  }
+  
+  .buttonContainer:not(:last-child) {
+    border-right: none; 
+  }
+  
+  .summariserButton,
+  .crossCheckingButton {
+    width: 100%;
+  }
+  
+  .circleButton {
+    display: block;
+    margin: 0 auto;
+    padding: 10px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    cursor: pointer;
+  }
+  
+  .plusButton {
+    font-size: 20px;
+  } */
+  
+
+/* Add this to your CSS file */
+.urlInputContainer {
+    display: flex;
+  }
+  
+  .urlInputButton {
+    flex-grow: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .actionButtons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  
+  .buttonContainer {
+    flex-grow: 1;
+    text-align: center;
+    position: relative; /* Make the container relative */
+  }
+  
+  .summariserButton button,
+  .crossCheckingButton button {
+    width: 100%;
+  }
+  
+  .plusButtonContainer {
+    z-index: 1; /* Ensure the plus button appears above other buttons */
+    position: absolute; /* Position the plus button container absolutely */
+    top: 50%; /* Align the container vertically */
+    transform: translateY(-50%); /* Center the container vertically */
+    right: 0; /* Align the container to the right side */
+  }
+  
+  .circleButton {
+    display: block;
+    margin: 0 auto;
+    padding: 10px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    position: absolute; /* Make the plus button absolute */
+    top: 50%; /* Align the button vertically */
+    transform: translateY(-50%); /* Center the button vertically */
+    right: 0; /* Align the button to the right side */
+  }
+  
+  .plusButton {
+    font-size: 20px;
+  }
+  
+  
