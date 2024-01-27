@@ -18,6 +18,9 @@ function LoginPage() {
         <label>Password</label>
         <input type="password" placeholder="Enter your password" />
         <div className="forgotPassword">Forgot Password?</div>
+        <div className="loginButton">
+          <button>Login</button>
+        </div>
       </div>
       <div className="orLine">
         <div className="line"></div>
