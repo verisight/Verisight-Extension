@@ -1,8 +1,24 @@
 // SignupPage.tsx
 import companyLogo from './assets/company-logo.jpg';
 import './SignupPage.css';
+import { useState } from 'react';
+import MainPage from './MainPage' // Import your MainPage component
 
 function SignupPage() {
+
+  const [isSignedIn, setSignedIn] = useState(false);
+
+  const handleSignin = () => {
+    // Perform login logic if needed
+    // For now, let's simulate a successful login
+    // and update the state to indicate that the user is logged in
+    setSignedIn(true);
+  };
+
+  // Redirect to the main page if the user is logged in
+  if (isSignedIn) {
+    return <MainPage />;
+  }
   return (
     <div>
       <img src={companyLogo} className="companyLogo" alt="Company Logo" />
@@ -22,6 +38,9 @@ function SignupPage() {
         <div className="termsCheckbox">
           <input type="checkbox" id="termsCheckbox" />
           <label htmlFor="termsCheckbox">I agree to the terms and conditions</label>
+        </div>
+        <div className="SigninButton">
+          <button onClick={handleSignin}>Signin</button>
         </div>
       </div>
       <div className="orLine">

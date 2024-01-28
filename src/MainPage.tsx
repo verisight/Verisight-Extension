@@ -106,7 +106,10 @@ function MainPage() {
   return (
     <div>
       <img src={companyLogo} className="companyLogo" alt="Company Logo" />
-      <button onClick={handleFetchLink}>Fetch Link of Current site</button>
+      {/* <button onClick={handleFetchLink} className='fetchButton'>Fetch Link of Current site</button> */}
+      <div className="Button">
+          <button onClick={handleFetchLink}>Fetch Link of Current site</button>
+        </div>
       <div className="orLine">
         <div className="line"></div>
         <div className="orText">or</div>
