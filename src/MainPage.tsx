@@ -36,7 +36,7 @@ function MainPage() {
         <button className="circleButton plusButton">+</button>
         <button className="circleButton">Cross-checking</button>
       </div> */}
-      <div className="actionButtons">
+      {/* <div className="actionButtons">
         <div className="buttonContainer">
           <button className="summariserButton">Summariser</button>
         </div>
@@ -46,7 +46,12 @@ function MainPage() {
         <div className="buttonContainer">
           <button className="crossCheckingButton">Cross-Checking</button>
         </div>
-      </div>
+      </div> */}
+       <div className="btn-group">
+        <button>Summariser</button>
+        <button className='plus'>+</button>
+        <button>Cross-Checking</button>
+      </div> 
     </div>
   );
 }
