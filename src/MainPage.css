@@ -46,16 +46,16 @@
   
 
 /* Add this to your CSS file */
-.btn-group {
+/* .btn-group {
   position: relative;
 }
 
 .btn-group button {
-  background-color: #04AA6D; /* Green background */
-  border: 1px solid green; /* Green border */
-  color: white; /* White text */
-  padding: 10px 24px; /* Some padding */
-  cursor: pointer; /* Pointer/hand icon */
+  background-color: #04AA6D; 
+  border: 1px solid green; 
+  color: white; 
+  padding: 10px 24px; 
+  cursor: pointer; 
 }
 
 .middle-btn {
@@ -63,7 +63,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 16px 40px; /* Increased padding for the bigger button */
+  padding: 16px 40px; 
   z-index: 1;
 }
 
@@ -72,10 +72,106 @@
   z-index: 0;
 }
 
-/* Add a background color on hover */
+
 .btn-group button:hover {
   background-color: #3e8e41;
-}
+} */
 
   
   
+/* .box {
+  height: 84px;
+  width: 436px;
+}
+
+.box .menu {
+  height: 84px;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 440px;
+} */
+
+.box .overlap-group {
+  height: 84px;
+  position: relative;
+  width: 436px;
+}
+
+.box .rectangle {
+  border: 1px solid;
+  border-color: #e4e4e4;
+  border-radius: 30px;
+  height: 60px;
+  left: 0;
+  position: absolute;
+  top: 12px;
+  width: 436px;
+}
+
+.box .ellipse {
+  background-color: #000000;
+  border-radius: 42px;
+  box-shadow: 0px 0px 2px 4px #6a9ccaad;
+  height: 84px;
+  left: 176px;
+  position: absolute;
+  top: 0;
+  width: 84px;
+}
+
+.box .plus-math {
+  height: 37px;
+  left: 199px;
+  position: absolute;
+  top: 23px;
+  width: 37px;
+}
+
+.box .text-wrapper {
+  color: #ffffff;
+  font-family: "Poppins-Medium", Helvetica;
+  font-size: 11px;
+  font-weight: 500;
+  height: 11px;
+  left: 52px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  text-align: center;
+  top: 54px;
+  white-space: nowrap;
+  width: 94px;
+}
+
+.box .div {
+  color: #ffffff;
+  font-family: "Poppins-Medium", Helvetica;
+  font-size: 11px;
+  font-weight: 500;
+  height: 11px;
+  left: 300px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  text-align: center;
+  top: 54px;
+  white-space: nowrap;
+  width: 94px;
+}
+
+.box .brief {
+  height: 30px;
+  left: 84px;
+  position: absolute;
+  top: 18px;
+  width: 30px;
+}
+
+.box .detective {
+  height: 38px;
+  left: 324px;
+  position: absolute;
+  top: 14px;
+  width: 38px;
+}

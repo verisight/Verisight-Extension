@@ -52,11 +52,28 @@ function MainPage() {
         <button className='plus'>+</button>
         <button>Cross-Checking</button>
       </div>  */}
-      <div className="btn-group">
+      {/* <div className="btn-group">
         <button className="left-btn">Summariser</button>
         <button className="middle-btn">+</button>
         <button className="right-btn">Cross-Checking</button>
+      </div> */}
+      <div className="box">
+      <div className="menu">
+        <div className="overlap-group">
+          <div>
+            <button className="rectangle"></button>
+          </div>
+          <div>
+            <button className="ellipse"></button>
+          </div>
+          <img className="plus-math" alt="Plus math" src="./assets/plus-math.png" />
+          <div className="text-wrapper">Summariser</div>
+          <div className="div">Cross-checking</div>
+          <img className="brief" alt="Brief" src="./assets/brief.png" />
+          <img className="detective" alt="Detective" src="detective.png" />
+        </div>
       </div>
+    </div>
 
 
     </div>
