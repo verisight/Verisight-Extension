@@ -47,11 +47,18 @@ function MainPage() {
           <button className="crossCheckingButton">Cross-Checking</button>
         </div>
       </div> */}
-       <div className="btn-group">
+      {/* <div className="btn-group">
         <button>Summariser</button>
         <button className='plus'>+</button>
         <button>Cross-Checking</button>
-      </div> 
+      </div>  */}
+      <div className="btn-group">
+        <button className="left-btn">Summariser</button>
+        <button className="middle-btn">+</button>
+        <button className="right-btn">Cross-Checking</button>
+      </div>
+
+
     </div>
   );
 }

@@ -47,40 +47,29 @@
 
 /* Add this to your CSS file */
 .btn-group {
-  position: relative; /* Set position to relative for the container */
+  position: relative;
 }
 
-.btn-group button.plus {
-  background-color: #04AA6D; /* Green background */
-  border: 1px solid green; /* Green border */
-  color: white; /* White text */
-  padding: 16px 24px; /* Increased padding for bigger size */
-  cursor: pointer; /* Pointer/hand icon */
-  position: absolute; /* Set position to absolute */
-  top: 0; /* Align to the top of the container */
-  left: 50%; /* Align to the center horizontally */
-  transform: translateX(-50%); /* Center horizontally */
-  z-index: 1; /* Ensure it's above other buttons */
-}
-
-.btn-group button:not(.plus) {
+.btn-group button {
   background-color: #04AA6D; /* Green background */
   border: 1px solid green; /* Green border */
   color: white; /* White text */
   padding: 10px 24px; /* Some padding */
   cursor: pointer; /* Pointer/hand icon */
-  float: left; /* Float the buttons side by side */
 }
 
-.btn-group button:nth-child(2) {
-  margin-left: 8px; /* Adjust the margin to create space between buttons */
+.middle-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 16px 40px; /* Increased padding for the bigger button */
+  z-index: 1;
 }
 
-/* Clear floats (clearfix hack) */
-.btn-group:after {
-  content: "";
-  clear: both;
-  display: table;
+.left-btn, .right-btn {
+  position: relative;
+  z-index: 0;
 }
 
 /* Add a background color on hover */
