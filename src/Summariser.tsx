@@ -4,6 +4,7 @@ import detective from './assets/Detective.jpg';
 import plus from './assets/Plus Math.jpg';
 
 import './MainPage.css';
+import './Summariser.css';
 
 
 
