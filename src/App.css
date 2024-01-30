@@ -1,5 +1,6 @@
 #root {
-  max-width: 1280px;
+  max-width: 550px;
+  max-height: 900px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
@@ -47,4 +48,5 @@
 .bigLogo {
   max-width: 200px; /* Adjust the size as needed */
   margin-bottom: 20px;
+  mix-blend-mode: multiply;
 }
