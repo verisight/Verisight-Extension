@@ -185,9 +185,12 @@ import './MainPage.css';
 // Import the Summariser component
 import Summariser from './Summariser';
 
+import CrossCheck from './CrossCheck';
+
 function MainPage() {
   const [urlInput, setUrlInput] = useState('');
   const [showSummariser, setShowSummariser] = useState(false); // State to control the visibility of Summariser
+  const [showCrossCheck, setShowCrossCheck] = useState(false); // State to control the visibility of CrossCheck
 
   const handleFetchLink = () => {
     // Perform logic to fetch link based on the current site or URL
@@ -202,6 +205,17 @@ function MainPage() {
   // Render the Summariser component if showSummariser is true
   if (showSummariser) {
     return <Summariser />;
+  }
+
+
+  const handleCrossCheckClick = () => {
+    setShowCrossCheck(true); // Show CrossCheck component when the button is clicked
+  };
+
+
+  // Render the CrossCheck component if showCrossCheck is true
+  if (showCrossCheck) {
+    return <CrossCheck />;
   }
 
   return (
@@ -224,13 +238,13 @@ function MainPage() {
           onChange={(e) => setUrlInput(e.target.value)}
         />
       </div>
-      <button onClick={handleFetchLink}>Submit</button>
+      <button className='submitButton' onClick={handleFetchLink}>SUBMIT</button>
 
       <div className="box">
         <div className="menu">
           <div className="overlap-group">
             <button className="rectangle summariser" onClick={handleSummariserClick}></button>
-            <button className="rectangle cross-checking"></button>
+            <button className="rectangle cross-checking" onClick={handleCrossCheckClick}></button>
             <button className="ellipse"></button>
             <img src={plus} className="plus-math" alt="Plus math" />
             <div className="text-wrapper">Summariser</div>

@@ -201,6 +201,7 @@
   height: 60px;
   position: absolute;
   width: 200px; /* Adjust width as needed */
+  background: #000;
 }
 
 .box .summariser {
@@ -278,4 +279,22 @@
   position: absolute;
   top: 14px;
   width: 38px;
+}
+
+
+
+.urlInputButton {
+  background-color: #000000;
+  border: 4px solid;
+  border-color: #5100ff;
+  border-radius: 20px;
+  width: 420px;
+}
+
+
+.submitButton {
+  margin-top: 15px;
+  border-radius: 20px;
+  border: 4px solid #5200FF;
+  background: #000;
 }
