@@ -173,7 +173,7 @@ function Summariser() {
             <button className="ellipse"></button>
             <img src={plus} className="plus-math" alt="Plus math" />
             <div className="text-wrapper">Summariser</div>
-            <div className="div">Cross-checking</div>
+            <div className="text-wrapper2">Cross-checking</div>
             <img src={brief} className="brief" alt="Brief" />
             <img src={detective} className="detective" alt="Detective" />
           </div>

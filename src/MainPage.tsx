@@ -222,7 +222,7 @@ function MainPage() {
     <div>
       <img src={companyLogo} className="companyLogo" alt="Company Logo" />
       <div className="Button">
-        <button onClick={handleFetchLink}>Fetch Link of Current site</button>
+        <button className='fetchButton' onClick={handleFetchLink}>Fetch Link of Current site</button>
       </div>
       <div className="orLine">
         <div className="line"></div>
@@ -248,7 +248,7 @@ function MainPage() {
             <button className="ellipse"></button>
             <img src={plus} className="plus-math" alt="Plus math" />
             <div className="text-wrapper">Summariser</div>
-            <div className="div">Cross-checking</div>
+            <div className="text-wrapper2">Cross-checking</div>
             <img src={brief} className="brief" alt="Brief" />
             <img src={detective} className="detective" alt="Detective" />
           </div>
