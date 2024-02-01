@@ -61,9 +61,13 @@ import logo from './assets/company-logo.jpg'; // Import your logo image
 import Summariser from './Summariser';
 import './CrossCheck.css';
 
+import MainPage from './MainPage' // Import your MainPage component
+
+
 function CrossCheck() {
   const [showSummariser, setShowSummariser] = useState(false);
   const [showCrossCheck, setShowCrossCheck] = useState(false);
+  const [showMainPage, setShowMainPage] = useState(false);
 
   const handleSummariserClick = () => {
     setShowSummariser(true);
@@ -79,6 +83,18 @@ function CrossCheck() {
 
   if (showCrossCheck) {
     return <CrossCheck />;
+  }
+
+  const handleMainPage = () => {
+    // Perform login logic if needed
+    // For now, let's simulate a successful login
+    // and update the state to indicate that the user is logged in
+    setShowMainPage(true);
+  };
+
+  // Redirect to the main page if the user is logged in
+  if (showMainPage) {
+    return <MainPage />;
   }
 
   return (
@@ -104,7 +120,7 @@ function CrossCheck() {
           <div className="overlap-group">
             <button className="rectangle summariser" onClick={handleSummariserClick}></button>
             <button className="rectangle cross-checking" onClick={handleCrossCheckClick}></button>
-            <button className="ellipse"></button>
+            <button className="ellipse" onClick={handleMainPage}></button>
             <img src={plus} className="plus-math" alt="Plus math" />
             <div className="text-wrapper">Summariser</div>
             <div className="text-wrapper2">Cross-checking</div>

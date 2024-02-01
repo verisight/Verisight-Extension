@@ -102,12 +102,17 @@ import detective from './assets/Detective.jpg';
 import plus from './assets/Plus Math.jpg';
 import copyIcon from './assets/copy-icon.jpg'; // Add the path to your copy icon
 
-import './Summariser.css';
 import CrossCheck from './CrossCheck';
+import './Summariser.css';
+
+import MainPage from './MainPage' // Import your MainPage component
+
 
 function Summariser() {
   const [showSummariser, setShowSummariser] = useState(false);
   const [showCrossCheck, setShowCrossCheck] = useState(false);
+  const [showMainPage, setShowMainPage] = useState(false);
+
 
   const handleSummariserClick = () => {
     setShowSummariser(true);
@@ -124,6 +129,25 @@ function Summariser() {
   if (showCrossCheck) {
     return <CrossCheck />;
   }
+
+
+  const handleMainPage = () => {
+    // Perform login logic if needed
+    // For now, let's simulate a successful login
+    // and update the state to indicate that the user is logged in
+    setShowMainPage(true);
+  };
+
+  // Redirect to the main page if the user is logged in
+  if (showMainPage) {
+    return <MainPage />;
+  }
+
+
+
+
+
+
 
   // State for the article content
   const [articleContent, setArticleContent] = useState('');
@@ -170,7 +194,7 @@ function Summariser() {
           <div className="overlap-group">
             <button className="rectangle summariser" onClick={handleSummariserClick}></button>
             <button className="rectangle cross-checking" onClick={handleCrossCheckClick}></button>
-            <button className="ellipse"></button>
+            <button className="ellipse" onClick={handleMainPage}></button>
             <img src={plus} className="plus-math" alt="Plus math" />
             <div className="text-wrapper">Summariser</div>
             <div className="text-wrapper2">Cross-checking</div>

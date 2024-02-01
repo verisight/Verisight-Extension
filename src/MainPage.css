@@ -326,32 +326,21 @@
 
 .box .brief {
   height: 30px;
-  /* left: 84px; */
   position: absolute;
-  /* top: 20px; */
+  bottom: -10px;
+    /* Increased bottom value */
   width: 30px;
-
-  /* top: 50px; */
-  /* bottom: 3px; */
-  /* left: 30%;
-  transform: translateX(-50%); */
-
-
-  
-  left: 20%; /* Adjust the left position */
+  left: 20%;
   transform: translateX(-50%);
 }
 
 .box .detective {
   height: 38px;
-  /* left: 324px; */
   position: absolute;
-  /* top: 14px; */
+  bottom: -10px;
+    /* Increased top value */
   width: 38px;
-
-  
   left: 80%;
   transform: translateX(-50%);
 }
-
 
