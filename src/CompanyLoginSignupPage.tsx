@@ -1,6 +1,7 @@
 // CompanyLoginSignupPage.tsx
 import { useState } from 'react';
-import companyLogo from './assets/company-logo.jpg';
+// import companyLogo from './assets/company-logo.jpg';
+import verisightLogo from './assets/WhiteLogo.png';
 import LoginPage from './LoginPage';
 import SignupPage from './SignupPage'; // Import SignupPage
 import './CompanyLoginSignupPage.css';
@@ -27,7 +28,7 @@ function CompanyLoginSignupPage() {
         <SignupPage />
       ) : (
         <div>
-          <img src={companyLogo} className="companyLogo" alt="Company Logo" />
+          <img src={verisightLogo} className="companyLogo" alt="Company Logo" />
           <div className="loginSignupButtons">
             <div className="combinedButton">
               <button onClick={handleLoginClick}>Login</button>
