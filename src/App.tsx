@@ -69,8 +69,8 @@ function GetStartedPage({ onGetStartedClick }: { onGetStartedClick: () => void }
           consequat
         </p>
         <div onClick={onGetStartedClick} className="overlap-group">
-          <button className="rectangle"/>
-          <div className="text-wrapper-2">Get Started</div>
+          <button className="rectangle">Get Started</button>
+          {/* <div className="text-wrapper-2">Get Started</div> */}
         </div>
       </div>
     </div>
