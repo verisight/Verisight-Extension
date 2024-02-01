@@ -49,16 +49,16 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 
 function GetStartedPage({ onGetStartedClick }: { onGetStartedClick: () => void }) {
   return (
-    <div>
+    <>
       <img src={blueTickLogo} className="bigLogo" alt="Blue Tick logo" />
       <h2>Don't trust whatever you see</h2>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel sem vel felis egestas
-        lobortis.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel sem
+        vel felis egestas lobortis.
       </p>
       {/* <ProductCarousel images={[blueTickLogo, "https://via.placeholder.com/150", "https://via.placeholder.com/150"]} title="Title" description="Description" /> */}
       <button onClick={onGetStartedClick}>Get Started</button>
-    </div>
+    </>
   );
 }
 
