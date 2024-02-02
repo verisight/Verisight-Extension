@@ -179,6 +179,8 @@ import companyLogo from './assets/company-logo.jpg';
 import brief from './assets/Brief.jpg';
 import detective from './assets/Detective.jpg';
 import plus from './assets/Plus Math.jpg';
+import link from './assets/link.jpg';
+
 
 import './MainPage.css';
 
@@ -229,7 +231,7 @@ function MainPage() {
         <div className="orText">or</div>
         <div className="line"></div>
       </div>
-      <div className="urlInputContainer">
+      {/* <div className="urlInputContainer">
         <input
           type="text"
           className="urlInputButton" // Apply a specific class for styling
@@ -237,6 +239,19 @@ function MainPage() {
           value={urlInput}
           onChange={(e) => setUrlInput(e.target.value)}
         />
+      </div> */}
+
+      <div className="urlInputContainer">
+        <div className="urlInputWrapper">
+          <img src={link} className="linkIcon" alt="Link Icon" />
+          <input
+            type="text"
+            className="urlInputButton" // Apply a specific class for styling
+            placeholder="Enter your URL"
+            value={urlInput}
+            onChange={(e) => setUrlInput(e.target.value)}
+          />
+        </div>
       </div>
       <button className='submitButton' onClick={handleFetchLink}>SUBMIT</button>
 

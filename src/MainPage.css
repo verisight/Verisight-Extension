@@ -190,17 +190,78 @@
 
 
 
-.urlInputContainer, .Button {
+/* .urlInputContainer, .Button {
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  color: white;
+}
+
+
+.urlInputWrapper {
+  display: inline-block;
+  position: relative;
+}
+
+.linkIcon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .urlInputButton {
+  padding-left: 30px; 
   background-color: #000000;
   border: 4px solid;
   border-color: #5100ff;
   border-radius: 20px;
+  color: white;
+  width: 80%;
+} */
+
+
+.urlInputWrapper {
+  position: relative;
+  display: flex; /* Use flexbox for alignment */
+  align-items: center; /* Vertically center content */
+  justify-content: center;
+}
+
+
+.linkIcon {
+  position: relative; /* No longer absolute */
+  left: 60px; /* Adjusted for better positioning */
+  top: -8px; /* Move slightly above the center to avoid border overlap */
+  transform: none; /* Remove unnecessary transform */
+  /* Reduce icon size if needed */
+  width: 20px; /* Adjust size as needed */
+  height: 20px; /* Adjust size as needed */
+}
+
+.urlInputButton {
+  padding-left: 40px; /* Adjusted for the icon width */
+  background-color: #000000;
+  border: 4px solid;
+  border-color: #5100ff;
+  border-radius: 20px;
+  color: white;
+  width: 80%;
+  text-align: center; /* Center the text */
+}
+
+.urlInputButton::placeholder {
+  color: white; /* Placeholder text color */
+  text-align: center; /* Center the placeholder text */
+}
+
+.urlInputContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
 }
 
 
@@ -225,9 +286,6 @@
   border: 1px solid;
   border-color: #e4e4e4;
   border-radius: 30px;
-  /* height: 60px;
-  width: 200px;  */
-
   height: 60px;
   width: 175px; 
   position: absolute;
@@ -235,23 +293,12 @@
 }
 
 .box .summariser {
-  /* top: 12px;
-  left: 10px; */
-
   top: 50%;
   left: 30%;
   transform: translate(-50%, -50%);
 }
 
 .box .cross-checking {
-  /* top: 12px; */
-  /* left: 216px;  */
-
-/* 
-  top: 12px;
-  left: 55px; */
-
-
   top: 50%;
   left: 70%;
   transform: translate(-50%, -50%);
@@ -273,8 +320,7 @@
 
 .box .plus-math {
   height: 37px;
-  /* left: 199px;
-  top: 23px; */
+
   position: absolute;
   
   top: 50%;
@@ -289,16 +335,13 @@
   font-size: 11px;
   font-weight: 500;
   height: 11px;
-  /* left: 52px; */
   letter-spacing: 0;
   line-height: normal;
   position: absolute;
   text-align: center;
-  /* top: 54px; */
   white-space: nowrap;
   width: 94px;
 
-  /* top: 5%; */
   top: 10px;
   left: 20%;
   transform: translateX(-50%);
@@ -310,12 +353,10 @@
   font-size: 11px;
   font-weight: 500;
   height: 11px;
-  /* left: 300px; */
   letter-spacing: 0;
   line-height: normal;
   position: absolute;
   text-align: center;
-  /* top: 54px; */
   white-space: nowrap;
   width: 94px;
 
@@ -328,7 +369,7 @@
   height: 30px;
   position: absolute;
   bottom: -10px;
-    /* Increased bottom value */
+   
   width: 30px;
   left: 20%;
   transform: translateX(-50%);
@@ -338,7 +379,7 @@
   height: 38px;
   position: absolute;
   bottom: -10px;
-    /* Increased top value */
+
   width: 38px;
   left: 80%;
   transform: translateX(-50%);
