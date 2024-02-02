@@ -17,6 +17,12 @@
   gap: 10px;
 }
 
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
   
   .inputSection {
     margin-top: 20px;
@@ -31,19 +37,42 @@
     width: 100%;
     padding: 8px;
     margin-bottom: 15px;
+
+    background-color: #d9d9d959;
+    border: 1px solid;
+    border-color: #ffffff;
+    border-radius: 5px;
   }
-  
+
+
+
   .forgotPassword {
     text-align: right;
     margin-bottom: 15px;
     color: #646cff;
     cursor: pointer;
   }
+
+ .label .text-wrapper {
+   color: #ffffff;
+   font-family: "Poppins-Medium", Helvetica;
+   font-size: 12px;
+   font-weight: 500;
+   height: 19px;
+   left: 0;
+   letter-spacing: 0;
+   line-height: normal;
+   position: fixed;
+   text-align: right;
+   top: 0;
+   width: 124px;
+ } 
   
   .orLine {
     display: flex;
     align-items: center;
     margin: 20px 0;
+    width: 100%;
   }
   
   .line {

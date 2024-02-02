@@ -54,7 +54,7 @@ function LoginPage() {
   }
 
   return (
-    <div>
+    <div className='container'>
       <img src={companyLogo} className="companyLogo" alt="Company Logo" />
       <div className="inputSection">
         <label>Email Address</label>
