@@ -21,17 +21,17 @@ function CompanyLoginSignupPage() {
   };
 
   return (
-    <div>
+    <div className='page'>
       {showLoginPage ? (
         <LoginPage />
       ) : showSignupPage ? (
         <SignupPage />
       ) : (
         <div>
-          <img src={verisightLogo} className="companyLogo" alt="Company Logo" />
+          <img src={verisightLogo} className="companyLogo" alt="Company Logo"/>
           <div className="loginSignupButtons">
             <div className="combinedButton">
-              <button onClick={handleLoginClick}>Login</button>
+              <button onClick={handleLoginClick}>helllo</button>
               <button onClick={handleSignupClick}>Signup</button>
             </div>
           </div>

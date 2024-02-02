@@ -1,4 +1,10 @@
 /* CompanyLoginSignupPage.css */
+
+.page{
+  width: 350px;
+  max-height: 600px;
+  text-align: center;
+}
 .companyLogo {
     width: 100px; /* Adjust the size as needed */
     margin-bottom: 20px;
