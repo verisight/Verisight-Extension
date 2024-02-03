@@ -215,7 +215,7 @@ function MainPage() {
         const tempElement = document.createElement('div');
         tempElement.innerHTML = article?.content ? article.content : '';
         const plainText = tempElement.textContent;
-        if (article) {
+        if (article && isNewsWebsite(html)) {
           console.log('Title:', article.title);
           console.log('Excerpt:', article.excerpt);
           console.log('Byline:', article.byline);
@@ -226,6 +226,9 @@ function MainPage() {
           console.log('Direction:', article.dir);
           console.log('Content:', plainText);
           return article.title;
+        }else if (!isNewsWebsite(html)) {
+          console.log('The provided URL does not appear to be a news website.');
+          return null;
         }
         return null;
       }
@@ -241,6 +244,26 @@ function MainPage() {
         .catch((error) => {
           console.error('Error fetching and extracting content:', error);
         });
+    }
+    
+    function isNewsWebsite(content: string) {
+      // Convert HTML content string to a DOM element
+      const tempElement = document.createElement('div');
+      tempElement.innerHTML = content;
+  
+      // Analyze the DOM structure and content to identify common patterns
+      const articleElements = tempElement.querySelectorAll('article, .article, .news, .story, .headline, [role="article"]');
+      const headlineElements = tempElement.querySelectorAll('h1, h2, h3, h4, h5, h6');
+      const paragraphElements = tempElement.querySelectorAll('p');
+  
+      // Check if the page contains elements commonly found on news websites
+      // Adjust these conditions based on the characteristics of news websites you want to detect
+      const hasArticle = articleElements.length > 0;
+      const hasHeadlines = headlineElements.length > 0;
+      const hasParagraphs = paragraphElements.length > 0;
+  
+      // Determine if the webpage appears to be a news website based on the presence of common elements
+      return hasArticle && hasHeadlines && hasParagraphs;
   }
 };
   
