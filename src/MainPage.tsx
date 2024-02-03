@@ -182,7 +182,6 @@ import plus from './assets/Plus Math.jpg';
 import link from './assets/link.jpg';
 import { Readability } from '@mozilla/readability';
 
-
 import './MainPage.css';
 
 // Import the Summariser component
@@ -194,6 +193,16 @@ function MainPage() {
   const [urlInput, setUrlInput] = useState('');
   const [showSummariser, setShowSummariser] = useState(false); // State to control the visibility of Summariser
   const [showCrossCheck, setShowCrossCheck] = useState(false); // State to control the visibility of CrossCheck
+
+  const fetchUrl = () => {
+    chrome.tabs.query({active: true, currentWindow: true}, (tabs: chrome.tabs.Tab[]) => {
+      console.log(tabs[0]?.url);
+      if (tabs[0]?.url) {
+        setUrlInput(tabs[0]?.url);
+      }
+    });
+    handleFetchLink();
+  }
 
   const handleFetchLink = () => {
     // Perform logic to fetch link based on the current site or URL
@@ -292,7 +301,7 @@ function MainPage() {
     <div>
       <img src={companyLogo} className="companyLogo" alt="Company Logo" />
       <div className="Button">
-        <button className='fetchButton' onClick={handleFetchLink}>Fetch Link of Current site</button>
+        <button className='fetchButton' onClick={fetchUrl}>Fetch Link of Current site</button>
       </div>
       <div className="orLine">
         <div className="line"></div>
