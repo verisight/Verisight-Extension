@@ -180,6 +180,7 @@ import brief from './assets/Brief.jpg';
 import detective from './assets/Detective.jpg';
 import plus from './assets/Plus Math.jpg';
 import link from './assets/link.jpg';
+import { Readability } from '@mozilla/readability';
 
 
 import './MainPage.css';
@@ -198,7 +199,51 @@ function MainPage() {
     // Perform logic to fetch link based on the current site or URL
     // For now, let's just log the URL to the console
     console.log('Fetching link for:', urlInput);
-  };
+
+    if (urlInput === '') {
+      console.log('Please enter a valid URL');
+      return;
+    }else{
+      async function fetchAndExtractContent(urlInput: string) {
+        const response = await fetch(urlInput);
+        const html = await response.text();
+        const doc = new DOMParser().parseFromString(html, 'text/html');
+        const reader = new Readability(doc);
+        const article = reader.parse();
+        const date = article?.publishedTime ? new Date(article.publishedTime) : null;
+        const author = article?.byline ? article.byline : null;
+        const tempElement = document.createElement('div');
+        tempElement.innerHTML = article?.content ? article.content : '';
+        const plainText = tempElement.textContent;
+        if (article) {
+          console.log('Title:', article.title);
+          console.log('Excerpt:', article.excerpt);
+          console.log('Byline:', article.byline);
+          console.log('Length:', article.length);
+          console.log('Site Name:', article.siteName);
+          console.log('Publication Date:', date);
+          console.log('Author:', author);
+          console.log('Direction:', article.dir);
+          console.log('Content:', plainText);
+          return article.title;
+        }
+        return null;
+      }
+      fetchAndExtractContent(urlInput)
+        .then((content) => {
+          if (content) {
+            const articleContent = document.getElementById('article-content');
+            if (articleContent) {
+              articleContent.innerHTML = content;
+            }
+          }
+        })
+        .catch((error) => {
+          console.error('Error fetching and extracting content:', error);
+        });
+  }
+};
+  
 
   const handleSummariserClick = () => {
     setShowSummariser(true); // Show Summariser component when the button is clicked
@@ -254,6 +299,7 @@ function MainPage() {
         </div>
       </div>
       <button className='submitButton' onClick={handleFetchLink}>SUBMIT</button>
+      <div id="article-content"></div>
 
       <div className="box">
         <div className="menu">
