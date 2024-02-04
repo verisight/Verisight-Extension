@@ -299,14 +299,15 @@ function MainPage() {
 
   return (
     <div>
+      <div className='container'>
       <img src={companyLogo} className="companyLogo" alt="Company Logo" />
       <div className="Button">
         <button className='fetchButton' onClick={fetchUrl}>Fetch Link of Current site</button>
       </div>
-      <div className="orLine">
-        <div className="line"></div>
-        <div className="orText">or</div>
-        <div className="line"></div>
+      <div className="orLineMain">
+        <div className="lineMain"></div>
+        <div className="orTextMain">or</div>
+        <div className="lineMain"></div>
       </div>
       {/* <div className="urlInputContainer">
         <input
@@ -332,6 +333,8 @@ function MainPage() {
       </div>
       <button className='submitButton' onClick={handleFetchLink}>SUBMIT</button>
       <div id="article-content"></div>
+      </div>
+
 
       <div className="box">
         <div className="menu">

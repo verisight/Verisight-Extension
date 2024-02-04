@@ -1,227 +1,3 @@
-
-/* Add this to your CSS file */
-/* .urlInputContainer {
-    display: flex;
-  }
-  
-  .urlInputButton {
-    flex-grow: 1;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .actionButtons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-  }
-  
-  .buttonContainer {
-    flex-grow: 1;
-    text-align: center;
-  }
-  
-  .buttonContainer:not(:last-child) {
-    border-right: none; 
-  }
-  
-  .summariserButton,
-  .crossCheckingButton {
-    width: 100%;
-  }
-  
-  .circleButton {
-    display: block;
-    margin: 0 auto;
-    padding: 10px;
-    border-radius: 50%;
-    border: 1px solid #ccc;
-    cursor: pointer;
-  }
-  
-  .plusButton {
-    font-size: 20px;
-  } */
-  
-
-/* Add this to your CSS file */
-/* .btn-group {
-  position: relative;
-}
-
-.btn-group button {
-  background-color: #04AA6D; 
-  border: 1px solid green; 
-  color: white; 
-  padding: 10px 24px; 
-  cursor: pointer; 
-}
-
-.middle-btn {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 16px 40px; 
-  z-index: 1;
-}
-
-.left-btn, .right-btn {
-  position: relative;
-  z-index: 0;
-}
-
-
-.btn-group button:hover {
-  background-color: #3e8e41;
-} */
-
-  
-  
-/* .box {
-  height: 84px;
-  width: 436px;
-}
-
-.box .menu {
-  height: 84px;
-  left: 0;
-  position: fixed;
-  top: 0;
-  width: 440px;
-} */
-
-/* .box .overlap-group {
-  height: 84px;
-  position: relative;
-  width: 436px;
-}
-
-.box .rectangle {
-  border: 1px solid;
-  border-color: #e4e4e4;
-  border-radius: 30px;
-  height: 60px;
-  left: 0;
-  position: absolute;
-  top: 12px;
-  width: 436px;
-}
-
-.box .ellipse {
-  background-color: #000000;
-  border-radius: 42px;
-  box-shadow: 0px 0px 2px 4px #6a9ccaad;
-  height: 84px;
-  left: 176px;
-  position: absolute;
-  top: 0;
-  width: 84px;
-}
-
-.box .plus-math {
-  height: 37px;
-  left: 199px;
-  position: absolute;
-  top: 23px;
-  width: 37px;
-}
-
-.box .text-wrapper {
-  color: #ffffff;
-  font-family: "Poppins-Medium", Helvetica;
-  font-size: 11px;
-  font-weight: 500;
-  height: 11px;
-  left: 52px;
-  letter-spacing: 0;
-  line-height: normal;
-  position: absolute;
-  text-align: center;
-  top: 54px;
-  white-space: nowrap;
-  width: 94px;
-}
-
-.box .div {
-  color: #ffffff;
-  font-family: "Poppins-Medium", Helvetica;
-  font-size: 11px;
-  font-weight: 500;
-  height: 11px;
-  left: 300px;
-  letter-spacing: 0;
-  line-height: normal;
-  position: absolute;
-  text-align: center;
-  top: 54px;
-  white-space: nowrap;
-  width: 94px;
-}
-
-.box .brief {
-  height: 30px;
-  left: 84px;
-  position: absolute;
-  top: 18px;
-  width: 30px;
-}
-
-.box .detective {
-  height: 38px;
-  left: 324px;
-  position: absolute;
-  top: 14px;
-  width: 38px;
-} */
-
-/* .fetchButton {
-  display: flex;
-  flex-direction: column;
-  align-items: center; 
-  gap: 10px;
-} */
-
-
-
-
-
-
-
-
-/* .urlInputContainer, .Button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  color: white;
-}
-
-
-.urlInputWrapper {
-  display: inline-block;
-  position: relative;
-}
-
-.linkIcon {
-  position: absolute;
-  left: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.urlInputButton {
-  padding-left: 30px; 
-  background-color: #000000;
-  border: 4px solid;
-  border-color: #5100ff;
-  border-radius: 20px;
-  color: white;
-  width: 80%;
-} */
-
-
 .urlInputWrapper {
   position: relative;
   display: flex; /* Use flexbox for alignment */
@@ -232,7 +8,7 @@
 
 .linkIcon {
   position: relative; /* No longer absolute */
-  left: 60px; /* Adjusted for better positioning */
+  left: 50px; /* Adjusted for better positioning */
   top: -8px; /* Move slightly above the center to avoid border overlap */
   transform: none; /* Remove unnecessary transform */
   /* Reduce icon size if needed */
@@ -385,3 +161,28 @@
   transform: translateX(-50%);
 }
 
+
+.orLineMain {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+  width: 85%;
+}
+
+
+.lineMain {
+  flex-grow: 1;
+  height: 1px;
+  background-color: white;
+}
+
+.orTextMain {
+  margin: 0 10px;
+  color: white;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
