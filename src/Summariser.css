@@ -16,7 +16,7 @@
   
   .article-content {
     padding-right: 40px; /* Leave space for the copy icon */
-    width: 439px;
+    width: 260px;
     height: 375px;
     flex-shrink: 0;
     align-content: center;

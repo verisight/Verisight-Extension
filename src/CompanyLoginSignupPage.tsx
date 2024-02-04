@@ -31,7 +31,7 @@ function CompanyLoginSignupPage() {
           <img src={verisightLogo} className="companyLogo" alt="Company Logo"/>
           <div className="loginSignupButtons">
             <div className="combinedButton">
-              <button onClick={handleLoginClick}>helllo</button>
+              <button onClick={handleLoginClick}>Login</button>
               <button onClick={handleSignupClick}>Signup</button>
             </div>
           </div>
