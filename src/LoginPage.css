@@ -1,4 +1,9 @@
 /* LoginSignupPage.css */
+
+* {
+  background-color: black;
+}
+
 .companyLogo {
     max-width: 200px; /* Adjust the size as needed */
     margin-bottom: 20px;
@@ -23,72 +28,112 @@
   align-items: center;
 }
 
-  
-  .inputSection {
-    margin-top: 20px;
-  }
-  
-  .label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  input {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 15px;
 
-    background-color: #d9d9d959;
-    border: 1px solid;
-    border-color: #ffffff;
-    border-radius: 5px;
-  }
+/* .inputSection {
+  margin-top: 20px;
+} */
+
+.label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+
+  background-color: #d9d9d959;
+  border: 1px solid;
+  border-color: white;
+  border-radius: 5px;
+} */
 
 
 
-  .forgotPassword {
-    text-align: right;
-    margin-bottom: 15px;
-    color: #646cff;
-    cursor: pointer;
-  }
+/* .forgotPassword {
+  text-align: right;
+  margin-bottom: 15px;
+  color: white;
+  cursor: pointer;
+} */
 
- .label .text-wrapper {
-   color: #ffffff;
-   font-family: "Poppins-Medium", Helvetica;
-   font-size: 12px;
-   font-weight: 500;
-   height: 19px;
-   left: 0;
-   letter-spacing: 0;
-   line-height: normal;
-   position: fixed;
-   text-align: right;
-   top: 0;
-   width: 124px;
- } 
+.label .text-wrapper {
+  color: white;
+  font-family: "Poppins-Medium", Helvetica;
+  font-size: 12px;
+  font-weight: 500;
+  height: 19px;
+  left: 0;
+  letter-spacing: 0;
+  line-height: normal;
+  position: fixed;
+  text-align: right;
+  top: 0;
+  width: 124px;
+} 
+
+/* .orLine {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+  width: 80%;
+} */
+
+.line {
+  flex-grow: 1;
+  height: 1px;
+  background-color: white;
+}
+
+.orText {
+  margin: 0 10px;
+  color: white;
+}
+
+.socialButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
   
-  .orLine {
-    display: flex;
-    align-items: center;
-    margin: 20px 0;
-    width: 100%;
-  }
-  
-  .line {
-    flex-grow: 1;
-    height: 1px;
-    background-color: #646cff;
-  }
-  
-  .orText {
-    margin: 0 10px;
-    color: #646cff;
-  }
-  
-  .socialButtons {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
+
+
+
+
+
+
+
+/* NEW */
+input {
+  width: 90%;
+  padding: 8px;
+  margin-bottom: 15px;
+  margin-right: 20%;
+
+  background-color: #d9d9d959;
+  border: 1px solid;
+  border-color: white;
+  border-radius: 5px;
+}
+
+.inputSection {
+  margin-top: 20px;
+  width: 80%;
+}
+
+.forgotPassword {
+  text-align: right;
+  margin-bottom: 15px;
+  color: #ffffff;
+  cursor: pointer;
+  margin-right: 5%;
+}
+
+
+.orLine {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+  width: 85%;
+}

@@ -20,7 +20,7 @@ function SignupPage() {
     return <MainPage />;
   }
   return (
-    <div>
+    <div className='container'>
       <img src={companyLogo} className="companyLogo" alt="Company Logo" />
       {/* <div className="loginSignupButtons">
         <div className="combinedButton">
