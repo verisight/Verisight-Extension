@@ -175,7 +175,7 @@
 
 
 import { useState } from 'react';
-import companyLogo from './assets/company-logo.jpg';
+import WhiteLogo from './assets/WhiteLogo.png';
 import brief from './assets/Brief.jpg';
 import detective from './assets/Detective.jpg';
 import plus from './assets/Plus Math.jpg';
@@ -302,7 +302,7 @@ function MainPage() {
   return (
     <div>
       <div className='container'>
-      <img src={companyLogo} className="companyLogo" alt="Company Logo" />
+      <img src={WhiteLogo} className="companyLogo" alt="Company Logo" />
       <div className="Button">
         <button className='fetchButton' onClick={fetchUrl}>Fetch Link of Current site</button>
       </div>
