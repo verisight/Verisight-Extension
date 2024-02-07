@@ -5,7 +5,7 @@
     "module": "ESNext",
     "moduleResolution": "bundler",
     "allowSyntheticDefaultImports": true,
-    "types": ["node", "chrome"],
+    "types": ["node", "chrome"]
   },
   "include": ["vite.config.ts"]
 }

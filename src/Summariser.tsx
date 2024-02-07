@@ -311,11 +311,29 @@ import brief from './assets/Brief.jpg';
 import detective from './assets/Detective.jpg';
 import plus from './assets/Plus Math.jpg';
 import copyIcon from './assets/copy-icon.jpg'; // Import the copy icon
+// import {OpenAIClient, AzureKeyCredential} from '@azure/openai';
 
 import CrossCheck from './CrossCheck';
 import './Summariser.css';
 
+
 import MainPage from './MainPage'; // Import your MainPage component
+
+// const endpoint = "https://verisightgptapi2.openai.azure.com/" ;
+// const azureApiKey = "f57c00647bb74348ad82ccec70fcc14c" ;
+
+// async function openai(prompt: string) {
+//   console.log("== Get completions Sample ==");
+
+//   const client = new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey));
+//   const deploymentId = "Verisight-gpt-35-turbo-0301";
+//   const result = await client.getCompletions(deploymentId, [prompt]); // Fix: Pass prompt as an array
+
+//   for (const choice of result.choices) {
+//     console.log(choice.text);
+//   }
+// }
+
 
 function Summariser() {
   const [showSummariser, setShowSummariser] = useState(false);
