@@ -1,0 +1,92 @@
+/* LoginSignupPage.css */
+.companyLogo {
+  max-width: 200px; /* Adjust the size as needed */
+  margin-bottom: 20px;
+}
+
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.loginSignupButtons {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center buttons */
+  gap: 10px;
+}
+
+.combinedButton {
+  display: flex;
+  gap: 10px;
+}
+
+.inputSection {
+  margin-top: 20px;
+}
+
+/* Adjusted the class from .label to label */
+label {
+  display: block;
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+input {
+  width: 90%;
+  padding: 8px;
+  margin-bottom: 15px;
+}
+
+.forgotPassword {
+  text-align: right;
+  margin-bottom: 15px;
+  color: white;
+  cursor: pointer;
+}
+
+.orLine {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+  width: 85%;
+}
+
+.line {
+  flex-grow: 1;
+  height: 1px;
+  background-color: white;
+}
+
+.orText {
+  margin: 0 10px;
+  color: white;
+}
+
+.socialButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+
+/* Add this to your CSS file or style section */
+.termsCheckbox {
+  display: flex;
+  align-items: flex-start; /* Align items to the start (left) */
+  margin-right: 120px;  /*NEW*/
+}
+
+
+.termsCheckbox label {
+  white-space: nowrap; /* Prevent label text from wrapping */
+  /* overflow: hidden; Hide overflowing text */
+  text-overflow: ellipsis; /* Display ellipsis for overflowing text */
+  line-height: 1.5; /* Adjust the line height for better spacing */
+  margin-left: -20px;  /*NEW*/
+}
+
+
