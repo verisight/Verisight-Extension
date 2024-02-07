@@ -34,7 +34,7 @@
 
 // LoginPage.tsx
 import { useState } from 'react';
-import companyLogo from './assets/company-logo.jpg';
+import WhiteLogo from './assets/WhiteLogo.png';
 import './LoginPage.css';
 import MainPage from './MainPage' // Import your MainPage component
 
@@ -55,7 +55,7 @@ function LoginPage() {
 
   return (
     <div className='container'>
-      <img src={companyLogo} className="companyLogo" alt="Company Logo" />
+      <img src={WhiteLogo} className="companyLogo" alt="Company Logo" />
       <div className="inputSection">
         <label>Email Address</label>
         <input type="email" placeholder="Enter your email" />

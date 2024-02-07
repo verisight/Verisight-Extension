@@ -1,5 +1,5 @@
 // SignupPage.tsx
-import companyLogo from './assets/company-logo.jpg';
+import WhiteLogo from './assets/WhiteLogo.png';
 import './SignupPage.css';
 import { useState } from 'react';
 import MainPage from './MainPage' // Import your MainPage component
@@ -21,7 +21,7 @@ function SignupPage() {
   }
   return (
     <div className='container'>
-      <img src={companyLogo} className="companyLogo" alt="Company Logo" />
+      <img src={WhiteLogo} className="companyLogo" alt="Company Logo" />
       {/* <div className="loginSignupButtons">
         <div className="combinedButton">
           <button>Login</button>
