@@ -6,18 +6,18 @@
 }
 
 
-.linkIcon {
-  position: relative; /* No longer absolute */
-  left: 50px; /* Adjusted for better positioning */
-  top: -8px; /* Move slightly above the center to avoid border overlap */
-  transform: none; /* Remove unnecessary transform */
-  /* Reduce icon size if needed */
-  width: 20px; /* Adjust size as needed */
-  height: 20px; /* Adjust size as needed */
-}
+/* .linkIcon {
+  position: relative; 
+  left: 50px; 
+  top: -8px; 
+  transform: none; 
+
+  width: 20px; 
+  height: 20px; 
+} */
 
 .urlInputButton {
-  padding-left: 40px; /* Adjusted for the icon width */
+  /* padding-left: 40px; Adjusted for the icon width */
   background-color: #000000;
   border: 4px solid;
   border-color: #5100ff;
@@ -25,6 +25,7 @@
   color: white;
   width: 80%;
   text-align: center; /* Center the text */
+  margin: 0;
 }
 
 .urlInputButton::placeholder {

@@ -179,7 +179,7 @@ import WhiteLogo from './assets/WhiteLogo.png';
 import brief from './assets/Brief.jpg';
 import detective from './assets/Detective.jpg';
 import plus from './assets/Plus Math.jpg';
-import link from './assets/link.jpg';
+// import link from './assets/link.jpg';
 import { Readability } from '@mozilla/readability';
 
 import './MainPage.css';
@@ -323,7 +323,7 @@ function MainPage() {
 
       <div className="urlInputContainer">
         <div className="urlInputWrapper">
-          <img src={link} className="linkIcon" alt="Link Icon" />
+          {/* <img src={link} className="linkIcon" alt="Link Icon" /> */}
           <input
             type="text"
             className="urlInputButton" // Apply a specific class for styling
@@ -347,6 +347,12 @@ function MainPage() {
             <img src={plus} className="plus-math" alt="Plus math" />
             <div className="text-wrapper">Summariser</div>
             <div className="text-wrapper2">Cross-checking</div>
+            {/* <a href="/Summariser">
+              <img src={brief} className="brief" alt="Brief" />
+            </a>
+            <a href='/CrossCheck'>
+              <img src={detective} className="detective" alt="Detective" />
+            </a> */}
             <img src={brief} className="brief" alt="Brief" />
             <img src={detective} className="detective" alt="Detective" />
           </div>
