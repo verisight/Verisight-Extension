@@ -221,7 +221,9 @@ function MainPage() {
         const doc = new DOMParser().parseFromString(html, 'text/html');
         const reader = new Readability(doc);
         const article = reader.parse();
-        const date = article?.publishedTime ? new Date(article.publishedTime) : null;
+        const title = article?.title ? article.title : null;
+        //Make the date in 2021-08-01 format
+        const date = new Date().toISOString().split('T')[0];
         const author = article?.byline ? article.byline : null;
         const tempElement = document.createElement('div');
         tempElement.innerHTML = article?.content ? article.content : '';
@@ -236,6 +238,21 @@ function MainPage() {
           console.log('Author:', author);
           console.log('Direction:', article.dir);
           console.log('Content:', plainText);
+          //Make a POST request to the server to send the lin, title, content and date
+          const response = await fetch('http://localhost:3000/articles', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              url: urlInput,
+              title: title,
+              content: plainText,
+              date: date
+            }),
+          });
+          const data = await response.json();
+          console.log('Success:', data);
           return article.title;
         }else if (!isNewsWebsite(html)) {
           console.log('The provided URL does not appear to be a news website.');
