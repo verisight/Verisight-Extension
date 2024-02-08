@@ -5,23 +5,14 @@ import plus from './assets/Plus Math.jpg';
 import Summariser from './Summariser';
 import './CrossCheck.css';
 import CrossCheck from './CrossCheck';
-import AddNote from './AddNote';
+
 import MainPage from './MainPage' // Import your MainPage component
 
 
-function MainSubmit() {
+function AddNote() {
     const [showSummariser, setShowSummariser] = useState(false);
     const [showCrossCheck, setShowCrossCheck] = useState(false);
     const [showMainPage, setShowMainPage] = useState(false);
-    const [showAddNote, setAddNote] = useState(false);
-
-    const handleAddNote = () => {
-        setAddNote(true);
-    };
-
-    if (showAddNote) {
-        return <AddNote />;
-    }
 
     const handleSummariserClick = () => {
         setShowSummariser(true);
@@ -46,6 +37,8 @@ function MainSubmit() {
         setShowMainPage(true);
     };
 
+
+
     // Redirect to the main page if the user is logged in
     if (showMainPage) {
         return <MainPage />;
@@ -55,7 +48,7 @@ function MainSubmit() {
         <div>
             <div className="article-heading">
                 {/* Add your article heading here */}
-                <h2>Heading</h2>
+                <h2>Article Heading</h2>
             </div>
             <div className="text-boxes">
                 {/* Add your textboxes here */}
@@ -66,8 +59,7 @@ function MainSubmit() {
             </div>
             <div className="cross-check-button">
                 {/* Add your cross-check button here */}
-                <button className='check' onClick={handleAddNote}>Add note</button>
-                <button className='check' onClick={handleAddNote}>View Add note</button>
+                <button className='check' onClick={AddNote}>Add note</button>
             </div>
             <div className="box">
                 <div className="menu">
@@ -87,4 +79,4 @@ function MainSubmit() {
     );
 }
 
-export default MainSubmit;
+export default AddNote;
