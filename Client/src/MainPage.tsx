@@ -221,6 +221,7 @@ function MainPage() {
         const doc = new DOMParser().parseFromString(html, 'text/html');
         const reader = new Readability(doc);
         const article = reader.parse();
+        const link = urlInput.toString();
         const title = article?.title ? article.title : null;
         //Make the date in 2021-08-01 format
         const date = new Date().toISOString().split('T')[0];
@@ -229,6 +230,7 @@ function MainPage() {
         tempElement.innerHTML = article?.content ? article.content : '';
         const plainText = tempElement.textContent;
         if (article && isNewsWebsite(html)) {
+          console.log('URL:', link);
           console.log('Title:', article.title);
           console.log('Excerpt:', article.excerpt);
           console.log('Byline:', article.byline);
@@ -245,15 +247,29 @@ function MainPage() {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-              url: urlInput,
-              title: title,
-              content: plainText,
-              date: date
+              "link": link,
+              "title": title,
+              "content": plainText,
+              "datePublished": date
             }),
           });
-          const data = await response.json();
-          console.log('Success:', data);
-          return article.title;
+
+          if (!response.ok) {
+            // Handle non-OK status codes
+            console.error(`Request failed with status ${response.status}`);
+            return null;
+          }
+
+          try {
+            //console log the contents of JSON file
+            const data = response.json();
+            console.log('Success:', data);
+            return article.title;
+          } catch (error) {
+            console.error('Error parsing JSON:', error);
+            return null;
+          }
+          handleMainSubmit();
         } else if (!isNewsWebsite(html)) {
           console.log('The provided URL does not appear to be a news website.');
           return null;
@@ -357,7 +373,7 @@ function MainPage() {
             />
           </div>
         </div>
-        <button className='submitButton' onClick={handleMainSubmit}>SUBMIT</button>
+        <button className='submitButton' onClick={handleFetchLink}>SUBMIT</button>
         <div id="article-content"></div>
       </div>
 
