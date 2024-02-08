@@ -56,7 +56,6 @@ import { useState } from 'react';
 import brief from './assets/Brief.jpg';
 import detective from './assets/Detective.jpg';
 import plus from './assets/Plus Math.jpg';
-import logo from './assets/company-logo.jpg'; // Import your logo image
 
 import Summariser from './Summariser';
 import './CrossCheck.css';
@@ -99,9 +98,6 @@ function CrossCheck() {
 
   return (
     <div>
-      <div className="logo-container">
-        <img src={logo} className="logo" alt="Logo" />
-      </div>
       <div className="article-heading">
         {/* Add your article heading here */}
         <h2>Article Heading</h2>

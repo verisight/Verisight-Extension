@@ -181,13 +181,12 @@ import detective from './assets/Detective.jpg';
 import plus from './assets/Plus Math.jpg';
 // import link from './assets/link.jpg';
 import { Readability } from '@mozilla/readability';
-
 import './MainPage.css';
-
 // Import the Summariser component
 import Summariser from './Summariser';
-
 import CrossCheck from './CrossCheck';
+import MainSubmit from './MainSubmit';
+
 
 // import openai from './Summariser';
 
@@ -195,9 +194,10 @@ function MainPage() {
   const [urlInput, setUrlInput] = useState('');
   const [showSummariser, setShowSummariser] = useState(false); // State to control the visibility of Summariser
   const [showCrossCheck, setShowCrossCheck] = useState(false); // State to control the visibility of CrossCheck
+  const [showMainSubmit, setMainSubmit] = useState(false); // State to control the visibility of CrossCheck
 
   const fetchUrl = () => {
-    chrome.tabs.query({active: true, currentWindow: true}, (tabs: chrome.tabs.Tab[]) => {
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs: chrome.tabs.Tab[]) => {
       console.log(tabs[0]?.url);
       if (tabs[0]?.url) {
         setUrlInput(tabs[0]?.url);
@@ -214,7 +214,7 @@ function MainPage() {
     if (urlInput === '') {
       console.log('Please enter a valid URL');
       return;
-    }else{
+    } else {
       async function fetchAndExtractContent(urlInput: string) {
         const response = await fetch(urlInput);
         const html = await response.text();
@@ -254,7 +254,7 @@ function MainPage() {
           const data = await response.json();
           console.log('Success:', data);
           return article.title;
-        }else if (!isNewsWebsite(html)) {
+        } else if (!isNewsWebsite(html)) {
           console.log('The provided URL does not appear to be a news website.');
           return null;
         }
@@ -273,28 +273,28 @@ function MainPage() {
           console.error('Error fetching and extracting content:', error);
         });
     }
-    
+
     function isNewsWebsite(content: string) {
       // Convert HTML content string to a DOM element
       const tempElement = document.createElement('div');
       tempElement.innerHTML = content;
-  
+
       // Analyze the DOM structure and content to identify common patterns
       const articleElements = tempElement.querySelectorAll('article, .article, .news, .story, .headline, [role="article"]');
       const headlineElements = tempElement.querySelectorAll('h1, h2, h3, h4, h5, h6');
       const paragraphElements = tempElement.querySelectorAll('p');
-  
+
       // Check if the page contains elements commonly found on news websites
       // Adjust these conditions based on the characteristics of news websites you want to detect
       const hasArticle = articleElements.length > 0;
       const hasHeadlines = headlineElements.length > 0;
       const hasParagraphs = paragraphElements.length > 0;
-  
+
       // Determine if the webpage appears to be a news website based on the presence of common elements
       return hasArticle && hasHeadlines && hasParagraphs;
-  }
-};
-  
+    }
+  };
+
 
   const handleSummariserClick = () => {
     setShowSummariser(true); // Show Summariser component when the button is clicked
@@ -310,25 +310,32 @@ function MainPage() {
     setShowCrossCheck(true); // Show CrossCheck component when the button is clicked
   };
 
+  const handleMainSubmit = () => {
+    setMainSubmit(true); // Show CrossCheck component when the button is clicked
+  };
+
 
   // Render the CrossCheck component if showCrossCheck is true
   if (showCrossCheck) {
     return <CrossCheck />;
   }
 
+  if (showMainSubmit) {
+    return <MainSubmit />;
+  }
   return (
     <div>
       <div className='container'>
-      <img src={WhiteLogo} className="companyLogo" alt="Company Logo" />
-      <div className="Button">
-        <button className='fetchButton' onClick={fetchUrl}>Fetch Link of Current site</button>
-      </div>
-      <div className="orLineMain">
-        <div className="lineMain"></div>
-        <div className="orTextMain">or</div>
-        <div className="lineMain"></div>
-      </div>
-      {/* <div className="urlInputContainer">
+        <img src={WhiteLogo} className="companyLogo" alt="Company Logo" />
+        <div className="Button">
+          <button className='fetchButton' onClick={fetchUrl}>Fetch Link of Current site</button>
+        </div>
+        <div className="orLineMain">
+          <div className="lineMain"></div>
+          <div className="orTextMain">or</div>
+          <div className="lineMain"></div>
+        </div>
+        {/* <div className="urlInputContainer">
         <input
           type="text"
           className="urlInputButton" // Apply a specific class for styling
@@ -338,20 +345,20 @@ function MainPage() {
         />
       </div> */}
 
-      <div className="urlInputContainer">
-        <div className="urlInputWrapper">
-          {/* <img src={link} className="linkIcon" alt="Link Icon" /> */}
-          <input
-            type="text"
-            className="urlInputButton" // Apply a specific class for styling
-            placeholder="Enter your URL"
-            value={urlInput}
-            onChange={(e) => setUrlInput(e.target.value)}
-          />
+        <div className="urlInputContainer">
+          <div className="urlInputWrapper">
+            {/* <img src={link} className="linkIcon" alt="Link Icon" /> */}
+            <input
+              type="text"
+              className="urlInputButton" // Apply a specific class for styling
+              placeholder="Enter your URL"
+              value={urlInput}
+              onChange={(e) => setUrlInput(e.target.value)}
+            />
+          </div>
         </div>
-      </div>
-      <button className='submitButton' onClick={handleFetchLink}>SUBMIT</button>
-      <div id="article-content"></div>
+        <button className='submitButton' onClick={handleMainSubmit}>SUBMIT</button>
+        <div id="article-content"></div>
       </div>
 
 
