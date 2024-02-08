@@ -373,7 +373,7 @@ function MainPage() {
             />
           </div>
         </div>
-        <button className='submitButton' onClick={handleFetchLink}>SUBMIT</button>
+        <button className='submitButton' onClick={handleMainSubmit}>SUBMIT</button>
         <div id="article-content"></div>
       </div>
 

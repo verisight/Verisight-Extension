@@ -2,31 +2,21 @@ import { useState } from 'react';
 import brief from './assets/Brief.jpg';
 import detective from './assets/Detective.jpg';
 import plus from './assets/Plus Math.jpg';
+import WhiteLogo from './assets/WhiteLogo.png';
 import Summariser from './Summariser';
 import './CrossCheck.css';
 import './MainPage.css';
-import WhiteLogo from './assets/WhiteLogo.png';
 import CrossCheck from './CrossCheck';
 import AddNote from './AddNote';
-import ViewNote from './ViewNote';
 import MainPage from './MainPage' // Import your MainPage component
+//import MainSubmit from './MainSubmit';
 
 
-function MainSubmit() {
+function ViewNote() {
     const [showSummariser, setShowSummariser] = useState(false);
     const [showCrossCheck, setShowCrossCheck] = useState(false);
     const [showMainPage, setShowMainPage] = useState(false);
     const [showAddNote, setAddNote] = useState(false);
-    const [showViewNote, setViewNote] = useState(false);
-
-    const handleViewNote = () => {
-        setViewNote(true);
-    };
-
-
-    if (showViewNote) {
-        return <ViewNote />;
-    }
 
     const handleAddNote = () => {
         setAddNote(true);
@@ -67,13 +57,13 @@ function MainSubmit() {
     return (
         <div>
             <img src={WhiteLogo} className="companyLogo" alt="Company Logo" />
+
             <div className="article-heading">
                 {/* Add your article heading here */}
-                <h2 id="textbox-h2">Headine</h2>
+                <h2 id="textbox" >Article Headline</h2>
             </div>
             <div className="text-boxes">
                 {/* Add your textboxes here */}
-                <h2 id="textbox" >The headline relates to the content</h2>
                 <textarea className="textbox" placeholder='Feature Note'>
 
                 </textarea>
@@ -81,7 +71,6 @@ function MainSubmit() {
             <div className="cross-check-button">
                 {/* Add your cross-check button here */}
                 <button className='check' onClick={handleAddNote}>Add note</button>
-                <button className='check' onClick={handleViewNote}>View Add note</button>
             </div>
             <div className="box">
                 <div className="menu">
@@ -101,4 +90,4 @@ function MainSubmit() {
     );
 }
 
-export default MainSubmit;
+export default ViewNote;

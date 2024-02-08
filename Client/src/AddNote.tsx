@@ -3,7 +3,9 @@ import brief from './assets/Brief.jpg';
 import detective from './assets/Detective.jpg';
 import plus from './assets/Plus Math.jpg';
 import Summariser from './Summariser';
+import WhiteLogo from './assets/WhiteLogo.png';
 import './CrossCheck.css';
+import './MainPage.css';
 import CrossCheck from './CrossCheck';
 
 import MainPage from './MainPage' // Import your MainPage component
@@ -46,20 +48,20 @@ function AddNote() {
 
     return (
         <div>
+            <img src={WhiteLogo} className="companyLogo" alt="Company Logo" />
+
             <div className="article-heading">
                 {/* Add your article heading here */}
-                <h2>Article Heading</h2>
+                <h2 id='textbox'>Article Heading</h2>
             </div>
             <div className="text-boxes">
                 {/* Add your textboxes here */}
-                <textarea id="textbox" >The headline to the content</textarea>
-                <textarea className="textbox">
-                    Feature Note
+                <textarea className="textbox" placeholder='WRITE YOUR NOTE HERE'>
                 </textarea>
             </div>
             <div className="cross-check-button">
                 {/* Add your cross-check button here */}
-                <button className='check' onClick={AddNote}>Add note</button>
+                <button className='check' onClick={AddNote}>Submit Note</button>
             </div>
             <div className="box">
                 <div className="menu">

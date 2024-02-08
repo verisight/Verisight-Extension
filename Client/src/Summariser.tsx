@@ -19,7 +19,7 @@
 //     const handleSummariserClick = () => {
 //         setShowSummariser(true); // Show Summariser component when the button is clicked
 //     };
-    
+
 //     // Render the Summariser component if showSummariser is true
 //     if (showSummariser) {
 //       return <Summariser />;
@@ -28,13 +28,13 @@
 //     const handleCrossCheckClick = () => {
 //       setShowCrossCheck(true); // Show CrossCheck component when the button is clicked
 //     };
-  
-  
+
+
 //     // Render the CrossCheck component if showCrossCheck is true
 //     if (showCrossCheck) {
 //       return <CrossCheck />;
 //     }
-  
+
 
 //     return (
 //         <div className="extension-summariser">
@@ -169,21 +169,21 @@
 //       <div className="article-heading">
 //         <h2>Article Heading</h2>
 //       </div>
-      // <div className="article-content-container">
-      //   <textarea
-      //     className="article-content"
-      //     placeholder="Paste your article content here..."
-      //     value={articleContent}
-      //     onChange={(e) => setArticleContent(e.target.value)}
-      //   />
-      //   <div className="copy-icon" onClick={handleCopyContent}>
-      //     <img src={copyIcon} alt="Copy Icon" />
-      //   </div>
-      // </div>
-      // {isCopied && <div className="copy-success">Content copied!</div>}
-      // <button className="get-summary-button" onClick={handleGetSummary}>
-      //   Get Summary
-      // </button>
+// <div className="article-content-container">
+//   <textarea
+//     className="article-content"
+//     placeholder="Paste your article content here..."
+//     value={articleContent}
+//     onChange={(e) => setArticleContent(e.target.value)}
+//   />
+//   <div className="copy-icon" onClick={handleCopyContent}>
+//     <img src={copyIcon} alt="Copy Icon" />
+//   </div>
+// </div>
+// {isCopied && <div className="copy-success">Content copied!</div>}
+// <button className="get-summary-button" onClick={handleGetSummary}>
+//   Get Summary
+// </button>
 
 //       <div className="box">
 //         <div className="menu">
@@ -264,19 +264,19 @@
 //         <div className="menu">
 //           {/* Article Heading */}
 //           <h2>Article</h2>
-          // {/* Textarea for Article */}
-          // <div className="article-content-container">
-          //   <textarea
-          //     className="article-content"
-          //     placeholder="Paste your article content here..."
-          //     value={articleContent}
-          //     onChange={(e) => setArticleContent(e.target.value)}
-          //   />
-          //   <div className="copy-icon" onClick={handleCopyArticle}>
-          //     <img src={copyIcon} alt="Copy Icon" />
-          //   </div>
-          // </div>
-          
+// {/* Textarea for Article */}
+// <div className="article-content-container">
+//   <textarea
+//     className="article-content"
+//     placeholder="Paste your article content here..."
+//     value={articleContent}
+//     onChange={(e) => setArticleContent(e.target.value)}
+//   />
+//   <div className="copy-icon" onClick={handleCopyArticle}>
+//     <img src={copyIcon} alt="Copy Icon" />
+//   </div>
+// </div>
+
 
 //           <div className="overlap-group">
 //             <button className="rectangle summariser" onClick={handleSummariserClick}></button>
@@ -310,6 +310,8 @@ import { useState } from 'react';
 import brief from './assets/Brief.jpg';
 import detective from './assets/Detective.jpg';
 import plus from './assets/Plus Math.jpg';
+import WhiteLogo from './assets/WhiteLogo.png';
+import './MainPage.css'
 import copyIcon from './assets/copy-icon.jpg'; // Import the copy icon
 // import {OpenAIClient, AzureKeyCredential} from '@azure/openai';
 
@@ -380,6 +382,7 @@ function Summariser() {
   return (
     <div className="extension-summariser">
       <div className="box">
+        <img src={WhiteLogo} className="companyLogo" alt="Company Logo" />
         <div className="menu">
           {/* Article Heading */}
           <h2>Article</h2>
