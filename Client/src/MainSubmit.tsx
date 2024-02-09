@@ -7,13 +7,51 @@ import './CrossCheck.css';
 import CrossCheck from './CrossCheck';
 import AddNote from './AddNote';
 import MainPage from './MainPage' // Import your MainPage component
-
+import globalVariable from './LinkGlobalVar';
 
 function MainSubmit() {
     const [showSummariser, setShowSummariser] = useState(false);
     const [showCrossCheck, setShowCrossCheck] = useState(false);
     const [showMainPage, setShowMainPage] = useState(false);
     const [showAddNote, setAddNote] = useState(false);
+
+    const link = globalVariable.value;
+    let prediction = "";
+    let title = "";
+    let predictionText = "";
+
+    if (link != "") {
+        //POST request to the server to send the article link and get the article content
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ "link": link })
+        };
+        fetch('http://localhost:3000/getArticle', requestOptions)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                prediction = data.prediction;
+                title = data.title;
+                handlePrediction();
+            });
+    }
+
+    
+
+    const handlePrediction = () => {
+        if (prediction === "0") {
+            predictionText = "agree";
+        }
+        else if (prediction === "1") {
+            predictionText = "disagree";
+        }
+        else if (prediction === "2") {
+            predictionText = "discuss";
+        } else {
+            predictionText = "unrelated";
+        }
+    }
 
     const handleAddNote = () => {
         setAddNote(true);
@@ -55,14 +93,14 @@ function MainSubmit() {
         <div>
             <div className="article-heading">
                 {/* Add your article heading here */}
-                <h2>Heading</h2>
+                <h2>{title}</h2>
             </div>
             <div className="text-boxes">
                 {/* Add your textboxes here */}
-                <textarea id="textbox" >The headline to the content</textarea>
-                <textarea className="textbox">
+                <div id="textbox" >The headline {predictionText} to the content</div>
+                <div className="textbox">
                     Feature Note
-                </textarea>
+                </div>
             </div>
             <div className="cross-check-button">
                 {/* Add your cross-check button here */}

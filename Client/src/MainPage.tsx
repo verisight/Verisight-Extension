@@ -186,9 +186,11 @@ import './MainPage.css';
 import Summariser from './Summariser';
 import CrossCheck from './CrossCheck';
 import MainSubmit from './MainSubmit';
-
+import globalVariable from './LinkGlobalVar';
 
 // import openai from './Summariser';
+
+
 
 function MainPage() {
   const [urlInput, setUrlInput] = useState('');
@@ -227,7 +229,7 @@ function MainPage() {
         const date = new Date().toISOString().split('T')[0];
         const author = article?.byline ? article.byline : null;
         const tempElement = document.createElement('div');
-        tempElement.innerHTML = article?.content ? article.content : '';
+        tempElement.innerHTML = article?.content ? article.content.replace(/'/g, "\\'") : '';
         const plainText = tempElement.textContent;
         if (article && isNewsWebsite(html)) {
           console.log('URL:', link);
@@ -264,12 +266,13 @@ function MainPage() {
             //console log the contents of JSON file
             const data = response.json();
             console.log('Success:', data);
-            return article.title;
+            handleMainSubmit();
+            globalVariable.value = link; // Update the type of globalVariable to include a value property
+            return link;
           } catch (error) {
             console.error('Error parsing JSON:', error);
             return null;
           }
-          handleMainSubmit();
         } else if (!isNewsWebsite(html)) {
           console.log('The provided URL does not appear to be a news website.');
           return null;
@@ -311,7 +314,6 @@ function MainPage() {
     }
   };
 
-
   const handleSummariserClick = () => {
     setShowSummariser(true); // Show Summariser component when the button is clicked
   };
@@ -320,7 +322,6 @@ function MainPage() {
   if (showSummariser) {
     return <Summariser />;
   }
-
 
   const handleCrossCheckClick = () => {
     setShowCrossCheck(true); // Show CrossCheck component when the button is clicked
@@ -373,7 +374,7 @@ function MainPage() {
             />
           </div>
         </div>
-        <button className='submitButton' onClick={handleFetchLink}>SUBMIT</button>
+        <button className='submitButton' onClick={handleMainSubmit}>SUBMIT</button>
         <div id="article-content"></div>
       </div>
 
