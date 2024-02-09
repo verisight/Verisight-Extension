@@ -13,26 +13,34 @@
     height: 200px;
     flex-shrink: 0;
     text-align: center;
-    /* align-content: center; */
-    justify-content: center;
+    
     color: white;
     margin-top: 15px;
     border-radius: 20px;
     border: 4px solid #5200FF;
     background: #000;
+    
+    
   }
 
   #textbox{
     width: 250px;
-    flex-shrink: 0;
+    height: 25px;
     text-align: center;
-    align-content: center;
-    justify-content: center;
-    color: white;
-    margin-top: 15px;
+    font-size: small;
+    margin: 0 auto;
     border-radius: 20px;
     border: 4px solid #5200FF;
-    background: #000;
+  }
+
+  #textbox-h2{
+    width: 250px;
+    text-align: center;
+    margin: 0 auto;
+    font-size: large;
+    border-radius: 20px;
+    border: 4px solid #5200FF;
+  
   }
 
 

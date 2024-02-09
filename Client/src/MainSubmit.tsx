@@ -4,8 +4,11 @@ import detective from './assets/Detective.jpg';
 import plus from './assets/Plus Math.jpg';
 import Summariser from './Summariser';
 import './CrossCheck.css';
+import './MainPage.css';
+import WhiteLogo from './assets/WhiteLogo.png';
 import CrossCheck from './CrossCheck';
 import AddNote from './AddNote';
+import ViewNote from './ViewNote';
 import MainPage from './MainPage' // Import your MainPage component
 import globalVariable from './LinkGlobalVar';
 
@@ -14,6 +17,16 @@ function MainSubmit() {
     const [showCrossCheck, setShowCrossCheck] = useState(false);
     const [showMainPage, setShowMainPage] = useState(false);
     const [showAddNote, setAddNote] = useState(false);
+    const [showViewNote, setViewNote] = useState(false);
+
+    const handleViewNote = () => {
+        setViewNote(true);
+    };
+
+
+    if (showViewNote) {
+        return <ViewNote />;
+    }
 
     const link = globalVariable.value;
     let prediction = "";
@@ -91,6 +104,7 @@ function MainSubmit() {
 
     return (
         <div>
+            <img src={WhiteLogo} className="companyLogo" alt="Company Logo" />
             <div className="article-heading">
                 {/* Add your article heading here */}
                 <h2>{title}</h2>
@@ -105,7 +119,7 @@ function MainSubmit() {
             <div className="cross-check-button">
                 {/* Add your cross-check button here */}
                 <button className='check' onClick={handleAddNote}>Add note</button>
-                <button className='check' onClick={handleAddNote}>View Add note</button>
+                <button className='check' onClick={handleViewNote}>View Add note</button>
             </div>
             <div className="box">
                 <div className="menu">
