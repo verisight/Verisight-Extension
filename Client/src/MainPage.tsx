@@ -231,6 +231,7 @@ function MainPage() {
         const tempElement = document.createElement('div');
         tempElement.innerHTML = article?.content ? article.content.replace(/'/g, "\\'") : '';
         const plainText = tempElement.textContent;
+        globalVariable.value = link
         if (article && isNewsWebsite(html)) {
           console.log('URL:', link);
           console.log('Title:', article.title);
@@ -264,13 +265,14 @@ function MainPage() {
 
           try {
             //console log the contents of JSON file
-            const data = response.json();
+            const data = response;
             console.log('Success:', data);
             handleMainSubmit();
             globalVariable.value = link; // Update the type of globalVariable to include a value property
             return link;
           } catch (error) {
             console.error('Error parsing JSON:', error);
+            handleMainSubmit();
             return null;
           }
         } else if (!isNewsWebsite(html)) {
@@ -374,7 +376,7 @@ function MainPage() {
             />
           </div>
         </div>
-        <button className='submitButton' onClick={handleMainSubmit}>SUBMIT</button>
+        <button className='submitButton' onClick={handleFetchLink}>SUBMIT</button>
         <div id="article-content"></div>
       </div>
 

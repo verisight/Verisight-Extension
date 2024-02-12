@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import brief from './assets/Brief.jpg';
 import detective from './assets/Detective.jpg';
 import plus from './assets/Plus Math.jpg';
@@ -9,7 +9,7 @@ import WhiteLogo from './assets/WhiteLogo.png';
 import CrossCheck from './CrossCheck';
 import AddNote from './AddNote';
 import ViewNote from './ViewNote';
-import MainPage from './MainPage' // Import your MainPage component
+import MainPage from './MainPage'; // Import your MainPage component
 import globalVariable from './LinkGlobalVar';
 
 function MainSubmit() {
@@ -18,52 +18,54 @@ function MainSubmit() {
     const [showMainPage, setShowMainPage] = useState(false);
     const [showAddNote, setAddNote] = useState(false);
     const [showViewNote, setViewNote] = useState(false);
-
-    const handleViewNote = () => {
-        setViewNote(true);
-    };
-
-
-    if (showViewNote) {
-        return <ViewNote />;
-    }
+    const [loading, setLoading] = useState(true);
+    const [title1, setTitle] = useState('');
 
     const link = globalVariable.value;
     let prediction = "";
     let title = "";
     let predictionText = "";
 
-    if (link != "") {
-        //POST request to the server to send the article link and get the article content
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ "link": link })
-        };
-        fetch('http://localhost:3000/getArticle', requestOptions)
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                prediction = data.prediction;
-                title = data.title;
-                handlePrediction();
-            });
-    }
-
-    
+    useEffect(() => {
+        if (link !== "") {
+            //POST request to the server to send the article link and get the article content
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ "link": link })
+            };
+            fetch('http://localhost:3000/articles/getArticle', requestOptions)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    prediction = data.prediction;
+                    title = data.title;
+                    console.log(title);
+                    setTitle(title);
+                    setLoading(false);
+                });
+        }
+    }, [link]);
 
     const handlePrediction = () => {
-        if (prediction === "0") {
+        const predictionNumber = Number(prediction);
+        if (predictionNumber === 0) {
             predictionText = "agree";
-        }
-        else if (prediction === "1") {
+        } else if (predictionNumber === 1) {
             predictionText = "disagree";
-        }
-        else if (prediction === "2") {
+        } else if (predictionNumber === 2) {
             predictionText = "discuss";
         } else {
             predictionText = "unrelated";
         }
+    }
+
+    const handleViewNote = () => {
+        setViewNote(true);
+    };
+
+    if (showViewNote) {
+        return <ViewNote />;
     }
 
     const handleAddNote = () => {
@@ -91,33 +93,32 @@ function MainSubmit() {
     }
 
     const handleMainPage = () => {
-        // Perform login logic if needed
-        // For now, let's simulate a successful login
-        // and update the state to indicate that the user is logged in
         setShowMainPage(true);
     };
 
-    // Redirect to the main page if the user is logged in
     if (showMainPage) {
         return <MainPage />;
+    }
+
+    handlePrediction();
+
+    if (loading) {
+        return <div>Loading...</div>;
     }
 
     return (
         <div>
             <img src={WhiteLogo} className="companyLogo" alt="Company Logo" />
             <div className="article-heading">
-                {/* Add your article heading here */}
-                <h2>{title}</h2>
+                <h2>{title1}</h2>
             </div>
             <div className="text-boxes">
-                {/* Add your textboxes here */}
                 <div id="textbox" >The headline {predictionText} to the content</div>
                 <div className="textbox">
                     Feature Note
                 </div>
             </div>
             <div className="cross-check-button">
-                {/* Add your cross-check button here */}
                 <button className='check' onClick={handleAddNote}>Add note</button>
                 <button className='check' onClick={handleViewNote}>View Add note</button>
             </div>
