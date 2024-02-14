@@ -306,7 +306,7 @@
 
 
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import brief from './assets/Brief.jpg';
 import detective from './assets/Detective.jpg';
 import plus from './assets/Plus Math.jpg';
@@ -317,6 +317,7 @@ import copyIcon from './assets/copy-icon.jpg'; // Import the copy icon
 
 import CrossCheck from './CrossCheck';
 import './Summariser.css';
+import globalVariable from './LinkGlobalVar';
 
 
 import MainPage from './MainPage'; // Import your MainPage component
@@ -343,7 +344,35 @@ function Summariser() {
   const [showMainPage, setShowMainPage] = useState(false);
   const [articleContent, setArticleContent] = useState(''); // State to hold the article content
   // const [summary, setSummary] = useState(''); // State to hold the summary
+  const [loading, setLoading] = useState(true);
 
+
+  const link = globalVariable.value;
+
+  useEffect(() => {
+    if (link !== "") {
+        //POST request to the server to send the article link and get the article content
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ "link": link })
+        };
+        fetch('http://localhost:3000/summary', requestOptions)
+        //the response is a string so dont convert to json
+            .then(response => response.text())
+            .then(data => {
+                console.log(data);
+                setArticleContent(data);
+                setLoading(false);
+            });
+    }
+  }, [link]);
+
+  if (loading){
+    return <div>Loading...</div>
+  }
+
+  
   const handleSummariserClick = () => {
     setShowSummariser(true);
   };
