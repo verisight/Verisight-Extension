@@ -37,6 +37,8 @@ import { useState } from 'react';
 import WhiteLogo from './assets/WhiteLogo.png';
 import './LoginPage.css';
 import MainPage from './MainPage' // Import your MainPage component
+import { Button } from "@/components/ui/button"
+
 
 function LoginPage() {
   const [isLoggedIn, setLoggedIn] = useState(false);
@@ -63,7 +65,7 @@ function LoginPage() {
         <input type="password" placeholder="Enter your password" />
         <div className="forgotPassword">Forgot Password?</div>
         <div className="loginButton">
-          <button onClick={handleLogin}>Login</button>
+          <Button onClick={handleLogin}>Login</Button>
         </div>
       </div>
       <div className="orLine">
@@ -72,8 +74,8 @@ function LoginPage() {
         <div className="line"></div>
       </div>
       <div className="socialButtons">
-        <button>Continue with Google</button>
-        <button>Continue with Facebook</button>
+        <Button>Continue with Google</Button>
+        <Button>Continue with Facebook</Button>
       </div>
     </div>
   );

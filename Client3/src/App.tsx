@@ -40,12 +40,17 @@
 
 
 // App.tsx
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import blueTickLogo from './assets/Bluetick.png'; // Import your blue tick logo
 import CompanyLoginSignupPage from './CompanyLoginSignupPage'; // Import the new component
 import './App.css';
 // import { Carousel } from 'react-responsive-carousel';
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+// import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+// import { Button } from "@/components/ui/button"
+
+import verisightLogo from './assets/WhiteLogo.png';
+
+
 
 function GetStartedPage({ onGetStartedClick }: { onGetStartedClick: () => void }) {
   return (
@@ -79,6 +84,25 @@ function GetStartedPage({ onGetStartedClick }: { onGetStartedClick: () => void }
 
 function App() {
   const [showGetStarted, setShowGetStarted] = useState(true);
+  const [loading, setLoading] = useState(true);
+  const [progressWidth, setProgressWidth] = useState(0);
+
+  useEffect(() => {
+    // Simulate a loading delay (e.g., fetching resources, initializing)
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000); // Adjust the delay time as needed
+
+    // Simulate progress increase
+    const interval = setInterval(() => {
+      setProgressWidth(prevWidth => prevWidth + 10); // Increase width by 10px
+    }, 200); // Adjust the interval time as needed
+
+    return () => {
+      clearTimeout(timer);
+      clearInterval(interval);
+    };
+  }, []);
 
   const handleGetStartedClick = () => {
     setShowGetStarted(false);
@@ -86,11 +110,28 @@ function App() {
 
   return (
     <>
-      {showGetStarted ? (
+    <div className='container'>
+      {loading ? (
+        // Display loading indicator
+        // <div className="loading">
+        //   {/* Display your company logo here */}
+        //   <img src={verisightLogo} alt="Company Logo" />
+        //   {/* Display a progress bar loading sign here */}
+        //   <div className="progress-bar"></div>
+        // </div>
+            <div className="loading-get">
+            <div className="div">
+              <img className="image" alt="Image" src={verisightLogo} />
+              <div className={`progress-bar ${!loading && 'green'}`} style={{ width: `${progressWidth}px` }}></div>
+            </div>
+          </div>
+      ) : showGetStarted ? (
         <GetStartedPage onGetStartedClick={handleGetStartedClick} />
       ) : (
         <CompanyLoginSignupPage />
       )}
+    </div>
+
     </>
   );
 }

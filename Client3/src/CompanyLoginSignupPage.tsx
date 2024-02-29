@@ -5,6 +5,8 @@ import verisightLogo from './assets/WhiteLogo.png';
 import LoginPage from './LoginPage';
 import SignupPage from './SignupPage'; // Import SignupPage
 import './CompanyLoginSignupPage.css';
+import { Button } from "@/components/ui/button"
+
 
 function CompanyLoginSignupPage() {
   const [showLoginPage, setShowLoginPage] = useState(false);
@@ -31,8 +33,8 @@ function CompanyLoginSignupPage() {
           <img src={verisightLogo} className="companyLogo" alt="Company Logo"/>
           <div className="loginSignupButtons">
             <div className="combinedButton">
-              <button onClick={handleLoginClick}>Login</button>
-              <button onClick={handleSignupClick}>Signup</button>
+              <Button onClick={handleLoginClick}>Login</Button>
+              <Button onClick={handleSignupClick}>Signup</Button>
             </div>
           </div>
         </div>
