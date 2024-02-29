@@ -179,6 +179,8 @@ import WhiteLogo from './assets/WhiteLogo.png';
 import brief from './assets/Brief.jpg';
 import detective from './assets/Detective.jpg';
 import plus from './assets/Plus Math.jpg';
+import UserProfileIcon from './assets/profileIcon.jpg';
+
 // import link from './assets/link.jpg';
 import { Readability } from '@mozilla/readability';
 import './MainPage.css';
@@ -345,7 +347,16 @@ function MainPage() {
   return (
     <div>
       <div className='container'>
-        <img src={WhiteLogo} className="companyLogo" alt="Company Logo" />
+        {/* <img src={WhiteLogo} className="companyLogo" alt="Company Logo" /> */}
+        <div className='row'>
+          <div className="leftSide">
+            <img src={WhiteLogo} className="companyLogo" alt="Company Logo" />
+          </div>
+          <div className="rightSide">
+            <img src={UserProfileIcon} className="userProfileIcon" alt="User Profile Icon" />
+          </div>
+        </div>
+        
         <div className="Button">
           <button className='fetchButton' onClick={fetchUrl}>Fetch Link of Current site</button>
         </div>
