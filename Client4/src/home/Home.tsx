@@ -5,7 +5,7 @@ import { Separator } from "@/components/ui/separator";
 
 const Home = () => {
     return (
-        <div className="flex flex-col items-center justify-center h-screen bg-black">
+        <div className="flex flex-col items-center justify-center h-screen">
             <div className="mb-8">
                 <div className="w-12 h-12 my-5">
                     <img src="src\assets\WhiteLogo.png" alt="Verisight Logo" />
@@ -17,7 +17,7 @@ const Home = () => {
                 </Button>
                 <Separator className="my-4 w-full" />
                 <Input 
-                    className="font-bold py-2 px-4 text-white" 
+                    className="font-bold py-2 px-4" 
                     placeholder="Enter URL" 
                     type="text"              
                 />
