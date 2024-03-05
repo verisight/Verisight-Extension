@@ -2,7 +2,6 @@ import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { TabsContent } from '@/components/ui/tabs';
 import { Textarea } from '@/components/ui/textarea';
-import React from 'react'
 
 const Crosscheck = () => {
     return (<TabsContent value="crosscheck">
