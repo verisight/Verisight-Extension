@@ -32,7 +32,7 @@ const Incongruence = () => {
       </CardHeader>
       <CardContent className="space-y-2">
         <div className="space-y-1">
-          <Textarea id="featurednote" placeholder="Featured Note" className="resize-none h-72" />
+          <Textarea readOnly id="featurednote" placeholder="Featured Note" className="resize-none h-72" />
         </div>
       </CardContent>
       <CardFooter className=" grid w-full grid-cols-2 space-x-4">
