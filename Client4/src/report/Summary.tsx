@@ -14,7 +14,7 @@ const Summary = () => {
       </CardHeader>
       <CardContent className="space-y-2">
       <div className="space-y-1">
-          <Textarea id="summary"  placeholder="Article summary" className="resize-none h-72" />
+          <Textarea id="summary" readOnly placeholder="Article summary" className="resize-none h-72" />
         </div>
       </CardContent>
       <CardFooter>
