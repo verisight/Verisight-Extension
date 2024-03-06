@@ -7,6 +7,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 import { Textarea } from "@/components/ui/textarea"
 import { Dialog, DialogTrigger } from "@/components/ui/dialog"
 import UserNoteAdd from "./UserNoteAdd"
+import UserNoteView from "./UserNoteView"
 
 const Report = () => {
   return (
@@ -40,13 +41,18 @@ const Incongruence = () => {
       <CardFooter className=" grid w-full grid-cols-2 space-x-4">
         <Dialog>
           <DialogTrigger asChild>
-          <Button>Add user note</Button>
+            <Button>Add user note</Button>
           </DialogTrigger>
           <UserNoteAdd></UserNoteAdd>
-      </Dialog>
-      <Button>View user notes</Button>
-    </CardFooter>
-  </Card>
+        </Dialog>
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button>View user notes</Button>
+          </DialogTrigger>
+          <UserNoteView></UserNoteView>
+        </Dialog>
+      </CardFooter>
+    </Card>
   </TabsContent >);
 }
 
