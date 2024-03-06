@@ -5,6 +5,8 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
 import { Textarea } from "@/components/ui/textarea"
+import { Dialog, DialogTrigger } from "@/components/ui/dialog"
+import UserNoteAdd from "./UserNoteAdd"
 
 const Report = () => {
   return (
@@ -36,11 +38,16 @@ const Incongruence = () => {
         </div>
       </CardContent>
       <CardFooter className=" grid w-full grid-cols-2 space-x-4">
-        <Button>Add user note</Button>
-        <Button>View user notes</Button>
-      </CardFooter>
-    </Card>
-  </TabsContent>);
+        <Dialog>
+          <DialogTrigger asChild>
+          <Button>Add user note</Button>
+          </DialogTrigger>
+          <UserNoteAdd></UserNoteAdd>
+      </Dialog>
+      <Button>View user notes</Button>
+    </CardFooter>
+  </Card>
+  </TabsContent >);
 }
 
 export default Report
