@@ -46,7 +46,7 @@ const Home = () => {
         <div className="flex flex-col items-center justify-center h-screen">
             <div className="mb-8">
                 <div className="w-12 h-12 my-5">
-                    <img src="src\assets\WhiteLogo.png" alt="Verisight Logo" />
+                    <img src="WhiteLogo.png" alt="Verisight Logo" />
                 </div>
             </div>
             <div className="flex flex-col space-y-5" >

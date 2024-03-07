@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Progress } from "@/components/ui/progress";
 import { useNavigate } from 'react-router-dom';
-import WhiteLogo from './assets/WhiteLogo.png'; // Assuming WhiteLogo is a valid image file
+import WhiteLogo from 'WhiteLogo.png'; // Assuming WhiteLogo is a valid image file
 
 const PreviewPage = () => {
     const [isLoading, setIsLoading] = useState(true);
