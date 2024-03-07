@@ -8,10 +8,12 @@ import { Textarea } from "@/components/ui/textarea"
 import { Dialog, DialogTrigger } from "@/components/ui/dialog"
 import UserNoteAdd from "./UserNoteAdd"
 import UserNoteView from "./UserNoteView"
+import { useGlobalContext } from "@/GlobalContext"
 
 const Report = () => {
+  
   return (
-    <Tabs defaultValue="crosscheck" className="w-[400px]">
+    <Tabs defaultValue="incongruence" className="w-[400px]">
       <Crosscheck />
       <Summary />
       <Incongruence />
@@ -25,10 +27,12 @@ const Report = () => {
 }
 
 const Incongruence = () => {
+  const { article } = useGlobalContext();
+
   return (<TabsContent value="incongruence">
     <Card>
       <CardHeader className="items-center">
-        <CardTitle className="mb-5">Headline</CardTitle>
+        <CardTitle className="mb-5">{article.title}</CardTitle>
         <CardDescription className="w-full">
           <Input readOnly value="The article relates to the content" className="text-center" />
         </CardDescription>

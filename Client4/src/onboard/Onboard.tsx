@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button"
+import { Link } from "react-router-dom"
 
 const Onboard = () => {
+
     return (
         <div className="flex flex-col items-center justify-center h-screen">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-48 h-48 fill-blue-600">
@@ -8,7 +10,9 @@ const Onboard = () => {
             </svg>
             <h4 className="font-bold my-1">Don’t trust whatever you see</h4>
             <h3 className="text-wrap px-10 py-5 my-10">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</h3>
-            <Button className="my-5">Get Started</Button>
+            <Button className="my-5" asChild>
+                <Link to="/auth">Login</Link>
+            </Button>
         </div>
     )
 }
