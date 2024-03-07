@@ -13,8 +13,9 @@ const Crosscheck = () => {
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-2">
-        <div className="space-y-1">
-          <Textarea id="crosscheck" readOnly placeholder="Article crosscheck" className="resize-none h-72" />
+        <div className="space-y-5">
+          <Textarea id="crosscheck" readOnly placeholder="Article crosscheck" className="resize-none h-36" />
+          <Textarea id="citations" readOnly placeholder="Citations" className="resize-none h-20" />
         </div>
       </CardContent>
       <CardFooter>
