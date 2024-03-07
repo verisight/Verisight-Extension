@@ -15,7 +15,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
-import App from './Preview.tsx'
+import App from './Profile.tsx'
 import { ThemeProvider } from './components/ui/theme-provider.tsx'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
