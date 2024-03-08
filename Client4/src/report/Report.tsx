@@ -41,8 +41,8 @@ const Incongruence = () => {
       })
       .then(response => response.json())
       .then(data => {
-        if (data.prediction === 0) setPrediction("agrees");
-        else if (data.prediction === 1) setPrediction("disagrees");
+        if (data.prediction === 0) setPrediction("agrees with");
+        else if (data.prediction === 1) setPrediction("disagrees with");
         else if (data.prediction === 2) setPrediction("discusses");
         else setPrediction("is unrelated to");
       });
@@ -53,7 +53,7 @@ const Incongruence = () => {
       <CardHeader className="items-center">
         <CardTitle className="mb-5">{article.title}</CardTitle>
         <CardDescription className="w-full">
-          <Input readOnly value={`The article ${prediction} to the content`} className="text-center" />
+          <Input readOnly value={`The article ${prediction} the content`} className="text-center" />
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-2">
