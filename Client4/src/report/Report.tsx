@@ -9,9 +9,10 @@ import { Dialog, DialogTrigger } from "@/components/ui/dialog"
 import UserNoteAdd from "./UserNoteAdd"
 import UserNoteView from "./UserNoteView"
 import { useGlobalContext } from "@/GlobalContext"
+import { useEffect, useState } from "react"
 
 const Report = () => {
-  
+
   return (
     <Tabs defaultValue="incongruence" className="w-[400px]">
       <Crosscheck />
@@ -29,12 +30,30 @@ const Report = () => {
 const Incongruence = () => {
   const { article } = useGlobalContext();
 
+  const [prediction, setPrediction] = useState("");
+
+  useEffect(() => {
+    fetch('http://localhost:3000/articles/getArticle',
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ "link": article.link })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.prediction === 0) setPrediction("agrees");
+        else if (data.prediction === 1) setPrediction("disagrees");
+        else if (data.prediction === 2) setPrediction("discusses");
+        else setPrediction("is unrelated to");
+      });
+  }, [])
+
   return (<TabsContent value="incongruence">
     <Card>
       <CardHeader className="items-center">
         <CardTitle className="mb-5">{article.title}</CardTitle>
         <CardDescription className="w-full">
-          <Input readOnly value="The article relates to the content" className="text-center" />
+          <Input readOnly value={`The article ${prediction} to the content`} className="text-center" />
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-2">
