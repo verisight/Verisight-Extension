@@ -20,12 +20,29 @@ const Home = () => {
             const html = await response.text();
             const parser = new DOMParser();
             const doc = parser.parseFromString(html, "text/html");
-            let article = new Readability(doc).parse();
-            if (article) {
+            const parsedArticle = new Readability(doc).parse();
+
+            if (parsedArticle) {
+                const article = {
+                    title: parsedArticle.title,
+                    content: parsedArticle.textContent,
+                    link: articleURL,
+                    datePublished: parsedArticle.publishedTime,
+                };
+
+                await fetch('http://localhost:3000/articles', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(article)
+                });
+
                 setArticle({
                     title: article.title,
-                    content: article.textContent,
+                    content: article.content,
                     link: articleURL,
+                    datePublished: article.datePublished,
                 });
                 navigate("/report");
             }
