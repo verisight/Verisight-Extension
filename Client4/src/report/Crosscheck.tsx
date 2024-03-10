@@ -1,10 +1,55 @@
-import { Button } from '@/components/ui/button';
+import { useGlobalContext } from '@/GlobalContext';
+import { Button, buttonVariants } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { TabsContent } from '@/components/ui/tabs';
 import { Textarea } from '@/components/ui/textarea';
+import { useState } from 'react';
 
 const Crosscheck = () => {
-    return (<TabsContent value="crosscheck">
+
+
+  const [crosscheck, setCrosscheck] = useState("");
+  const [citations, setCitations] = useState<Doc[]>([]);
+
+  interface Doc {
+    pageContent: string;
+    metadata: {
+      title: string;
+      source: string;
+    };
+  }
+
+  interface ResponseData {
+    cited_answer: {
+      answer: string;
+      citations: number[];
+    };
+    docs: Doc[];
+  }
+
+  const { article } = useGlobalContext();
+
+  const handleCrosscheck = async () => {
+    const response = await fetch("http://localhost:3000/crosscheck", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(article)
+    });
+    const data: ResponseData = await response.json();
+    console.log(data);
+
+
+    const answer = data.cited_answer.answer;
+    const citations = data.cited_answer.citations;
+
+    const citedDocs = citations.map(index => data.docs[index]);
+
+    setCrosscheck(answer);
+    setCitations(citedDocs);
+  }
+
+
+  return (<TabsContent value="crosscheck">
     <Card>
       <CardHeader>
         <CardTitle>Article Crosscheck</CardTitle>
@@ -14,12 +59,31 @@ const Crosscheck = () => {
       </CardHeader>
       <CardContent className="space-y-2">
         <div className="space-y-5">
-          <Textarea id="crosscheck" readOnly placeholder="Article crosscheck" className="resize-none h-36" />
-          <Textarea id="citations" readOnly placeholder="Citations" className="resize-none h-20" />
+          <Textarea id="crosscheck" readOnly value={crosscheck} className="resize-none h-36" />
+          <CardTitle>Citations</CardTitle>
+          <Card>
+            <CardContent className='grid grid-cols-1 gap-1 my-3'>
+              {citations.map((doc, index) => {
+                return doc ? (
+                  <a
+                    href={doc.metadata.source}
+                    target="_blank"
+                    rel="noreferrer"
+                    key={index}
+                    className={`truncate ${buttonVariants({ variant: "outline" })}`}
+                  >
+                    {doc.metadata.title}
+                  </a>
+                ) : (
+                  <div>No Citations</div>
+                );
+              })}
+            </CardContent>
+          </Card>
         </div>
       </CardContent>
       <CardFooter>
-        <Button className="w-full">Get Crosscheck</Button>
+        <Button className="w-full" onClick={handleCrosscheck}>Get Crosscheck</Button>
       </CardFooter>
     </Card>
   </TabsContent>);
