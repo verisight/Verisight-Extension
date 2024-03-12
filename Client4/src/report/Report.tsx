@@ -59,7 +59,7 @@ const Incongruence = () => {
   return (
     <TabsContent
       value="incongruence"
-      className="h-[460px] align-middle justify-items-center"
+      className="h-[500px] align-middle justify-items-center m-0"
     >
       <div className="p-4">
         <Avatar className="h-11 w-11">
