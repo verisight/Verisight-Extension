@@ -24,8 +24,8 @@ const Home = () => {
 
             if (parsedArticle) {
                 const article = {
-                    title: parsedArticle.title,
-                    content: parsedArticle.textContent,
+                    title: parsedArticle.title.replace(/\n/g, '').replace(/\t/g, ''),
+                    content: parsedArticle.textContent.replace(/\n/g, '').replace(/\t/g, ''),
                     link: articleURL,
                     datePublished: parsedArticle.publishedTime,
                 };
@@ -39,10 +39,11 @@ const Home = () => {
                 });
 
                 setArticle({
-                    title: article.title,
-                    content: article.content,
+                    title: article.title.replace(/\n/g, '').replace(/\t/g, ''),
+                    content: article.content.replace(/\n/g, '').replace(/\t/g, ''),
                     link: articleURL,
                     datePublished: article.datePublished,
+                    excerpt: parsedArticle.excerpt.replace(/\n/g, '').replace(/\t/g, '')
                 });
                 navigate("/report");
             }

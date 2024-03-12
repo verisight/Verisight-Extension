@@ -16,6 +16,8 @@ const Crosscheck = () => {
     metadata: {
       title: string;
       source: string;
+      score: number;
+      img: object;
     };
   }
 
@@ -30,10 +32,17 @@ const Crosscheck = () => {
   const { article } = useGlobalContext();
 
   const handleCrosscheck = async () => {
-    const response = await fetch("http://localhost:3000/crosscheck", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(article)
+    console.log(article);
+
+    const response = await fetch('http://localhost:3000/crosscheck', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        title: article.title,
+        content: article.excerpt
+      })
     });
     const data: ResponseData = await response.json();
     console.log(data);

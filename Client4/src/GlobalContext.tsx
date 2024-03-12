@@ -10,11 +10,15 @@ const AppContext = (props: any) => {
         content: "",
         link: "",
         datePublished: '',
-        prediction: 0
+        prediction: 0,
+        excerpt: ""
     });
 
     const [user, setUser] = useState({
+        username: "",
+        userId: "",
         email: "",
+        designation: "",
     });
 
     return (
