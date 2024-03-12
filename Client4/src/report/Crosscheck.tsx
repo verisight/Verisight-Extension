@@ -66,12 +66,13 @@ const Crosscheck = () => {
           Crosscheck the article using AI
         </CardDescription>
       </CardHeader>
+
       <CardContent className="space-y-2">
         <div className="space-y-5">
-          <Textarea id="crosscheck" readOnly value={crosscheck} className="resize-none h-36" />
+          <Textarea id="crosscheck" readOnly value={crosscheck} className="resize-none h-24" />
           <CardTitle>Citations</CardTitle>
           <Card>
-            <CardContent className='grid grid-cols-1 gap-1 my-3'>
+            <CardContent className='grid grid-cols-1 gap-1 my-3 overflow-y-auto resize-none h-24'>
               {citations.map((doc, index) => {
                 return doc ? (
                   <a
@@ -88,10 +89,11 @@ const Crosscheck = () => {
                 );
               })}
             </CardContent>
+
           </Card>
         </div>
       </CardContent>
-      <CardFooter>
+      <CardFooter className='mt-5'>
         <Button className="w-full" onClick={handleCrosscheck}>Get Crosscheck</Button>
       </CardFooter>
     </Card>

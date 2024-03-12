@@ -24,7 +24,7 @@ const Report = () => {
       <Crosscheck />
       <Summary />
       <Incongruence />
-      <TabsList className="grid w-full grid-cols-3 mt-5">
+      <TabsList className="grid w-full grid-cols-3 mt-20">
         <TabsTrigger value="crosscheck">Crosscheck</TabsTrigger>
         <TabsTrigger value="incongruence">Incongruence</TabsTrigger>
         <TabsTrigger value="summary">Summary</TabsTrigger>
@@ -56,7 +56,7 @@ const Incongruence = () => {
   return (
     <TabsContent
       value="incongruence"
-      className="h-[500px] align-middle justify-items-center"
+      className="h-[460px] align-middle justify-items-center"
     >
       <Card>
         <CardHeader className="items-center">
@@ -75,7 +75,7 @@ const Incongruence = () => {
               readOnly
               id="featurednote"
               placeholder="Featured Note"
-              className="resize-none h-72"
+              className="resize-none h-60"
             />
           </div>
         </CardContent>
