@@ -13,6 +13,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import {CirclePlus} from 'lucide-react';
+
 
 
 const Summary = () => {
@@ -43,11 +45,14 @@ const Summary = () => {
     value="summary"
     className="h-[460px] align-middle justify-items-center"
     >
-      <div className="p-4">
-        <Avatar className="h-11 w-11">
+      <div className="p-4 grid grid-cols-2 place-items-center">
+        <Avatar className="ml-2 h-11 w-11">
           <AvatarImage src="https://github.com/shadcn.png" />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
+        <Button variant="ghost" size="icon" className="mr-2">
+          <CirclePlus className="h-10 w-10" />
+        </Button>
       </div>
       <Card>
         <CardHeader>
