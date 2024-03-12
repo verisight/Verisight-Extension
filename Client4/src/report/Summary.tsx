@@ -36,7 +36,7 @@ const Summary = () => {
   };
 
   return (
-    <TabsContent value="summary">
+    <TabsContent value="summary" className="m-0">
       <Card>
         <CardHeader>
           <CardTitle>Article Summary</CardTitle>

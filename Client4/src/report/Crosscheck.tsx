@@ -58,7 +58,7 @@ const Crosscheck = () => {
   }
 
 
-  return (<TabsContent value="crosscheck">
+  return (<TabsContent value="crosscheck" className='m-0'>
     <Card>
       <CardHeader>
         <CardTitle>Article Crosscheck</CardTitle>
