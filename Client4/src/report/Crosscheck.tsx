@@ -5,6 +5,9 @@ import { TabsContent } from '@/components/ui/tabs';
 import { Textarea } from '@/components/ui/textarea';
 import { useState } from 'react';
 
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+
+
 const Crosscheck = () => {
 
 
@@ -58,7 +61,16 @@ const Crosscheck = () => {
   }
 
 
-  return (<TabsContent value="crosscheck">
+  return (<TabsContent 
+    value="crosscheck"
+    className="h-[460px] align-middle justify-items-center"
+  >
+    <div className="p-4">
+      <Avatar className="h-11 w-11">
+        <AvatarImage src="https://github.com/shadcn.png" />
+        <AvatarFallback>CN</AvatarFallback>
+      </Avatar>
+    </div>
     <Card>
       <CardHeader>
         <CardTitle>Article Crosscheck</CardTitle>

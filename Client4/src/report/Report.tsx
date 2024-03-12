@@ -18,6 +18,9 @@ import UserNoteView from "./UserNoteView";
 import { useGlobalContext } from "@/GlobalContext";
 import { useEffect, useState } from "react";
 
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+
+
 const Report = () => {
   return (
     <Tabs defaultValue="incongruence" className="w-[400px] h-[585px]">
@@ -58,6 +61,12 @@ const Incongruence = () => {
       value="incongruence"
       className="h-[460px] align-middle justify-items-center"
     >
+      <div className="p-4">
+        <Avatar className="h-11 w-11">
+          <AvatarImage src="https://github.com/shadcn.png" />
+          <AvatarFallback>CN</AvatarFallback>
+        </Avatar>
+      </div>
       <Card>
         <CardHeader className="items-center">
           <CardTitle className="mb-5 text-xl">{article.title}</CardTitle>
@@ -75,7 +84,7 @@ const Incongruence = () => {
               readOnly
               id="featurednote"
               placeholder="Featured Note"
-              className="resize-none h-60"
+              className="resize-none h-52"
             />
           </div>
         </CardContent>
