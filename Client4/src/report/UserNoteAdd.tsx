@@ -26,10 +26,22 @@ const FormSchema = z.object({
 
 const UserNoteAdd = () => {
 
-  const { article, user } = useGlobalContext();
+  const { article, user, setNotes } = useGlobalContext();
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
+
+  const fetchNotes = async () => {
+    await fetch("http://localhost:3000/notes/all", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ articleLink: article.link }),
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            setNotes(data);
+        });
+};
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -67,6 +79,7 @@ const UserNoteAdd = () => {
         });
         await delay(1000);
       } else {
+        await fetchNotes();
         toast({
           description: "Note added successfully.",
         });
