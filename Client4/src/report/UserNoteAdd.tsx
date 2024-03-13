@@ -38,7 +38,7 @@ const UserNoteAdd = () => {
     },
   })
 
-  function delay(milliseconds) {
+  function delay(milliseconds: number) {
     return new Promise(resolve => {
       setTimeout(resolve, milliseconds);
     });
