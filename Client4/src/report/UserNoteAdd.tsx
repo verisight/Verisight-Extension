@@ -5,6 +5,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
+import { useToast } from "@/components/ui/use-toast"
 import {
   Form,
   FormControl,
@@ -14,6 +15,8 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { useState } from "react"
+import { Toaster } from "@/components/ui/toaster"
+import { LoaderCircle } from "lucide-react"
 
 const FormSchema = z.object({
   usernote: z.string().min(1, {
@@ -23,8 +26,10 @@ const FormSchema = z.object({
 
 const UserNoteAdd = () => {
 
-  const { article } = useGlobalContext();
+  const { article, user } = useGlobalContext();
   const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const { toast } = useToast();
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -33,11 +38,53 @@ const UserNoteAdd = () => {
     },
   })
 
-  const onSubmit = (data: z.infer<typeof FormSchema>) => {
-    // Add user note to article
-    console.log(data);
-    setOpen(false);
+  function delay(milliseconds) {
+    return new Promise(resolve => {
+      setTimeout(resolve, milliseconds);
+    });
   }
+
+  const onSubmit = async (data: z.infer<typeof FormSchema>) => {
+    setLoading(true);
+    try {
+      const response = await fetch("http://localhost:3000/notes", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          articleLink: article.link,
+          userId: user.userId,
+          username: user.username,
+          date: new Date().toISOString(),
+          noteContent: data.usernote,
+          upvote: 0,
+        }),
+      });
+
+      if (!response.ok) {
+        toast({
+          variant: "destructive",
+          description: "Error adding note.",
+        });
+        await delay(1000);
+      } else {
+        toast({
+          description: "Note added successfully.",
+        });
+        await delay(1000);
+      }
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        description: "Error adding note.",
+      });
+      await delay(1000);
+      console.error(error);
+    } finally {
+      setLoading(false);
+      setOpen(false);
+    }
+  };
+
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -73,10 +120,13 @@ const UserNoteAdd = () => {
               />
             </div>
             <DialogFooter>
-              <Button type="submit">Add Note</Button>
+              {loading ?
+                <Button disabled><LoaderCircle className="animate-spin" />Add note</Button> :
+                <Button type="submit">Add note</Button>}
             </DialogFooter>
           </form>
         </Form>
+        <Toaster />
       </DialogContent>
     </Dialog>
   )

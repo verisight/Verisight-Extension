@@ -95,7 +95,7 @@ const Incongruence = () => {
         </CardContent>
         <CardFooter className=" grid w-full grid-cols-2 space-x-4">
           <UserNoteAdd />
-          <UserNoteView></UserNoteView>
+          <UserNoteView />
         </CardFooter>
       </Card>
     </TabsContent>
