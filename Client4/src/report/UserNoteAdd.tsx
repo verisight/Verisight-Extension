@@ -1,6 +1,6 @@
 import { useGlobalContext } from "@/GlobalContext"
 import { Button } from "@/components/ui/button"
-import { DialogHeader, DialogFooter, DialogContent, DialogTitle, DialogDescription, DialogClose, Dialog, DialogTrigger } from "@/components/ui/dialog"
+import { DialogHeader, DialogFooter, DialogContent, DialogTitle, DialogDescription, Dialog, DialogTrigger } from "@/components/ui/dialog"
 import { Textarea } from "@/components/ui/textarea"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
