@@ -41,6 +41,8 @@ const Incongruence = () => {
 
   const [prediction, setPrediction] = useState("");
 
+  const [featuredNote, setFeaturedNote] = useState("");
+
   useEffect(() => {
     fetch("http://localhost:3000/articles/getArticle", {
       method: "POST",
@@ -54,6 +56,18 @@ const Incongruence = () => {
         else if (data.prediction === 2) setPrediction("discusses");
         else setPrediction("is unrelated to");
       });
+
+      fetch("http://localhost:3000/notes/featuredNote", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ articleLink: article.link }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          setFeaturedNote(data.noteContent);
+        });
+
   }, []);
 
   return (
@@ -85,12 +99,22 @@ const Incongruence = () => {
         </CardHeader>
         <CardContent className="space-y-2">
           <div className="space-y-1">
-            <Textarea
-              readOnly
-              id="featurednote"
-              placeholder="Featured Note"
-              className="resize-none h-52"
-            />
+            {featuredNote ? (
+              <Textarea
+                readOnly
+                id="featurednote"
+                placeholder="Featured Note"
+                className="resize-none h-52"
+                value={featuredNote}
+              />
+            ) : (
+              <Textarea
+                readOnly
+                id="featurednote"
+                placeholder="No featured note available."
+                className="resize-none h-52"
+              />
+            )}
           </div>
         </CardContent>
         <CardFooter className=" grid w-full grid-cols-2 space-x-4">
