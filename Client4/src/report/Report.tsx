@@ -19,7 +19,7 @@ import { useGlobalContext } from "@/GlobalContext";
 import { useEffect, useState } from "react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import {CirclePlus} from 'lucide-react';
+import { CirclePlus } from 'lucide-react';
 
 
 const Report = () => {
@@ -72,7 +72,7 @@ const Incongruence = () => {
         </Button>
       </div>
 
-      
+
       <Card>
         <CardHeader className="items-center">
           <CardTitle className="mb-5 text-xl">{article.title}</CardTitle>
@@ -95,12 +95,7 @@ const Incongruence = () => {
           </div>
         </CardContent>
         <CardFooter className=" grid w-full grid-cols-2 space-x-4">
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button>Add user note</Button>
-            </DialogTrigger>
-            <UserNoteAdd></UserNoteAdd>
-          </Dialog>
+          <UserNoteAdd />
           <Dialog>
             <DialogTrigger asChild>
               <Button>View user notes</Button>
