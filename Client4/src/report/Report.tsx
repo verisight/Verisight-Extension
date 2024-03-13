@@ -12,7 +12,6 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
-import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import UserNoteAdd from "./UserNoteAdd";
 import UserNoteView from "./UserNoteView";
 import { useGlobalContext } from "@/GlobalContext";
@@ -96,12 +95,7 @@ const Incongruence = () => {
         </CardContent>
         <CardFooter className=" grid w-full grid-cols-2 space-x-4">
           <UserNoteAdd />
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button>View user notes</Button>
-            </DialogTrigger>
-            <UserNoteView></UserNoteView>
-          </Dialog>
+          <UserNoteView></UserNoteView>
         </CardFooter>
       </Card>
     </TabsContent>
