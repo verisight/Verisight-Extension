@@ -3,12 +3,12 @@ import { Button } from "@/components/ui/button";
 const Authentication = () => {
   // Function to handle internal navigation to the home page
   const handleLogin = () => {
-    window.location.href = "http://localhost:5173/login";
+    window.open("http://localhost:5173/login", "_blank");
   };
 
   // Function to handle internal navigation to the sign-up page
   const handleSignUp = () => {
-    window.location.href = "http://localhost:5173/signup";
+    window.open("http://localhost:5173/signup", "_blank");
   };
   return (
     <div className="flex flex-col items-center justify-center h-screen">

@@ -56,13 +56,16 @@ const Onboard = () => {
       </svg>
       <h4 className="font-bold my-0">Don’t trust whatever you see</h4>
       <h3 className="text-wrap px-10 py-5 my-5">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat
+        Say goodbye to falling for fake news and misleading headlines with
+        VeriSight, the cutting-edge AI-powered tool designed to keep you
+        informed and protected online. With state-of-the-art algorithms and
+        real-time fact-checking, VeriSight instantly identifies unreliable
+        sources and alerts you to potential misinformation. Stay one step ahead
+        of the clickbait trap and browse the web with confidence.Try VeriSight
+        today!
       </h3>
       <Button className="my-5" asChild>
-        <Link to="/auth">Login</Link>
+        <Link to="/auth">Continue</Link>
       </Button>
     </div>
   );
