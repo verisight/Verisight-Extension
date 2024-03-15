@@ -6,7 +6,8 @@
   "permissions": [
     "activeTab",
     "tabs",
-    "cookies"
+    "cookies",
+    "scripting"
   ],
   "action": {
     "default_popup": "index.html",
