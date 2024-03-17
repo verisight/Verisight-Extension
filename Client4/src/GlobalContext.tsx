@@ -21,8 +21,22 @@ const AppContext = (props: any) => {
         designation: "",
     });
 
+    interface Note {
+        _id: string;
+        articleLink: string;
+        userId: string;
+        noteContent: string;
+        upvote: number;
+        createdAt: string;
+        updatedAt: string;
+        __v: number;
+    }
+
+    const [notes, setNotes] = useState<Note[]>([]);
+
+
     return (
-        <GlobalContext.Provider value={{ article, setArticle, user, setUser }}>
+        <GlobalContext.Provider value={{ article, setArticle, user, setUser, notes, setNotes }}>
             {props.children}
         </GlobalContext.Provider>
     );
