@@ -5,8 +5,7 @@
   "manifest_version": 3,
   "permissions": [
     "activeTab",
-    "tabs",
-    "cookies"
+    "tabs"
   ],
   "action": {
     "default_popup": "index.html",

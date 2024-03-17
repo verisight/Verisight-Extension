@@ -12,14 +12,11 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
+import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import UserNoteAdd from "./UserNoteAdd";
 import UserNoteView from "./UserNoteView";
 import { useGlobalContext } from "@/GlobalContext";
 import { useEffect, useState } from "react";
-
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { CirclePlus } from 'lucide-react';
-
 
 const Report = () => {
   return (
@@ -41,8 +38,6 @@ const Incongruence = () => {
 
   const [prediction, setPrediction] = useState("");
 
-  const [featuredNote, setFeaturedNote] = useState("");
-
   useEffect(() => {
     fetch("http://localhost:3000/articles/getArticle", {
       method: "POST",
@@ -56,18 +51,6 @@ const Incongruence = () => {
         else if (data.prediction === 2) setPrediction("discusses");
         else setPrediction("is unrelated to");
       });
-
-      fetch("http://localhost:3000/notes/featuredNote", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ articleLink: article.link }),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data);
-          setFeaturedNote(data.noteContent);
-        });
-
   }, []);
 
   return (
@@ -75,17 +58,6 @@ const Incongruence = () => {
       value="incongruence"
       className="h-[460px] align-middle justify-items-center"
     >
-      <div className="p-4 grid grid-cols-2 place-items-center">
-        <Avatar className="ml-2 h-11 w-11">
-          <AvatarImage src="https://github.com/shadcn.png" />
-          <AvatarFallback>CN</AvatarFallback>
-        </Avatar>
-        <Button variant="ghost" size="icon" className="mr-2">
-          <CirclePlus className="h-10 w-10" />
-        </Button>
-      </div>
-
-
       <Card>
         <CardHeader className="items-center">
           <CardTitle className="mb-5 text-xl">{article.title}</CardTitle>
@@ -99,27 +71,27 @@ const Incongruence = () => {
         </CardHeader>
         <CardContent className="space-y-2">
           <div className="space-y-1">
-            {featuredNote ? (
-              <Textarea
-                readOnly
-                id="featurednote"
-                placeholder="Featured Note"
-                className="resize-none h-52"
-                value={featuredNote}
-              />
-            ) : (
-              <Textarea
-                readOnly
-                id="featurednote"
-                placeholder="No featured note available."
-                className="resize-none h-52"
-              />
-            )}
+            <Textarea
+              readOnly
+              id="featurednote"
+              placeholder="Featured Note"
+              className="resize-none h-60"
+            />
           </div>
         </CardContent>
         <CardFooter className=" grid w-full grid-cols-2 space-x-4">
-          <UserNoteAdd />
-          <UserNoteView />
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button>Add user note</Button>
+            </DialogTrigger>
+            <UserNoteAdd></UserNoteAdd>
+          </Dialog>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button>View user notes</Button>
+            </DialogTrigger>
+            <UserNoteView></UserNoteView>
+          </Dialog>
         </CardFooter>
       </Card>
     </TabsContent>
