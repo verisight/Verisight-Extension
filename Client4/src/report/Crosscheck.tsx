@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { CirclePlus } from 'lucide-react';
 import CitationLink from './components/CitationLink';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 
 
@@ -89,16 +90,15 @@ const Crosscheck = () => {
         <div className="space-y-5">
           <Textarea id="crosscheck" readOnly value={crosscheck} className="resize-none h-24" />
           <CardTitle>Citations</CardTitle>
-          <Card>
-            <CardContent className='grid grid-cols-1 gap-1 my-3 overflow-y-auto resize-none h-24'>
-              {citations.map((doc, index) => doc ? (
-                <CitationLink doc={doc} key={index} />
-              ) : (
-                <div>No Citations</div>
-              ))}
-            </CardContent>
-
-          </Card>
+            <ScrollArea className='h-24 w-full m-auto rounded-md border border-black'>
+              <div className='grid grid-cols-1 gap-1 m-3'>
+                {citations.map((doc, index) => doc ? (
+                  <CitationLink doc={doc} key={index} />
+                ) : (
+                  <div>No Citations</div>
+                ))}
+              </div>
+            </ScrollArea>
         </div>
       </CardContent>
       <CardFooter className='mt-5'>
