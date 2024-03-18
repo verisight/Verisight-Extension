@@ -1,9 +1,9 @@
 import { useGlobalContext } from "@/GlobalContext";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+// import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { Readability } from '@mozilla/readability';
-import { useState } from "react";
+// import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 
@@ -12,51 +12,63 @@ const Home = () => {
 
     const navigate = useNavigate();
 
-    const [articleURL, setArticleURL] = useState("");
+    async function parseArticle(html: string, articleURL: string) {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, "text/html");
+        const parsedArticle = new Readability(doc).parse();
 
-    const handleSubmit = async () => {
-        try {
-            const response = await fetch(articleURL);
-            const html = await response.text();
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(html, "text/html");
-            const parsedArticle = new Readability(doc).parse();
+        if (parsedArticle) {
+            const article = {
+                title: parsedArticle.title.replace(/\n/g, '').replace(/\t/g, ''),
+                content: parsedArticle.textContent.replace(/\n/g, '').replace(/\t/g, ''),
+                link: articleURL,
+                datePublished: parsedArticle.publishedTime,
+            };
 
-            if (parsedArticle) {
-                const article = {
-                    title: parsedArticle.title.replace(/\n/g, '').replace(/\t/g, ''),
-                    content: parsedArticle.textContent.replace(/\n/g, '').replace(/\t/g, ''),
-                    link: articleURL,
-                    datePublished: parsedArticle.publishedTime,
-                };
+            await fetch('http://localhost:3000/articles', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(article)
+            });
 
-                await fetch('http://localhost:3000/articles', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(article)
-                });
-
-                setArticle({
-                    title: article.title.replace(/\n/g, '').replace(/\t/g, ''),
-                    content: article.content.replace(/\n/g, '').replace(/\t/g, ''),
-                    link: articleURL,
-                    datePublished: article.datePublished,
-                    excerpt: parsedArticle.excerpt.replace(/\n/g, '').replace(/\t/g, '')
-                });
-                navigate("/report");
-            }
-        } catch (error) {
-            console.error(error);
+            setArticle({
+                title: article.title.replace(/\n/g, '').replace(/\t/g, ''),
+                content: article.content.replace(/\n/g, '').replace(/\t/g, ''),
+                link: articleURL,
+                datePublished: article.datePublished,
+                excerpt: parsedArticle.excerpt.replace(/\n/g, '').replace(/\t/g, '')
+            });
+            navigate("/report");
         }
     };
 
-    const handleFetchLink = async (e: any) => {
-        e.preventDefault();
+    // const handleSubmit = async () => {
+    //     try {
+    //         const response = await fetch(articleURL);
+    //         const html = await response.text();
+    //         await parseArticle(html);
+    //     } catch (error) {
+    //         console.error(error);
+    //     }
+    // };
+
+    const handleFetchLink = async () => {
         let queryOptions = { active: true, currentWindow: true };
-        let tabs = await chrome.tabs.query(queryOptions);
-        setArticleURL(tabs[0].url ?? '');
+        let [tab] = await chrome.tabs.query(queryOptions);
+
+        if (tab?.id) {
+            chrome.scripting.executeScript(
+                {
+                    target: { tabId: tab.id },
+                    func: () => { return document.documentElement.outerHTML; },
+                }, async (injectionResults) => {
+                    if (injectionResults[0].result) {
+                        await parseArticle(injectionResults[0].result, tab.url as string);
+                    }
+                });
+        }
     }
 
 
@@ -72,7 +84,7 @@ const Home = () => {
                     Get Current Page URL
                 </Button>
                 <Separator className="my-4 w-full" />
-                <Input
+                {/* <Input
                     className="font-bold py-2 px-4"
                     placeholder="Enter URL"
                     value={articleURL}
@@ -81,7 +93,7 @@ const Home = () => {
                 />
                 <Button className="font-bold py-2 px-4" type="submit" onClick={handleSubmit}>
                     Submit
-                </Button>
+                </Button> */}
             </div>
         </div>
     );
