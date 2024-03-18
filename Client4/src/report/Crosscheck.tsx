@@ -1,12 +1,13 @@
 import { useGlobalContext } from '@/GlobalContext';
-import { Button, buttonVariants } from '@/components/ui/button';
+import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { TabsContent } from '@/components/ui/tabs';
 import { Textarea } from '@/components/ui/textarea';
 import { useState } from 'react';
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import {CirclePlus} from 'lucide-react';
+import { CirclePlus } from 'lucide-react';
+import CitationLink from './components/CitationLink';
 
 
 
@@ -63,7 +64,7 @@ const Crosscheck = () => {
   }
 
 
-  return (<TabsContent 
+  return (<TabsContent
     value="crosscheck"
     className="h-[460px] align-middle justify-items-center"
   >
@@ -90,21 +91,11 @@ const Crosscheck = () => {
           <CardTitle>Citations</CardTitle>
           <Card>
             <CardContent className='grid grid-cols-1 gap-1 my-3 overflow-y-auto resize-none h-24'>
-              {citations.map((doc, index) => {
-                return doc ? (
-                  <a
-                    href={doc.metadata.source}
-                    target="_blank"
-                    rel="noreferrer"
-                    key={index}
-                    className={`truncate ${buttonVariants({ variant: "outline" })}`}
-                  >
-                    {doc.metadata.title}
-                  </a>
-                ) : (
-                  <div>No Citations</div>
-                );
-              })}
+              {citations.map((doc, index) => doc ? (
+                <CitationLink doc={doc} key={index} />
+              ) : (
+                <div>No Citations</div>
+              ))}
             </CardContent>
 
           </Card>
