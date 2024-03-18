@@ -57,16 +57,16 @@ const Incongruence = () => {
         else setPrediction("is unrelated to");
       });
 
-      fetch("http://localhost:3000/notes/featuredNote", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ articleLink: article.link }),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data);
-          setFeaturedNote(data.noteContent);
-        });
+    fetch("http://localhost:3000/notes/featuredNote", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ articleLink: article.link }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setFeaturedNote(data.noteContent);
+      });
 
   }, []);
 
@@ -99,6 +99,9 @@ const Incongruence = () => {
         </CardHeader>
         <CardContent className="space-y-2">
           <div className="space-y-1">
+            <p className="leading-7 [&:not(:first-child)]:mt-6">
+              <CardTitle>Featured Note</CardTitle>
+            </p>
             {featuredNote ? (
               <Textarea
                 readOnly
