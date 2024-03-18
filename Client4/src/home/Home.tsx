@@ -8,41 +8,68 @@ import { useNavigate } from "react-router-dom";
 
 
 const Home = () => {
+
+    interface Article {
+        title: string;
+        content: string;
+        link: string;
+        datePublished: string;
+        excerpt?: string;
+    }
+    
+
     const { setArticle } = useGlobalContext();
 
     const navigate = useNavigate();
-
-    async function parseArticle(html: string, articleURL: string) {
+    // This function parses an article from HTML and posts it to a server
+    async function parseArticle(html : string, articleURL : string) {
+        // Create a new DOMParser
         const parser = new DOMParser();
+
+        // Parse the HTML string into a Document object
         const doc = parser.parseFromString(html, "text/html");
+
+        // Use Readability to parse the article from the Document
         const parsedArticle = new Readability(doc).parse();
 
+        // If the article was successfully parsed
         if (parsedArticle) {
+            // Create an article object with the parsed data
             const article = {
-                title: parsedArticle.title.replace(/\n/g, '').replace(/\t/g, ''),
-                content: parsedArticle.textContent.replace(/\n/g, '').replace(/\t/g, ''),
+                title: parsedArticle.title.trim(),
+                content: parsedArticle.textContent.trim(),
                 link: articleURL,
                 datePublished: parsedArticle.publishedTime,
             };
 
-            await fetch('http://localhost:3000/articles', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(article)
-            });
+            // Post the article to the server
+            await postArticle(article);
 
-            setArticle({
-                title: article.title.replace(/\n/g, '').replace(/\t/g, ''),
-                content: article.content.replace(/\n/g, '').replace(/\t/g, ''),
-                link: articleURL,
-                datePublished: article.datePublished,
-                excerpt: parsedArticle.excerpt.replace(/\n/g, '').replace(/\t/g, '')
-            });
-            navigate("/report");
+            // Set the article in the state and navigate to the report page
+            setArticleAndNavigate(article, parsedArticle.excerpt.trim());
         }
     };
+
+    // This function posts an article to the server
+    async function postArticle(article : Article) {
+        await fetch('http://localhost:3000/articles', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(article)
+        });
+    }
+
+    // This function sets the article in the state and navigates to the report page
+    function setArticleAndNavigate(article : Article, excerpt : string) {
+        setArticle({
+            ...article,
+            excerpt: excerpt
+        });
+        navigate("/report");
+    }
+
 
     // const handleSubmit = async () => {
     //     try {
@@ -54,22 +81,31 @@ const Home = () => {
     //     }
     // };
 
+    // This function fetches the HTML of the current tab and parses the article in it
     const handleFetchLink = async () => {
+        // Define the options for the query
         let queryOptions = { active: true, currentWindow: true };
+
+        // Query the current active tab
         let [tab] = await chrome.tabs.query(queryOptions);
 
+        // If the tab exists and has an ID
         if (tab?.id) {
+            // Execute a script in the tab to get the outer HTML of the document
             chrome.scripting.executeScript(
                 {
                     target: { tabId: tab.id },
                     func: () => { return document.documentElement.outerHTML; },
                 }, async (injectionResults) => {
+                    // If the script execution was successful
                     if (injectionResults[0].result) {
+                        // Parse the article in the HTML and post it to the server
                         await parseArticle(injectionResults[0].result, tab.url as string);
                     }
                 });
         }
     }
+
 
 
     return (
@@ -81,9 +117,8 @@ const Home = () => {
             </div>
             <div className="flex flex-col space-y-5" >
                 <Button className="font-bold py-2 px-4" onClick={handleFetchLink}>
-                    Get Current Page URL
+                    Analyse current page
                 </Button>
-                <Separator className="my-4 w-full" />
                 {/* <Input
                     className="font-bold py-2 px-4"
                     placeholder="Enter URL"
