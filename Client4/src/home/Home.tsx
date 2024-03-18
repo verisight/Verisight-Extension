@@ -1,7 +1,6 @@
 import { useGlobalContext } from "@/GlobalContext";
 import { Button } from "@/components/ui/button";
 // import { Input } from "@/components/ui/input";
-import { Separator } from "@/components/ui/separator";
 import { Readability } from '@mozilla/readability';
 // import { useState } from "react";
 import { useNavigate } from "react-router-dom";
