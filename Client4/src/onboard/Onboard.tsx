@@ -11,33 +11,41 @@ const Onboard = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    // Get all cookies for the specified URL
     chrome.cookies.getAll({ url: "http://localhost:5173" }, (cookies) => {
       cookies.forEach((cookie) => {
+        // Set each cookie to the document
         document.cookie = `${cookie.name}=${cookie.value}`;
       });
     });
-    //test protected route
+  
+    // Test protected route
     fetch("http://localhost:3000/users/protected", {
       method: "GET",
       credentials: "include",
     })
       .then((response) => {
         if (response.ok) {
-          response.json().then((data) => {
-            setUser(data);
-            navigate("/home");
-          });
+          // If response is OK, parse the JSON response
+          return response.json();
         } else {
-          console.log("response", response);
+          // Log the response if it's not OK
+          console.log("Response: ", response);
+          throw new Error("Response not OK");
         }
       })
-      .catch((error) => {
-        console.log("error", error);
+      .then((data) => {
+        // Set the user data and navigate to home
+        setUser(data);
+        navigate("/home");
       })
-      .finally(() => {
+      .catch((error) => {
+        // Log any errors and stop loading
+        console.log("Error: ", error);
         setLoading(false);
       });
   }, []);
+  
 
   return loading ? (
     <LoadingSpinner />
