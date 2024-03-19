@@ -69,7 +69,7 @@ const Crosscheck = () => {
       className="grow align-middle justify-items-center"
     >
       <Card className="h-full">
-        <ProfilePic className="justify-self-end mt-1 mr-1" />
+        <ProfilePic className="justify-self-end mt-3 mr-3" />
         <CardHeader>
           <CardTitle className='text-xl'>Article Crosscheck</CardTitle>
           <CardDescription>

@@ -44,7 +44,7 @@ const router = createHashRouter([
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <div className="w-[400px] h-[585px] flex flex-col">
+    <div className="w-[400px] h-[585px] flex flex-col px-[15px]">
       <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
         <AppContext>
           <RouterProvider router={router} />
