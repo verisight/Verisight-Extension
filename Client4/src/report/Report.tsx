@@ -16,6 +16,7 @@ import UserNoteView from "./UserNoteView";
 import { useGlobalContext } from "@/GlobalContext";
 import { useEffect, useState } from "react";
 import ProfilePic from "./components/ProfilePic";
+import { Link } from "react-router-dom";
 
 const Report = () => {
   return (
@@ -63,7 +64,6 @@ const Incongruence = () => {
         console.log(data);
         setFeaturedNote(data.noteContent);
       });
-
   }, []);
 
   return (
@@ -72,12 +72,15 @@ const Incongruence = () => {
       className="grow align-middle justify-items-center"
     >
       <Card className="h-full">
-        <ProfilePic className="justify-self-end mt-3 mr-3" />
+        <Link to="/profile">
+          <ProfilePic className="justify-self-end mt-3 mr-3" />
+        </Link>
         <CardHeader>
-          <CardTitle className="mb-5 text-xl text-nowrap truncate">{article.title}</CardTitle>
+          <CardTitle className="mb-5 text-xl text-nowrap truncate">
+            {article.title}
+          </CardTitle>
           <CardTitle>Article Stance</CardTitle>
           <CardDescription className="w-full">
-
             <Input
               readOnly
               value={`The article ${prediction} the content`}
@@ -118,4 +121,3 @@ const Incongruence = () => {
 };
 
 export default Report;
-
