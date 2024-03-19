@@ -71,7 +71,7 @@ const Crosscheck = () => {
       <Card className="h-full">
         <ProfilePic className="justify-self-end mt-1 mr-1" />
         <CardHeader>
-          <CardTitle>Article Crosscheck</CardTitle>
+          <CardTitle className='text-xl'>Article Crosscheck</CardTitle>
           <CardDescription>
             Crosscheck the article using AI
           </CardDescription>

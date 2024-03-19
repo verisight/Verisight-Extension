@@ -46,7 +46,7 @@ const Summary = () => {
       <Card className="h-full">
         <ProfilePic className="justify-self-end mt-1 mr-1" />
         <CardHeader>
-          <CardTitle>Article Summary</CardTitle>
+          <CardTitle className="text-xl">Article Summary</CardTitle>
           <CardDescription>Summarize the article using AI</CardDescription>
         </CardHeader>
         <CardContent className="space-y-2">
