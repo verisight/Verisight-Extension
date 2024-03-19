@@ -12,6 +12,7 @@ const Authentication = () => {
   };
   return (
     <div className="flex flex-col items-center justify-center h-screen">
+      <img src="11187155_4620633.svg" />
       <div className="w-32 h-64">
         <img src="WhiteLogo.png" alt="Verisight Logo" />
       </div>
