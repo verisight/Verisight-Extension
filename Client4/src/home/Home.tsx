@@ -1,9 +1,9 @@
 import { useGlobalContext } from "@/GlobalContext";
-import { Button } from "@/components/ui/button";
-// import { Input } from "@/components/ui/input";
+import { LoadingSpinner } from "@/components/ui/loadingspinner";
 import { Readability } from '@mozilla/readability';
-// import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import NotArticleError from "./components/NotArticleError";
 
 
 const Home = () => {
@@ -15,13 +15,22 @@ const Home = () => {
         datePublished: string;
         excerpt?: string;
     }
-    
+
+    const [isError, setIsError] = useState(false);
+
+    const [url, setUrl] = useState("");
 
     const { setArticle } = useGlobalContext();
 
     const navigate = useNavigate();
+
     // This function parses an article from HTML and posts it to a server
-    async function parseArticle(html : string, articleURL : string) {
+    async function parseArticle(html: string, articleURL: string) {
+        if (!isNewsWebsite(html)) {
+            setIsError(true);
+            return;
+        }
+
         // Create a new DOMParser
         const parser = new DOMParser();
 
@@ -50,7 +59,7 @@ const Home = () => {
     };
 
     // This function posts an article to the server
-    async function postArticle(article : Article) {
+    async function postArticle(article: Article) {
         await fetch('http://localhost:3000/articles', {
             method: 'POST',
             headers: {
@@ -61,7 +70,7 @@ const Home = () => {
     }
 
     // This function sets the article in the state and navigates to the report page
-    function setArticleAndNavigate(article : Article, excerpt : string) {
+    function setArticleAndNavigate(article: Article, excerpt: string) {
         setArticle({
             ...article,
             excerpt: excerpt
@@ -69,16 +78,25 @@ const Home = () => {
         navigate("/report");
     }
 
+    function isNewsWebsite(content: string) {
+        // Convert HTML content string to a DOM element
+        const tempElement = document.createElement('div');
+        tempElement.innerHTML = content;
 
-    // const handleSubmit = async () => {
-    //     try {
-    //         const response = await fetch(articleURL);
-    //         const html = await response.text();
-    //         await parseArticle(html);
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
-    // };
+        // Analyze the DOM structure and content to identify common patterns
+        const articleElements = tempElement.querySelectorAll('article, .article, .news, .story, .headline, [role="article"]');
+        const headlineElements = tempElement.querySelectorAll('h1, h2, h3, h4, h5, h6');
+        const paragraphElements = tempElement.querySelectorAll('p');
+
+        // Check if the page contains elements commonly found on news websites
+        // Adjust these conditions based on the characteristics of news websites you want to detect
+        const hasArticle = articleElements.length > 0;
+        const hasHeadlines = headlineElements.length > 0;
+        const hasParagraphs = paragraphElements.length > 0;
+
+        // Determine if the webpage appears to be a news website based on the presence of common elements
+        return hasArticle && hasHeadlines && hasParagraphs;
+    }
 
     // This function fetches the HTML of the current tab and parses the article in it
     const handleFetchLink = async () => {
@@ -99,38 +117,25 @@ const Home = () => {
                     // If the script execution was successful
                     if (injectionResults[0].result) {
                         // Parse the article in the HTML and post it to the server
+                        setUrl(tab.url as string);
                         await parseArticle(injectionResults[0].result, tab.url as string);
                     }
                 });
         }
     }
 
-
+    useEffect(() => {
+        handleFetchLink();
+    }, []);
 
     return (
-        <div className="flex flex-col items-center justify-center h-screen">
-            <div className="mb-8">
-                <div className="w-12 h-12 my-5">
-                    <img src="WhiteLogo.png" alt="Verisight Logo" />
-                </div>
-            </div>
-            <div className="flex flex-col space-y-5" >
-                <Button className="font-bold py-2 px-4" onClick={handleFetchLink}>
-                    Analyse current page
-                </Button>
-                {/* <Input
-                    className="font-bold py-2 px-4"
-                    placeholder="Enter URL"
-                    value={articleURL}
-                    type="text"
-                    onChange={(e) => setArticleURL(e.target.value)}
-                />
-                <Button className="font-bold py-2 px-4" type="submit" onClick={handleSubmit}>
-                    Submit
-                </Button> */}
-            </div>
-        </div>
-    );
+        (!isError ?
+            <div>
+                <LoadingSpinner text="Analysing article"/>
+            </div> :
+            <NotArticleError url={url} />
+        )
+    )
 
 }
 
