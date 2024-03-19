@@ -13,14 +13,17 @@ import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
 import ProfilePic from "./components/ProfilePic";
 import { Link } from "react-router-dom";
+import { LoadingSpinner } from "@/components/ui/loadingspinner";
 
 const Summary = () => {
   const { article } = useGlobalContext();
 
   const [summary, setSummary] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const getSummary = async () => {
     // Fetch summary from server
+    setLoading(true);
     const response = await fetch("http://localhost:3000/summary", {
       method: "POST",
       headers: {
@@ -35,9 +38,12 @@ const Summary = () => {
   const handleGetSummary = async () => {
     const summary = await getSummary();
     setSummary(summary);
+    setLoading(false);
   };
 
-  return (
+  return loading ? (
+    <LoadingSpinner className="h-[80vh]" />
+  ) : (
     <TabsContent
       value="summary"
       className="grow align-middle justify-items-center"
@@ -46,7 +52,7 @@ const Summary = () => {
         <Link to="/profile">
           <ProfilePic className="justify-self-end mt-3 mr-3" />
         </Link>
-        <CardHeader>
+        <CardHeader className="pt-2">
           <CardTitle className="text-xl">Article Summary</CardTitle>
           <CardDescription>Summarize the article using AI</CardDescription>
         </CardHeader>

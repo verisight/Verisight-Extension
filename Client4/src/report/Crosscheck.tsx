@@ -16,10 +16,12 @@ import CitationLink from "./components/CitationLink";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import ProfilePic from "./components/ProfilePic";
 import { Link } from "react-router-dom";
+import { LoadingSpinner } from "@/components/ui/loadingspinner";
 
 const Crosscheck = () => {
   const [crosscheck, setCrosscheck] = useState("");
   const [citations, setCitations] = useState<Doc[]>([]);
+  const [loading, setLoading] = useState(false);
 
   interface Doc {
     pageContent: string;
@@ -42,6 +44,7 @@ const Crosscheck = () => {
   const { article } = useGlobalContext();
 
   const handleCrosscheck = async () => {
+    setLoading(true);
     console.log(article);
 
     const response = await fetch("http://localhost:3000/crosscheck", {
@@ -64,9 +67,12 @@ const Crosscheck = () => {
 
     setCrosscheck(answer);
     setCitations(citedDocs);
+    setLoading(false);
   };
 
-  return (
+  return loading ? (
+    <LoadingSpinner />
+  ) : (
     <TabsContent
       value="crosscheck"
       className="grow align-middle justify-items-center"
@@ -75,7 +81,7 @@ const Crosscheck = () => {
         <Link to="/profile">
           <ProfilePic className="justify-self-end mt-3 mr-3" />
         </Link>
-        <CardHeader>
+        <CardHeader className="pt-2">
           <CardTitle className="text-xl">Article Crosscheck</CardTitle>
           <CardDescription>Crosscheck the article using AI</CardDescription>
         </CardHeader>

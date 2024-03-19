@@ -24,7 +24,7 @@ const Report = () => {
       <Crosscheck />
       <Summary />
       <Incongruence />
-      <TabsList className="grid w-full grid-cols-3 mt-2">
+      <TabsList className="grid w-full grid-cols-3 mb-2 mt-2">
         <TabsTrigger value="crosscheck">Crosscheck</TabsTrigger>
         <TabsTrigger value="incongruence">Incongruence</TabsTrigger>
         <TabsTrigger value="summary">Summary</TabsTrigger>
@@ -75,7 +75,7 @@ const Incongruence = () => {
         <Link to="/profile">
           <ProfilePic className="justify-self-end mt-3 mr-3" />
         </Link>
-        <CardHeader>
+        <CardHeader className="pt-2">
           <CardTitle className="mb-5 text-xl text-nowrap truncate">
             {article.title}
           </CardTitle>
