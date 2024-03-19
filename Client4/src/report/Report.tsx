@@ -88,7 +88,7 @@ const Incongruence = () => {
 
       <Card>
         <CardHeader className="items-center">
-          <CardTitle className="mb-5 text-xl">{article.title}</CardTitle>
+          <CardTitle className="mb-5 text-xl text-nowrap truncate">{article.title}</CardTitle>
           <CardDescription className="w-full">
             <Input
               readOnly
