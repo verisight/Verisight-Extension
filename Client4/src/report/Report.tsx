@@ -2,7 +2,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Crosscheck from "./Crosscheck";
 import Summary from "./Summary";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardHeader,
@@ -16,18 +15,15 @@ import UserNoteAdd from "./UserNoteAdd";
 import UserNoteView from "./UserNoteView";
 import { useGlobalContext } from "@/GlobalContext";
 import { useEffect, useState } from "react";
-
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { CirclePlus } from 'lucide-react';
-
+import ProfilePic from "./components/ProfilePic";
 
 const Report = () => {
   return (
-    <Tabs defaultValue="incongruence" className="w-[400px] h-[585px]">
+    <Tabs defaultValue="incongruence" className="flex flex-col grow">
       <Crosscheck />
       <Summary />
       <Incongruence />
-      <TabsList className="grid w-full grid-cols-3 mt-20">
+      <TabsList className="grid w-full grid-cols-3 mt-2">
         <TabsTrigger value="crosscheck">Crosscheck</TabsTrigger>
         <TabsTrigger value="incongruence">Incongruence</TabsTrigger>
         <TabsTrigger value="summary">Summary</TabsTrigger>
@@ -73,22 +69,12 @@ const Incongruence = () => {
   return (
     <TabsContent
       value="incongruence"
-      className="h-[460px] align-middle justify-items-center"
+      className="grow align-middle justify-items-center"
     >
-      <div className="p-4 grid grid-cols-2 place-items-center">
-        <Avatar className="ml-2 h-11 w-11">
-          <AvatarImage src="https://github.com/shadcn.png" />
-          <AvatarFallback>CN</AvatarFallback>
-        </Avatar>
-        <Button variant="ghost" size="icon" className="mr-2">
-          <CirclePlus className="h-10 w-10" />
-        </Button>
-      </div>
-
-
-      <Card>
-        <CardHeader className="items-center">
-          <CardTitle className="mb-5 text-xl text-nowrap truncate">{article.title}</CardTitle>
+      <Card className="h-full">
+        <ProfilePic className="justify-self-end mt-1 mr-1"/>
+        <CardHeader>
+          <CardTitle className="mb-5 text-xl text-nowrap truncate">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis sint officia iusto? Nisi, dolorem dolorum error veniam consectetur cumque harum aut laborum molestias culpa accusantium suscipit nemo, quod aperiam consequuntur.</CardTitle>
           <CardDescription className="w-full">
             <Input
               readOnly
@@ -130,3 +116,4 @@ const Incongruence = () => {
 };
 
 export default Report;
+

@@ -5,10 +5,9 @@ import { TabsContent } from '@/components/ui/tabs';
 import { Textarea } from '@/components/ui/textarea';
 import { useState } from 'react';
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { CirclePlus } from 'lucide-react';
 import CitationLink from './components/CitationLink';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import ProfilePic from './components/ProfilePic';
 
 
 
@@ -64,32 +63,24 @@ const Crosscheck = () => {
     setCitations(citedDocs);
   }
 
+  return (
+    <TabsContent
+      value="crosscheck"
+      className="grow align-middle justify-items-center"
+    >
+      <Card className="h-full">
+        <ProfilePic className="justify-self-end mt-1 mr-1" />
+        <CardHeader>
+          <CardTitle>Article Crosscheck</CardTitle>
+          <CardDescription>
+            Crosscheck the article using AI
+          </CardDescription>
+        </CardHeader>
 
-  return (<TabsContent
-    value="crosscheck"
-    className="h-[460px] align-middle justify-items-center"
-  >
-    <div className="p-4 grid grid-cols-2 place-items-center">
-      <Avatar className="ml-2 h-11 w-11">
-        <AvatarImage src="https://github.com/shadcn.png" />
-        <AvatarFallback>CN</AvatarFallback>
-      </Avatar>
-      <Button variant="ghost" size="icon" className="mr-2">
-        <CirclePlus className="h-10 w-10" />
-      </Button>
-    </div>
-    <Card>
-      <CardHeader>
-        <CardTitle>Article Crosscheck</CardTitle>
-        <CardDescription>
-          Crosscheck the article using AI
-        </CardDescription>
-      </CardHeader>
-
-      <CardContent className="space-y-2">
-        <div className="space-y-5">
-          <Textarea id="crosscheck" readOnly value={crosscheck} className="resize-none h-24" />
-          <CardTitle>Citations</CardTitle>
+        <CardContent className="space-y-2">
+          <div className="space-y-5">
+            <Textarea id="crosscheck" readOnly value={crosscheck} className="resize-none h-24" />
+            <CardTitle>Citations</CardTitle>
             <ScrollArea className='h-24 w-full m-auto rounded-md border border-black'>
               <div className='grid grid-cols-1 gap-1 m-3'>
                 {citations.map((doc, index) => doc ? (
@@ -99,13 +90,13 @@ const Crosscheck = () => {
                 ))}
               </div>
             </ScrollArea>
-        </div>
-      </CardContent>
-      <CardFooter className='mt-5'>
-        <Button className="w-full" onClick={handleCrosscheck}>Get Crosscheck</Button>
-      </CardFooter>
-    </Card>
-  </TabsContent>);
+          </div>
+        </CardContent>
+        <CardFooter className='mt-5'>
+          <Button className="w-full" onClick={handleCrosscheck}>Get Crosscheck</Button>
+        </CardFooter>
+      </Card>
+    </TabsContent>);
 }
 
 export default Crosscheck

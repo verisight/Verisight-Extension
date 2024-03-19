@@ -11,9 +11,7 @@ import {
 import { TabsContent } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
-
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import {CirclePlus} from 'lucide-react';
+import ProfilePic from "./components/ProfilePic";
 
 
 
@@ -41,20 +39,12 @@ const Summary = () => {
   };
 
   return (
-    <TabsContent 
-    value="summary"
-    className="h-[460px] align-middle justify-items-center"
+    <TabsContent
+      value="summary"
+      className="grow align-middle justify-items-center"
     >
-      <div className="p-4 grid grid-cols-2 place-items-center">
-        <Avatar className="ml-2 h-11 w-11">
-          <AvatarImage src="https://github.com/shadcn.png" />
-          <AvatarFallback>CN</AvatarFallback>
-        </Avatar>
-        <Button variant="ghost" size="icon" className="mr-2">
-          <CirclePlus className="h-10 w-10" />
-        </Button>
-      </div>
-      <Card>
+      <Card className="h-full">
+        <ProfilePic className="justify-self-end mt-1 mr-1" />
         <CardHeader>
           <CardTitle>Article Summary</CardTitle>
           <CardDescription>Summarize the article using AI</CardDescription>
