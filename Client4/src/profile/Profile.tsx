@@ -59,7 +59,6 @@
 
 // export default Profile
 
-
 // import { TabsContent } from "@/components/ui/tabs"
 // // import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 // // import Crosscheck from "./report/Crosscheck"
@@ -120,11 +119,6 @@
 // }
 
 // export default Profile
-
-
-
-
-
 
 // import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 // import Crosscheck from "./report/Crosscheck"
@@ -195,11 +189,7 @@
 
 // export default Report
 
-
-
-
-
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Card,
   CardContent,
@@ -207,56 +197,114 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
+} from "@/components/ui/card";
 
-
-import { Button } from "@/components/ui/button"
-import { Dialog, DialogTrigger } from "@/components/ui/dialog"
-import { Textarea } from '@/components/ui/textarea';
-
-
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogTrigger } from "@/components/ui/dialog";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Note } from "../report/components/Note";
+// import { Textarea } from "@/components/ui/textarea";
+import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useState } from "react";
+import { useGlobalContext } from "@/GlobalContext";
 
 const Profile = () => {
+  const { user } = useGlobalContext();
+
+  interface Note {
+    _id: string;
+    articleLink: string;
+    userId: string;
+    noteContent: string;
+    upvote: number;
+    createdAt: string;
+    updatedAt: string;
+    __v: number;
+  }
+
+  const [notes, setNotes] = useState<Note[]>([]);
+
+  //Fetch notes of the specific user from the server
+  const fetchNotes = async () => {
+    await fetch("http://localhost:3000/notes/userNotesbyId", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ userId: user.userId }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setNotes(data);
+      });
+  };
+
+  useEffect(() => {
+    fetchNotes();
+  }, []);
+
   return (
-    <Card className="w-[350px]">
+    <Card className="my-2">
       <div className="grid grid-cols-3 place-items-center">
-        <Avatar className="ml-10">
+        <Avatar className="w-12 h-12">
           <AvatarImage src="https://github.com/shadcn.png" />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
-        <CardHeader className="col-span-2 mr-1">
-          <CardDescription>Lead DevOps - Verisight Labs</CardDescription>
-          <CardTitle>Pragash Sasitharan</CardTitle>
+        <CardHeader className="px-3 space-y-0 col-span-2 mr-1">
+          <CardDescription className="text-[16px]">
+            Lead DevOps - Verisight Labs
+          </CardDescription>
+          <CardTitle className="text-[20px] p-0 m-0">
+            Pragash Sasitharan
+          </CardTitle>
         </CardHeader>
       </div>
 
       <CardContent className="grid grid-cols-2 place-items-center">
         <Dialog>
           <DialogTrigger asChild>
-          <Button variant="outline">Change email</Button>
+            <Button className="w-[8.5rem]" variant="outline">
+              Change Username
+            </Button>
           </DialogTrigger>
           {/* <UserNoteAdd></UserNoteAdd> */}
         </Dialog>
         <Dialog>
           <DialogTrigger asChild>
-          <Button variant="outline">Change password</Button>
+            <Button className="w-[8.5rem]" variant="outline">
+              Change Password
+            </Button>
           </DialogTrigger>
           {/* <UserNoteView></UserNoteView> */}
         </Dialog>
       </CardContent>
-      <CardContent className="space-y-2">
-      <div className="flex justify-center">
-        <CardTitle>Notes Activity</CardTitle>
-      </div>
-
-      <div className="space-y-1">
-          <Textarea id="summary" className="resize-none h-72" />
+      <CardContent className="space-y-2 mx-5 mb-3 p-3 rounded-[10px] border ">
+        <div className="flex justify-center">
+          <CardTitle className="text-lg">Notes Activity</CardTitle>
+        </div>
+        <div className="space-y-1">
+          <ScrollArea className="h-72 w-full p-4">
+            {notes?.length === 0 ? (
+              <p className="text-center text-sm">No Notes</p>
+            ) : (
+              notes?.map((note: any) => (
+                <Note content={note.noteContent} id={note._id} />
+              ))
+            )}
+          </ScrollArea>
         </div>
       </CardContent>
-      <CardFooter className="flex justify-between">
+      <CardFooter className="flex pb-4 justify-between">
+        <Link to="/report">
+          <Button className="w-[8.5rem]" variant="outline">
+            Back to Home
+          </Button>
+        </Link>
+        <Button className="w-[8.5rem]" variant="destructive">
+          Log Out
+        </Button>
       </CardFooter>
     </Card>
   );
-}
+};
 
 export default Profile;
