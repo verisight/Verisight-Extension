@@ -26,7 +26,7 @@ const Home = () => {
 
     // This function parses an article from HTML and posts it to a server
     async function parseArticle(html: string, articleURL: string) {
-        if (!isNewsWebsite(html)) {
+        if (!isNewsWebsite(html, articleURL)) {
             setIsError(true);
             return;
         }
@@ -78,7 +78,14 @@ const Home = () => {
         navigate("/report");
     }
 
-    function isNewsWebsite(content: string) {
+    function isNewsWebsite(content: string, url: string) {
+        const website_whitelist = ["www.bbc.com"];
+
+        const hostname = new URL(url).hostname;
+        if (website_whitelist.includes(hostname)) {
+            return true;
+        }
+
         // Convert HTML content string to a DOM element
         const tempElement = document.createElement('div');
         tempElement.innerHTML = content;
