@@ -74,7 +74,7 @@ const Incongruence = () => {
       <Card className="h-full">
         <ProfilePic className="justify-self-end mt-1 mr-1"/>
         <CardHeader>
-          <CardTitle className="mb-5 text-xl text-nowrap truncate">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis sint officia iusto? Nisi, dolorem dolorum error veniam consectetur cumque harum aut laborum molestias culpa accusantium suscipit nemo, quod aperiam consequuntur.</CardTitle>
+          <CardTitle className="mb-5 text-xl text-nowrap truncate">{article.title}</CardTitle>
           <CardDescription className="w-full">
             <Input
               readOnly
