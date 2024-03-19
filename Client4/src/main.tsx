@@ -22,6 +22,9 @@ import Authentication from "./auth/Authentication.tsx";
 import Home from "./home/Home.tsx";
 import Report from "./report/Report.tsx";
 import AppContext from "./GlobalContext.tsx";
+import Profile from "./profile/Profile.tsx";
+import Summary from "./report/Summary.tsx";
+import Crosscheck from "./report/Crosscheck.tsx";
 
 const router = createHashRouter([
   {
@@ -39,6 +42,18 @@ const router = createHashRouter([
   {
     path: "/report",
     element: <Report />,
+  },
+  {
+    path: "/summary",
+    element: <Summary />,
+  },
+  {
+    path: "/crosscheck",
+    element: <Crosscheck />,
+  },
+  {
+    path: "/profile",
+    element: <Profile />,
   },
 ]);
 
