@@ -9,7 +9,6 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 import { TabsContent } from "@/components/ui/tabs";
-import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
 
 import CitationLink from "./components/CitationLink";
@@ -21,7 +20,7 @@ import { LoadingSpinner } from "@/components/ui/loadingspinner";
 const Crosscheck = () => {
   const [crosscheck, setCrosscheck] = useState("");
   const [citations, setCitations] = useState<Doc[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   interface Doc {
     pageContent: string;
@@ -44,7 +43,7 @@ const Crosscheck = () => {
   const { article } = useGlobalContext();
 
   const handleCrosscheck = async () => {
-    setLoading(true);
+    setIsLoading(true);
     console.log(article);
 
     const response = await fetch("http://localhost:3000/crosscheck", {
@@ -67,12 +66,10 @@ const Crosscheck = () => {
 
     setCrosscheck(answer);
     setCitations(citedDocs);
-    setLoading(false);
+    setIsLoading(false);
   };
 
-  return loading ? (
-    <LoadingSpinner />
-  ) : (
+  return (
     <TabsContent
       value="crosscheck"
       className="grow align-middle justify-items-center"
@@ -88,24 +85,37 @@ const Crosscheck = () => {
 
         <CardContent className="space-y-2">
           <div className="space-y-5">
-            <Textarea
-              id="crosscheck"
-              readOnly
-              value={crosscheck}
-              className="resize-none h-24"
-            />
+            <div className="h-24 rounded-md border">
+              {
+                isLoading ? (
+                  <LoadingSpinner size={24} text="Loading Crosscheck" />
+                ) : (
+                  <ScrollArea className="h-full w-full p-2">
+                    {crosscheck}
+                  </ScrollArea>
+                )
+              }
+            </div>
             <CardTitle>Citations</CardTitle>
-            <ScrollArea className="h-24 w-full m-auto rounded-md border border-black">
-              <div className="grid grid-cols-1 gap-1 m-3">
-                {citations.map((doc, index) =>
-                  doc ? (
-                    <CitationLink doc={doc} key={index} />
-                  ) : (
-                    <div>No Citations</div>
-                  )
-                )}
-              </div>
-            </ScrollArea>
+            <div className="h-24 rounded-md border">
+              {
+                isLoading ? (
+                  <LoadingSpinner size={24} text="Loading Citations" />
+                ) : (
+                  <ScrollArea className="h-full w-full">
+                    <div className="grid grid-cols-1 gap-1 m-3">
+                      {citations.map((doc, index) =>
+                        doc ? (
+                          <CitationLink doc={doc} key={index} />
+                        ) : (
+                          <div>No Citations</div>
+                        )
+                      )}
+                    </div>
+                  </ScrollArea>
+                )
+              }
+            </div>
           </div>
         </CardContent>
         <CardFooter className="mt-5">

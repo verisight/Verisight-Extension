@@ -9,7 +9,6 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 import { TabsContent } from "@/components/ui/tabs";
-import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
 import ProfilePic from "./components/ProfilePic";
 import { Link } from "react-router-dom";
@@ -20,7 +19,7 @@ const Summary = () => {
   const { article } = useGlobalContext();
 
   const [summary, setSummary] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const getSummary = async () => {
     // Fetch summary from server
@@ -61,7 +60,7 @@ const Summary = () => {
               isLoading ? (
                 <LoadingSpinner size={24} text="Loading Summary" />
               ) : (
-                <ScrollArea className="h-full w-full p-4">
+                <ScrollArea className="h-full w-full p-2">
                   {summary}
                 </ScrollArea>
               )

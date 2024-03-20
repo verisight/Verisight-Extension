@@ -137,7 +137,7 @@ const Home = () => {
 
     return (
         (!isError ?
-            <div>
+            <div className="h-full">
                 <LoadingSpinner text="Analysing article"/>
             </div> :
             <NotArticleError url={url} />
