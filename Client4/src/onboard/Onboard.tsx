@@ -63,19 +63,16 @@ const Onboard = () => {
   ) : (
     <div className="flex flex-col items-center justify-center h-screen">
       <img src="Tick.png" alt="VeriSight Logo" className="py-5" />
-      <h4 className="font-bold text-xl my-0">Don't trust whatever you see</h4>
-      <div className="border-black">
-        <h3 className="text-wrap text-center justify-center px-12 py-5">
-          Say goodbye to falling for fake news and misleading headlines with
-          Verisight, the cutting-edge AI-powered tool designed to keep you
-          informed and protected online. With state-of-the-art algorithms and
-          real-time fact-checking, Verisight instantly identifies unreliable
-          sources and alerts you to potential misinformation. Stay one step
-          ahead of the clickbait trap and browse the web with confidence.
+      <h4 className="font-extrabold text-xl my-0">
+        Don't trust whatever you see
+      </h4>
+      <div className="border-black pb-2">
+        <h3 className="text-wrap font-semibold text-center justify-center px-5 py-5">
+          An AI tool that detects fake news and misleading headlines online.
+          Using cutting-edge algorithms, it instantly identifies unreliable
+          sources and alerts users to potential misinformation, helping them
+          browse the web with confidence and avoid falling for clickbait traps.
           <br />
-          <span className="font-semibold py-2 text-sm">
-            Try Verisight today!
-          </span>
         </h3>
       </div>
       <div className="flex flex-col space-y-2">
