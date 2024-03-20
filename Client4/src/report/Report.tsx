@@ -83,7 +83,7 @@ const Incongruence = () => {
           <CardDescription className="w-full">
             <Input
               readOnly
-              value={`The article ${prediction} the content`}
+              value={`The headline ${prediction} the content`}
               className="text-center"
             />
           </CardDescription>
