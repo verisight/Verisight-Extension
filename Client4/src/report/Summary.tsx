@@ -14,16 +14,17 @@ import { useState } from "react";
 import ProfilePic from "./components/ProfilePic";
 import { Link } from "react-router-dom";
 import { LoadingSpinner } from "@/components/ui/loadingspinner";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 const Summary = () => {
   const { article } = useGlobalContext();
 
   const [summary, setSummary] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const getSummary = async () => {
     // Fetch summary from server
-    setLoading(true);
+    setIsLoading(true);
     const response = await fetch("http://localhost:3000/summary", {
       method: "POST",
       headers: {
@@ -38,12 +39,10 @@ const Summary = () => {
   const handleGetSummary = async () => {
     const summary = await getSummary();
     setSummary(summary);
-    setLoading(false);
+    setIsLoading(false);
   };
 
-  return loading ? (
-    <LoadingSpinner className="h-[80vh]" />
-  ) : (
+  return (
     <TabsContent
       value="summary"
       className="grow align-middle justify-items-center"
@@ -57,13 +56,16 @@ const Summary = () => {
           <CardDescription>Summarize the article using AI</CardDescription>
         </CardHeader>
         <CardContent className="space-y-2">
-          <div className="space-y-1">
-            <Textarea
-              id="summary"
-              readOnly
-              value={summary}
-              className="resize-none h-72"
-            />
+          <div className="h-72 rounded-md border">
+            {
+              isLoading ? (
+                <LoadingSpinner size={24} text="Loading Summary" />
+              ) : (
+                <ScrollArea className="h-full w-full p-4">
+                  {summary}
+                </ScrollArea>
+              )
+            }
           </div>
         </CardContent>
         <CardFooter>
@@ -74,6 +76,6 @@ const Summary = () => {
       </Card>
     </TabsContent>
   );
-};
+}
 
 export default Summary;
