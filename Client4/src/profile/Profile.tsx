@@ -200,7 +200,6 @@ import {
 } from "@/components/ui/card";
 
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Note } from "../report/components/Note";
 // import { Textarea } from "@/components/ui/textarea";
@@ -208,6 +207,8 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useGlobalContext } from "@/GlobalContext";
+import ChangePassword from "./ChangePassword";
+import DeleteAccount from "./DeleteAccount";
 
 const Profile = () => {
   const { user } = useGlobalContext();
@@ -238,8 +239,22 @@ const Profile = () => {
       });
   };
 
+  const handleLogout = () => {
+    fetch("http://localhost:3000/users/logout", {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        window.close();
+        console.log(data);
+      });
+  };
+
   useEffect(() => {
     fetchNotes();
+    console.log(user);
   }, []);
 
   return (
@@ -249,24 +264,37 @@ const Profile = () => {
           <AvatarImage src="https://github.com/shadcn.png" />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
-        <CardHeader className="px-3 space-y-0 col-span-2 mr-1">
-          <CardDescription className="text-[16px]">
-            Lead DevOps - Verisight Labs
+        <CardHeader className="px-3  space-y-0 col-span-2 mr-1">
+          <CardDescription className="text-[14px]">
+            {user.designation ? user.designation : "Error Loading"}
           </CardDescription>
           <CardTitle className="text-[20px] p-0 m-0">
-            Pragash Sasitharan
+            {user.userName ? user.userName : "Error Loading"}
           </CardTitle>
         </CardHeader>
       </div>
 
       <CardContent className="grid grid-cols-2 place-items-center">
-        <Dialog>
+        {/* <Dialog>
           <DialogTrigger asChild>
             <Button className="w-[8.5rem]" variant="outline">
               Change Username
             </Button>
           </DialogTrigger>
-          {/* <UserNoteAdd></UserNoteAdd> */}
+          <DialogContent className="sm:max-w-[425px]">
+            <DialogHeader>
+              <DialogTitle>Change Username</DialogTitle>
+            </DialogHeader>
+            <FormField control={form.control} name="username" render={({ field }) => (
+              <FormItem>
+                <FormLabel>Username</FormLabel>
+                <FormControl>
+                <Textarea placeholder="Enter New Userame" {...field} />
+                </FormControl>
+              </FormItem>
+            )}>
+            </FormField>
+          </DialogContent>
         </Dialog>
         <Dialog>
           <DialogTrigger asChild>
@@ -274,8 +302,9 @@ const Profile = () => {
               Change Password
             </Button>
           </DialogTrigger>
-          {/* <UserNoteView></UserNoteView> */}
-        </Dialog>
+        </Dialog> */}
+        <ChangePassword />
+        <DeleteAccount />
       </CardContent>
       <CardContent className="space-y-2 mx-5 mb-3 p-3 rounded-[10px] border ">
         <div className="flex justify-center">
@@ -287,7 +316,7 @@ const Profile = () => {
               <p className="text-center text-sm">No Notes</p>
             ) : (
               notes?.map((note: any) => (
-                <Note content={note.noteContent} id={note._id} />
+                <Note content={note.noteContent} id={note._id} upVote={false} />
               ))
             )}
           </ScrollArea>
@@ -299,7 +328,11 @@ const Profile = () => {
             Back to Home
           </Button>
         </Link>
-        <Button className="w-[8.5rem]" variant="destructive">
+        <Button
+          onClick={handleLogout}
+          className="w-[8.5rem]"
+          variant="destructive"
+        >
           Log Out
         </Button>
       </CardFooter>
