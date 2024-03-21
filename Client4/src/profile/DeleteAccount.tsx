@@ -9,11 +9,13 @@ import {
 } from "@/components/ui/dialog";
 import { useToast } from "@/components/ui/use-toast";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const DeleteAccount = () => {
   const { user } = useGlobalContext();
   const [open, setOpen] = useState(false);
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   //Delete function
   const Delete = async () => {
@@ -46,10 +48,10 @@ const DeleteAccount = () => {
       headers: { "Content-Type": "application/json" },
       credentials: "include",
     })
-      .then((response) => response.json())
-      .then((data) => {
-        window.close();
-        console.log(data);
+      .then((response) => {
+        if (response.ok) {
+          navigate("/");
+        }
       });
   };
 

@@ -203,7 +203,7 @@ import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Note } from "../report/components/Note";
 // import { Textarea } from "@/components/ui/textarea";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useGlobalContext } from "@/GlobalContext";
 import ChangePassword from "./ChangePassword";
@@ -212,7 +212,9 @@ import DeleteAccount from "./DeleteAccount";
 const Profile = () => {
   const { user } = useGlobalContext();
 
-  const {notes, setNotes} = useGlobalContext();
+  const { notes, setNotes } = useGlobalContext();
+
+  const navigate = useNavigate();
 
   //Fetch notes of the specific user from the server
   const fetchNotes = async () => {
@@ -233,10 +235,10 @@ const Profile = () => {
       headers: { "Content-Type": "application/json" },
       credentials: "include",
     })
-      .then((response) => response.json())
-      .then((data) => {
-        window.close();
-        console.log(data);
+      .then((response) => {
+        if (response.ok) {
+          navigate("/");
+        }
       });
   };
 
