@@ -1,7 +1,6 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Crosscheck from "./Crosscheck";
 import Summary from "./Summary";
-import { Input } from "@/components/ui/input";
 import {
   Card,
   CardHeader,
@@ -17,6 +16,7 @@ import { useGlobalContext } from "@/GlobalContext";
 import { useEffect, useState } from "react";
 import ProfilePic from "./components/ProfilePic";
 import { Link } from "react-router-dom";
+import { Circle } from "lucide-react";
 
 const Report = () => {
   return (
@@ -38,6 +38,8 @@ const Incongruence = () => {
 
   const [prediction, setPrediction] = useState("");
 
+  const [predictionColor, setPredictionColor] = useState("");
+
   const [featuredNote, setFeaturedNote] = useState("");
 
   useEffect(() => {
@@ -48,11 +50,21 @@ const Incongruence = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        if (data.prediction === 0) setPrediction("agrees with");
-        else if (data.prediction === 1) setPrediction("disagrees with");
-        else if (data.prediction === 2) setPrediction("discusses");
-        else setPrediction("is unrelated to");
-      });
+        type PredictionMapping = {
+          [key: number]: { text: string, color: string }
+        };
+      
+        const predictionMapping: PredictionMapping = {
+          0: { text: "agrees with", color: "text-green-500 fill-green-500" },
+          1: { text: "disagrees with", color: "text-red-500 fill-red-500" },
+          2: { text: "discusses", color: "text-blue-500 fill-blue-500" },
+          3: { text: "is unrelated to", color: "text-gray-500 fill-gray-500" },
+        };
+      
+        const predictionData = predictionMapping[data.prediction] || predictionMapping[3];
+        setPrediction(predictionData.text);
+        setPredictionColor(predictionData.color);
+      })
 
     fetch("http://localhost:3000/notes/featuredNote", {
       method: "POST",
@@ -81,11 +93,9 @@ const Incongruence = () => {
           </CardTitle>
           <CardTitle>Article Stance</CardTitle>
           <CardDescription className="w-full">
-            <Input
-              readOnly
-              value={`The headline ${prediction} the content`}
-              className="text-center"
-            />
+            <div className="flex h-9 w-full rounded-md border px-3 py-1 items-center justify-center">
+              <Circle className={predictionColor}/> <p className="pl-2 inline-block align-middle">The headline {prediction} the article.</p>
+            </div>
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-2">
