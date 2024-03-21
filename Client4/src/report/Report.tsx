@@ -105,7 +105,7 @@ const Incongruence = () => {
             <p className="leading-7 [&:not(:first-child)]:mt-6">
               <CardTitle>Featured Note</CardTitle>
             </p>
-            <div className="h-52 rounded-md border">
+            <div className="h-48 rounded-md border">
               {featuredNote ? (
                 <ScrollArea className="h-full w-full p-2">
                   {featuredNote}

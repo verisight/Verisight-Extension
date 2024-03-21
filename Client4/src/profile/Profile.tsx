@@ -205,7 +205,6 @@ import { Note } from "../report/components/Note";
 // import { Textarea } from "@/components/ui/textarea";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
-import { useState } from "react";
 import { useGlobalContext } from "@/GlobalContext";
 import ChangePassword from "./ChangePassword";
 import DeleteAccount from "./DeleteAccount";
@@ -213,18 +212,7 @@ import DeleteAccount from "./DeleteAccount";
 const Profile = () => {
   const { user } = useGlobalContext();
 
-  interface Note {
-    _id: string;
-    articleLink: string;
-    userId: string;
-    noteContent: string;
-    upvote: number;
-    createdAt: string;
-    updatedAt: string;
-    __v: number;
-  }
-
-  const [notes, setNotes] = useState<Note[]>([]);
+  const {notes, setNotes} = useGlobalContext();
 
   //Fetch notes of the specific user from the server
   const fetchNotes = async () => {

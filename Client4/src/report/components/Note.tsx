@@ -60,6 +60,18 @@ const Upvote = (props: { id: string }) => {
 const Delete = (props: { id: string }) => {
   const { id } = props;
   const { user } = useGlobalContext();
+  const { notes, setNotes } = useGlobalContext();
+
+  type Note = {
+    _id: string;
+    articleLink: string;
+    userId: string;
+    noteContent: string;
+    upvote: number;
+    createdAt: string;
+    updatedAt: string;
+    __v: number;
+  };
 
   return (
     <button
@@ -72,6 +84,7 @@ const Delete = (props: { id: string }) => {
             userId: user.userId,
           }),
         });
+        setNotes(notes.filter((note: Note) => note._id !== id));
       }}
     >
       <Trash2 className="h-4 w-4" />
