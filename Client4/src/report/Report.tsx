@@ -88,7 +88,7 @@ const Incongruence = () => {
           <ProfilePic className="justify-self-end mt-3 mr-3" />
         </Link>
         <CardHeader className="pt-2">
-          <CardTitle className="mb-5 text-xl text-nowrap truncate">
+          <CardTitle className="mb-1 text-xl text-nowrap truncate">
             {article.title}
           </CardTitle>
           <CardTitle>Article Stance</CardTitle>
