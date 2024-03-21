@@ -50,7 +50,7 @@ const Incongruence = () => {
       .then((response) => response.json())
       .then((data) => {
         type PredictionMapping = {
-          [key: number]: { text: string, color: string }
+          [key: number]: { text: string; color: string };
         };
 
         const predictionMapping: PredictionMapping = {
@@ -60,10 +60,11 @@ const Incongruence = () => {
           3: { text: "is unrelated to", color: "text-gray-500 fill-gray-500" },
         };
 
-        const predictionData = predictionMapping[data.prediction] || predictionMapping[3];
+        const predictionData =
+          predictionMapping[data.prediction] || predictionMapping[3];
         setPrediction(predictionData.text);
         setPredictionColor(predictionData.color);
-      })
+      });
 
     fetch("http://localhost:3000/notes/featuredNote", {
       method: "POST",
@@ -95,24 +96,25 @@ const Incongruence = () => {
         <CardContent className="space-y-5">
           <CardTitle>Article Stance</CardTitle>
           <div className="flex h-9 w-full rounded-md border px-3 py-1 items-center justify-center">
-            <Circle className={predictionColor} /> <span className="pl-2">The headline {prediction} the article.</span>
+            <Circle className={predictionColor} />{" "}
+            <span className="pl-2">The headline {prediction} the article.</span>
           </div>
-          </CardContent>
-          <CardContent>
+        </CardContent>
+        <CardContent>
           <div className="space-y-5">
             <p className="leading-7 [&:not(:first-child)]:mt-6">
               <CardTitle>Featured Note</CardTitle>
             </p>
             <div className="h-52 rounded-md border">
-              {
-                featuredNote ? (
-                  <ScrollArea className="h-full w-full p-2">
-                    {featuredNote}
-                  </ScrollArea>
-                ) : (
-                  <span className="m-2">No featured note available</span>
-                )
-              }
+              {featuredNote ? (
+                <ScrollArea className="h-full w-full p-2">
+                  {featuredNote}
+                </ScrollArea>
+              ) : (
+                <div className="mt-4 text-center">
+                  No featured note available
+                </div>
+              )}
             </div>
           </div>
         </CardContent>

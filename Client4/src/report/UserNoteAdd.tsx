@@ -1,11 +1,19 @@
-import { useGlobalContext } from "@/GlobalContext"
-import { Button } from "@/components/ui/button"
-import { DialogHeader, DialogFooter, DialogContent, DialogTitle, DialogDescription, Dialog, DialogTrigger } from "@/components/ui/dialog"
-import { Textarea } from "@/components/ui/textarea"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-import { useToast } from "@/components/ui/use-toast"
+import { useGlobalContext } from "@/GlobalContext";
+import { Button } from "@/components/ui/button";
+import {
+  DialogHeader,
+  DialogFooter,
+  DialogContent,
+  DialogTitle,
+  DialogDescription,
+  Dialog,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Textarea } from "@/components/ui/textarea";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { useToast } from "@/components/ui/use-toast";
 import {
   Form,
   FormControl,
@@ -13,19 +21,18 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
-import { useState } from "react"
-import { Toaster } from "@/components/ui/toaster"
-import { LoaderCircle } from "lucide-react"
+} from "@/components/ui/form";
+import { useState } from "react";
+import { Toaster } from "@/components/ui/toaster";
+import { LoaderCircle } from "lucide-react";
 
 const FormSchema = z.object({
   usernote: z.string().min(1, {
     message: "User note cannot be empty.",
   }),
-})
+});
 
 const UserNoteAdd = () => {
-
   const { article, user, setNotes } = useGlobalContext();
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -33,25 +40,25 @@ const UserNoteAdd = () => {
 
   const fetchNotes = async () => {
     await fetch("http://localhost:3000/notes/all", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ articleLink: article.link }),
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ articleLink: article.link }),
     })
-        .then((response) => response.json())
-        .then((data) => {
-            setNotes(data);
-        });
-};
+      .then((response) => response.json())
+      .then((data) => {
+        setNotes(data);
+      });
+  };
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
       usernote: "",
     },
-  })
+  });
 
   function delay(milliseconds: number) {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       setTimeout(resolve, milliseconds);
     });
   }
@@ -98,11 +105,10 @@ const UserNoteAdd = () => {
     }
   };
 
-
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button>Add user note</Button>
+        <Button className="w-[8.5rem]">Add user note</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <Form {...form}>
@@ -133,16 +139,21 @@ const UserNoteAdd = () => {
               />
             </div>
             <DialogFooter>
-              {loading ?
-                <Button disabled><LoaderCircle className="animate-spin" />Add note</Button> :
-                <Button type="submit">Add note</Button>}
+              {loading ? (
+                <Button disabled>
+                  <LoaderCircle className="animate-spin" />
+                  Add note
+                </Button>
+              ) : (
+                <Button type="submit">Add note</Button>
+              )}
             </DialogFooter>
           </form>
         </Form>
         <Toaster />
       </DialogContent>
     </Dialog>
-  )
-}
+  );
+};
 
-export default UserNoteAdd
+export default UserNoteAdd;
