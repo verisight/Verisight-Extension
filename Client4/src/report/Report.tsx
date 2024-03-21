@@ -9,7 +9,6 @@ import {
   CardContent,
   CardFooter,
 } from "@/components/ui/card";
-import { Textarea } from "@/components/ui/textarea";
 import UserNoteAdd from "./UserNoteAdd";
 import UserNoteView from "./UserNoteView";
 import { useGlobalContext } from "@/GlobalContext";
@@ -17,6 +16,7 @@ import { useEffect, useState } from "react";
 import ProfilePic from "./components/ProfilePic";
 import { Link } from "react-router-dom";
 import { Circle } from "lucide-react";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 const Report = () => {
   return (
@@ -53,14 +53,14 @@ const Incongruence = () => {
         type PredictionMapping = {
           [key: number]: { text: string, color: string }
         };
-      
+
         const predictionMapping: PredictionMapping = {
           0: { text: "agrees with", color: "text-green-500 fill-green-500" },
           1: { text: "disagrees with", color: "text-red-500 fill-red-500" },
           2: { text: "discusses", color: "text-blue-500 fill-blue-500" },
           3: { text: "is unrelated to", color: "text-gray-500 fill-gray-500" },
         };
-      
+
         const predictionData = predictionMapping[data.prediction] || predictionMapping[3];
         setPrediction(predictionData.text);
         setPredictionColor(predictionData.color);
@@ -91,34 +91,30 @@ const Incongruence = () => {
           <CardTitle className="mb-1 text-xl text-nowrap truncate">
             {article.title}
           </CardTitle>
-          <CardTitle>Article Stance</CardTitle>
-          <CardDescription className="w-full">
-            <div className="flex h-9 w-full rounded-md border px-3 py-1 items-center justify-center">
-              <Circle className={predictionColor}/> <p className="pl-2 inline-block align-middle">The headline {prediction} the article.</p>
-            </div>
-          </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-2">
-          <div className="space-y-1">
+
+        <CardContent className="space-y-5">
+          <CardTitle>Article Stance</CardTitle>
+          <div className="flex h-9 w-full rounded-md border px-3 py-1 items-center justify-center">
+            <Circle className={predictionColor} /> <span className="pl-2">The headline {prediction} the article.</span>
+          </div>
+          </CardContent>
+          <CardContent>
+          <div className="space-y-5">
             <p className="leading-7 [&:not(:first-child)]:mt-6">
               <CardTitle>Featured Note</CardTitle>
             </p>
-            {featuredNote ? (
-              <Textarea
-                readOnly
-                id="featurednote"
-                placeholder="Featured Note"
-                className="resize-none h-52"
-                value={featuredNote}
-              />
-            ) : (
-              <Textarea
-                readOnly
-                id="featurednote"
-                placeholder="No featured note available."
-                className="resize-none h-52"
-              />
-            )}
+            <div className="h-52 rounded-md border">
+              {
+                featuredNote ? (
+                  <ScrollArea className="h-full w-full p-2">
+                    {featuredNote}
+                  </ScrollArea>
+                ) : (
+                  <span className="m-2">No featured note available</span>
+                )
+              }
+            </div>
           </div>
         </CardContent>
         <CardFooter className=" grid w-full grid-cols-2 space-x-4">
