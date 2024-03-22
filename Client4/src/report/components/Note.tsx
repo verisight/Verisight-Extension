@@ -33,7 +33,7 @@ const Upvote = (props: { id: string }) => {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            _id: id,
+            noteId: id,
             userId: user.userId,
           }),
         }).then(() =>
