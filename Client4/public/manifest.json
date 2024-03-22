@@ -5,16 +5,15 @@
   "manifest_version": 3,
   "permissions": [
     "activeTab",
-    "tabs",
     "cookies",
     "scripting"
   ],
   "action": {
     "default_popup": "index.html",
-    "default_title": "Open the popup"
+    "default_title": "Verisight"
   },
   "host_permissions": [
-    "http://*/*",
-    "https://*/*"
+    "http://localhost:3000/*",
+    "http://localhost:5173/*"
   ]
 }
