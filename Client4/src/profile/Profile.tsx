@@ -218,7 +218,7 @@ const Profile = () => {
 
   //Fetch notes of the specific user from the server
   const fetchNotes = async () => {
-    await fetch("http://localhost:3000/notes/userNotesbyId", {
+    await fetch("https://api.verisightlabs.com/notes/userNotesbyId", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userId: user.userId }),
@@ -230,7 +230,7 @@ const Profile = () => {
   };
 
   const handleLogout = () => {
-    fetch("http://localhost:3000/users/logout", {
+    fetch("https://api.verisightlabs.com/users/logout", {
       method: "GET",
       headers: { "Content-Type": "application/json" },
       credentials: "include",

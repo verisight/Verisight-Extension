@@ -46,7 +46,7 @@ const Crosscheck = () => {
     setIsLoading(true);
     console.log(article);
 
-    const response = await fetch("http://localhost:3000/crosscheck", {
+    const response = await fetch("https://api.verisightlabs.com/crosscheck", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

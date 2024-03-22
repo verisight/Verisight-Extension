@@ -20,7 +20,7 @@ const DeleteAccount = () => {
   //Delete function
   const Delete = async () => {
     try {
-      await fetch("http://localhost:3000/users/delete-user", {
+      await fetch("https://api.verisightlabs.com/users/delete-user", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -43,7 +43,7 @@ const DeleteAccount = () => {
   };
 
   const handleLogout = () => {
-    fetch("http://localhost:3000/users/logout", {
+    fetch("https://api.verisightlabs.com/users/logout", {
       method: "GET",
       headers: { "Content-Type": "application/json" },
       credentials: "include",

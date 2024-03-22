@@ -42,7 +42,7 @@ const Incongruence = () => {
   const [featuredNote, setFeaturedNote] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:3000/articles/getArticle", {
+    fetch("https://api.verisightlabs.com/articles/getArticle", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ link: article.link }),
@@ -66,7 +66,7 @@ const Incongruence = () => {
         setPredictionColor(predictionData.color);
       });
 
-    fetch("http://localhost:3000/notes/featuredNote", {
+    fetch("https://api.verisightlabs.com/notes/featuredNote", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ articleLink: article.link }),

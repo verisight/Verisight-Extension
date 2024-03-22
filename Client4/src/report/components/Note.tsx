@@ -29,7 +29,7 @@ const Upvote = (props: { id: string }) => {
     <Toggle
       pressed={upvoted}
       onPressedChange={() => {
-        fetch("http://localhost:3000/notes/upvote", {
+        fetch("https://api.verisightlabs.com/notes/upvote", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -37,7 +37,7 @@ const Upvote = (props: { id: string }) => {
             userId: user.userId,
           }),
         }).then(() =>
-          fetch("http://localhost:3000/notes/isUpvoted", {
+          fetch("https://api.verisightlabs.com/notes/isUpvoted", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -76,7 +76,7 @@ const Delete = (props: { id: string }) => {
   return (
     <button
       onClick={() => {
-        fetch("http://localhost:3000/notes/delete", {
+        fetch("https://api.verisightlabs.com/notes/delete", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({

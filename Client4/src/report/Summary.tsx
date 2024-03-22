@@ -24,7 +24,7 @@ const Summary = () => {
   const getSummary = async () => {
     // Fetch summary from server
     setIsLoading(true);
-    const response = await fetch("http://localhost:3000/summary", {
+    const response = await fetch("https://api.verisightlabs.com/summary", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

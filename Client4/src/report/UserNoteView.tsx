@@ -26,7 +26,7 @@ function NotesList() {
   const { article, notes, setNotes } = useGlobalContext();
 
   const fetchNotes = async () => {
-    await fetch("http://localhost:3000/notes/all", {
+    await fetch("https://api.verisightlabs.com/notes/all", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ articleLink: article.link }),

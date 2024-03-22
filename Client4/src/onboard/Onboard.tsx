@@ -9,12 +9,12 @@ const Onboard = () => {
   const [loading, setLoading] = useState(true);
 
   const handleLogin = () => {
-    window.open("http://localhost:5173/login", "_blank");
+    window.open("https://auth.verisightlabs.com/login", "_blank");
   };
 
   // Function to handle internal navigation to the sign-up page
   const handleSignUp = () => {
-    window.open("http://localhost:5173/signup", "_blank");
+    window.open("https://auth.verisightlabs.com/signup", "_blank");
   };
 
   const navigate = useNavigate();
@@ -32,7 +32,7 @@ const Onboard = () => {
     );
 
     // Test protected route
-    fetch("http://localhost:3000/users/protected", {
+    fetch("https://api.verisightlabs.com/users/protected", {
       method: "GET",
       credentials: "include",
     })

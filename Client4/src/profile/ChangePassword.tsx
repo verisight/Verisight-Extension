@@ -59,7 +59,7 @@ const ChangePassword = () => {
     setLoading(true);
     try {
       const response = await fetch(
-        "http://localhost:3000/users/change-user-password",
+        "https://api.verisightlabs.com/users/change-user-password",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
