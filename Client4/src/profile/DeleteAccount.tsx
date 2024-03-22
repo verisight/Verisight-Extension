@@ -10,6 +10,7 @@ import {
 import { useToast } from "@/components/ui/use-toast";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Trash2 } from "lucide-react";
 
 const DeleteAccount = () => {
   const { user } = useGlobalContext();
@@ -47,18 +48,18 @@ const DeleteAccount = () => {
       method: "GET",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
-    })
-      .then((response) => {
-        if (response.ok) {
-          navigate("/");
-        }
-      });
+    }).then((response) => {
+      if (response.ok) {
+        navigate("/");
+      }
+    });
   };
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className="w-[8.5rem]" variant="destructive">
+        <Button className="w-[8.5rem] p-1 align-middle" variant="destructive">
+          <Trash2 className="mr-1 w-5 h-5" />
           Delete Account
         </Button>
       </DialogTrigger>
