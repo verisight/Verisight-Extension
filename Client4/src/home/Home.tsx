@@ -60,7 +60,7 @@ const Home = () => {
 
     // This function posts an article to the server
     async function postArticle(article: Article) {
-        await fetch('http://localhost:3000/articles', {
+        await fetch('https://api.verisightlabs.com/articles', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

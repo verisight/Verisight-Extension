@@ -19,7 +19,7 @@ const Onboard = () => {
 
   const navigate = useNavigate();
 
-  const {sessionCookie, setSessionCookie} = useGlobalContext();
+  const {setSessionCookie} = useGlobalContext();
 
   useEffect(() => {
     // Get all cookies for the specified URL
@@ -28,10 +28,11 @@ const Onboard = () => {
       (cookie) => {
         // If the cookie exists, log the cookie value
         setSessionCookie(cookie?.value);
+        console.log("Cookie: ", cookie);
 
         fetch("https://api.verisightlabs.com/users/auth/cookie", {
           method: "POST",
-          body: JSON.stringify({ session: sessionCookie }),
+          body: JSON.stringify({ session: cookie?.value }),
           headers: {
             "Content-Type": "application/json",
           },
