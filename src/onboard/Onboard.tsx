@@ -19,7 +19,7 @@ const Onboard = () => {
 
   const navigate = useNavigate();
 
-  const {setSessionCookie} = useGlobalContext();
+  const { setSessionCookie } = useGlobalContext();
 
   useEffect(() => {
     // Get all cookies for the specified URL
@@ -37,24 +37,25 @@ const Onboard = () => {
             "Content-Type": "application/json",
           },
         })
-        .then((response) => {
-          if (response.ok) {
-            return response.json();
-          } else {
-            console.log("Response: ", response);
-            throw new Error("Response not OK");
-          }
-        })
-        .then((data) => {
-          setUser(data);
-          navigate("/home");
-        })
-        .catch((error) => {
-          console.log("Error: ", error);
-          setLoading(false);
-        });
-      });
-    }, []);
+          .then((response) => {
+            if (response.ok) {
+              return response.json();
+            } else {
+              console.log("Response: ", response);
+              throw new Error("Response not OK");
+            }
+          })
+          .then((data) => {
+            setUser(data);
+            navigate("/home");
+          })
+          .catch((error) => {
+            console.log("Error: ", error);
+            setLoading(false);
+          });
+      }
+    );
+  }, []);
 
   return loading ? (
     <LoadingSpinner />
@@ -65,7 +66,7 @@ const Onboard = () => {
         Don't trust whatever you see
       </h4>
       <div className="border-black pb-2">
-        <h3 className="text-wrap font-semibold text-center justify-center px-5 py-5">
+        <h3 className="text-wrap text-center justify-center px-5 py-5">
           An AI tool that detects fake news and misleading headlines online.
           Using cutting-edge algorithms, it instantly identifies unreliable
           sources and alerts users to potential misinformation, helping them
@@ -81,6 +82,7 @@ const Onboard = () => {
           Login
         </Button>
         <Button
+          variant={"outline"}
           className="font-bold w-[17.5rem] py-2 px-4"
           onClick={handleSignUp}
         >
