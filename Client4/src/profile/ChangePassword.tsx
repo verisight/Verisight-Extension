@@ -99,7 +99,7 @@ const ChangePassword = () => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className="w-[8.5rem]" variant="outline">
+        <Button className="w-[8.5rem] p-1 align-middle" variant="outline">
           Change Password
         </Button>
       </DialogTrigger>
