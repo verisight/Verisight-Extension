@@ -25,6 +25,7 @@ import AppContext from "./GlobalContext.tsx";
 import Profile from "./profile/Profile.tsx";
 import Summary from "./report/Summary.tsx";
 import Crosscheck from "./report/Crosscheck.tsx";
+import NotArticleError from "./home/components/NotArticleError.tsx";
 
 const router = createHashRouter([
   {
@@ -54,6 +55,10 @@ const router = createHashRouter([
   {
     path: "/profile",
     element: <Profile />,
+  },
+  {
+    path: "not-found",
+    element: <NotArticleError url="google.com" />,
   },
 ]);
 

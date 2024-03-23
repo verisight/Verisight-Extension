@@ -97,7 +97,7 @@ const Incongruence = () => {
           <CardTitle>Article Stance</CardTitle>
           <div className="flex h-9 w-full rounded-md border px-3 py-1 items-center justify-center">
             <Circle className={predictionColor} />{" "}
-            <span className="pl-2">The headline {prediction} the article.</span>
+            <span className="pl-1">The headline {prediction} the article.</span>
           </div>
         </CardContent>
         <CardContent>

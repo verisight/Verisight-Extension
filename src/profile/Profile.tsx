@@ -47,7 +47,7 @@ const Profile = () => {
       body: JSON.stringify({ session: sessionCookie }),
       headers: {
         "Content-Type": "application/json",
-      }
+      },
     }).then((response) => {
       if (response.ok) {
         navigate("/");
@@ -77,7 +77,7 @@ const Profile = () => {
         </CardHeader>
       </div>
 
-      <CardContent className="grid grid-cols-2 place-items-center">
+      <CardContent className="items-center p-6 pt-0 flex pb-4 justify-between">
         {/* <Dialog>
           <DialogTrigger asChild>
             <Button className="w-[8.5rem]" variant="outline">
