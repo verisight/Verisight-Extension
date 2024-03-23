@@ -27,7 +27,7 @@ export default function NotArticleError({ url }: { url: string }) {
       </Button>
       <Link to="/profile">
         <Button variant="outline">
-          <PersonIcon className="mr-1" /> Back to Profile
+          <PersonIcon className="mr-1" /> Go to Profile
         </Button>
       </Link>
     </div>
