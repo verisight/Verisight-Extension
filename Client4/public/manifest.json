@@ -13,7 +13,6 @@
     "default_title": "Verisight"
   },
   "host_permissions": [
-    "https://auth.verisightlabs.com/*",
-    "https://api.verisightlabs.com/*"
+    "*://*.verisightlabs.com/"
   ]
 }

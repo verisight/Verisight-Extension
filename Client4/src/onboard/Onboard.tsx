@@ -21,42 +21,37 @@ const Onboard = () => {
 
   useEffect(() => {
     // Get all cookies for the specified URL
-    chrome.cookies.getAll(
-      { url: "https://auth.verisightlabs.com/" },
-      (cookies) => {
-        cookies.forEach((cookie) => {
-          // Set each cookie to the document
-          document.cookie = `${cookie.name}=${cookie.value}`;
-        });
-      }
-    );
+    chrome.cookies.get(
+      { url: "https://verisightlabs.com", name: "connect.sid" },
+      (cookie) => {
+        // If the cookie exists, log the cookie value
+        const cookieValue = cookie?.value;
 
-    // Test protected route
-    fetch("https://api.verisightlabs.com/users/protected", {
-      method: "GET",
-      credentials: "include",
-    })
-      .then((response) => {
-        if (response.ok) {
-          // If response is OK, parse the JSON response
-          return response.json();
-        } else {
-          // Log the response if it's not OK
-          console.log("Response: ", response);
-          throw new Error("Response not OK");
-        }
-      })
-      .then((data) => {
-        // Set the user data and navigate to home
-        setUser(data);
-        navigate("/home");
-      })
-      .catch((error) => {
-        // Log any errors and stop loading
-        console.log("Error: ", error);
-        setLoading(false);
+        fetch("https://api.verisightlabs.com/users/auth/cookie", {
+          method: "POST",
+          body: JSON.stringify({ session: cookieValue }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            console.log("Response: ", response);
+            throw new Error("Response not OK");
+          }
+        })
+        .then((data) => {
+          setUser(data);
+          navigate("/home");
+        })
+        .catch((error) => {
+          console.log("Error: ", error);
+          setLoading(false);
+        });
       });
-  }, []);
+    }, []);
 
   return loading ? (
     <LoadingSpinner />
