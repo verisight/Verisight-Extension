@@ -18,6 +18,8 @@ const DeleteAccount = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
 
+  const { sessionCookie } = useGlobalContext();
+
   //Delete function
   const Delete = async () => {
     try {
@@ -44,10 +46,12 @@ const DeleteAccount = () => {
   };
 
   const handleLogout = () => {
-    fetch("https://api.verisightlabs.com/users/logout", {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-      credentials: "include",
+    fetch("https://api.verisightlabs.com/users/auth/cookielogout", {
+      method: "POST",
+      body: JSON.stringify({ session: sessionCookie }),
+      headers: {
+        "Content-Type": "application/json",
+      }
     }).then((response) => {
       if (response.ok) {
         navigate("/");

@@ -19,17 +19,19 @@ const Onboard = () => {
 
   const navigate = useNavigate();
 
+  const {sessionCookie, setSessionCookie} = useGlobalContext();
+
   useEffect(() => {
     // Get all cookies for the specified URL
     chrome.cookies.get(
       { url: "https://verisightlabs.com", name: "connect.sid" },
       (cookie) => {
         // If the cookie exists, log the cookie value
-        const cookieValue = cookie?.value;
+        setSessionCookie(cookie?.value);
 
         fetch("https://api.verisightlabs.com/users/auth/cookie", {
           method: "POST",
-          body: JSON.stringify({ session: cookieValue }),
+          body: JSON.stringify({ session: sessionCookie }),
           headers: {
             "Content-Type": "application/json",
           },

@@ -26,6 +26,8 @@ const Profile = () => {
 
   const navigate = useNavigate();
 
+  const { sessionCookie } = useGlobalContext();
+
   //Fetch notes of the specific user from the server
   const fetchNotes = async () => {
     await fetch("https://api.verisightlabs.com/notes/userNotesbyId", {
@@ -40,10 +42,12 @@ const Profile = () => {
   };
 
   const handleLogout = () => {
-    fetch("https://api.verisightlabs.com/users/logout", {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-      credentials: "include",
+    fetch("https://api.verisightlabs.com/users/auth/cookielogout", {
+      method: "POST",
+      body: JSON.stringify({ session: sessionCookie }),
+      headers: {
+        "Content-Type": "application/json",
+      }
     }).then((response) => {
       if (response.ok) {
         navigate("/");

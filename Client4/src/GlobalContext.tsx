@@ -32,11 +32,13 @@ const AppContext = (props: any) => {
     __v: number;
   }
 
+  const [sessionCookie, setSessionCookie] = useState("");
+
   const [notes, setNotes] = useState<Note[]>([]);
 
   return (
     <GlobalContext.Provider
-      value={{ article, setArticle, user, setUser, notes, setNotes }}
+      value={{ article, setArticle, user, setUser, notes, setNotes, sessionCookie, setSessionCookie }}
     >
       {props.children}
     </GlobalContext.Provider>
