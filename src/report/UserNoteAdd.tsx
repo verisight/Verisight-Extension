@@ -39,7 +39,7 @@ const UserNoteAdd = () => {
   const { toast } = useToast();
 
   const fetchNotes = async () => {
-    await fetch("http://localhost:3000/notes/all", {
+    await fetch("https://api.verisightlabs.com/notes/all", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ articleLink: article.link }),
@@ -141,7 +141,7 @@ const UserNoteAdd = () => {
             <DialogFooter>
               {loading ? (
                 <Button disabled>
-                  <LoaderCircle className="animate-spin" />
+                  <LoaderCircle className="animate-spin mr-1" />
                   Add note
                 </Button>
               ) : (
