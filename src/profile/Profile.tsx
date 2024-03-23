@@ -126,7 +126,7 @@ const Profile = () => {
         </div>
       </CardContent>
       <CardFooter className="flex pb-4 justify-between">
-        <Link to="/report">
+        <Link to="/">
           <Button className="w-[8.5rem] p-1 align-middle" variant="outline">
             <Home className="mr-1 w-4 h-4" />
             Back to Home
