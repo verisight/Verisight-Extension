@@ -38,13 +38,22 @@ const AppContext = (props: any) => {
 
   return (
     <GlobalContext.Provider
-      value={{ article, setArticle, user, setUser, notes, setNotes, sessionCookie, setSessionCookie }}
+      value={{
+        article,
+        setArticle,
+        user,
+        setUser,
+        notes,
+        setNotes,
+        sessionCookie,
+        setSessionCookie,
+      }}
     >
       {props.children}
     </GlobalContext.Provider>
   );
 };
 
-export const API = "http://localhost:3000";
+export const API = "https://api.verisightlabs.com";
 
 export default AppContext;

@@ -11,7 +11,7 @@ const Upvote = (props: { id: string }) => {
   const [upvoted, setUpvoted] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:3000/notes/isUpvoted", {
+    fetch("https://api.verisightlabs.com/notes/isUpvoted", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
