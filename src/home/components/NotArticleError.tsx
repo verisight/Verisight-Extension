@@ -25,7 +25,7 @@ export default function NotArticleError({ url }: { url: string }) {
       >
         Send mail
       </Button>
-      <Link to="/profile">
+      <Link to="/">
         <Button variant="outline">
           <PersonIcon className="mr-1" /> Go to Profile
         </Button>
