@@ -77,7 +77,7 @@ const Home = () => {
   }
 
   function isNewsWebsite(content: string, url: string) {
-    const website_whitelist = ["www.bbc.com"];
+    const website_whitelist = ["www.bbc.com", "www.dailymirror.lk"];
 
     const hostname = new URL(url).hostname;
     if (website_whitelist.includes(hostname)) {
